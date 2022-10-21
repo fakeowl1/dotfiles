@@ -1,0 +1,9 @@
+[init]
+    defaultbranch = main
+[user]
+    email = hok7zv@tutanota.com
+    name = hok7z
+[core]
+    editor = nvim
+    pager = less
+	excludesfile = .gitignore

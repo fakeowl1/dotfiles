@@ -1,0 +1,9 @@
+@theme "./nord.rasi"
+
+configuration {
+	font: "Iosevka 13" ;
+    terminal: "kitty";
+}
+
+
+element-icon { size: 2ch ; }

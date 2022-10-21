@@ -1,0 +1,4 @@
+#!/bin/sh
+rm -rf ~/.cache/paru/clone
+paru -Scc
+sudo pacman -Rns $(pacman -Qtdq)
