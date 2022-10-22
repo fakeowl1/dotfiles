@@ -1,3 +1,12 @@
+
+<div align="center">
+
+<img src="images/my-rice.png" alt="">
+
+### My first rice
+
+</div>
+
 # Dotfiles
 
 - **wm:** [bspwm](https://github.com/hok7z/dotfiles/tree/main/.config/bspwm) & [sxhkd](https://github.com/hok7z/dotfiles/tree/main/.config/sxhkd)
