@@ -7,7 +7,7 @@
 
 </div>
 
-# Overwiev
+# Overview
 - **wm:** [bspwm](https://github.com/hok7z/dotfiles/tree/main/.config/bspwm) & [sxhkd](https://github.com/hok7z/dotfiles/tree/main/.config/sxhkd)
 - **terminal:** [kitty](https://github.com/hok7z/dotfiles/tree/main/.config/kitty)
 - **editor:** [neovim](https://github.com/hok7z/dotfiles/tree/main/.config/nvim)
