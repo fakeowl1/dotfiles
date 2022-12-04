@@ -1,4 +1,3 @@
-
 <div align="center">
 
 <img src="images/my-rice.png" alt="">
@@ -17,3 +16,10 @@
 - **notifications** : [**`dunst`**](https://github.com/hok7z/dotfiles/tree/main/.config/dunst)
 - [**`shell scripts`**](https://github.com/hok7z/dotfiles/tree/main/.config/scripts)
 - [**`user systemd units`**](https://github.com/hok7z/dotfiles/tree/main/.config/systemd/user)
+
+
+# TODO
+- [] Update neovim configuration
+    - [] custom statusline
+    - [] code folding
+- [] write eww config
