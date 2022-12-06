@@ -56,7 +56,7 @@ nvim_lsp.clangd.setup {
     filetypes = {"c","cpp","objc","objcpp"},
     on_attach = on_attach,
     handlers = handlers,
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
     root_dir = root_pattern {
         "CMakeList.txt",
         "compile_flags.txt",
@@ -68,7 +68,7 @@ nvim_lsp.clangd.setup {
 nvim_lsp.pyright.setup{
     on_attach = on_attach,
     handlers = handlers,
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities), 
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities), 
 }
 
 nvim_lsp.gopls.setup {
@@ -76,7 +76,7 @@ nvim_lsp.gopls.setup {
     filetypes = {"go", "gomod"},
     on_attach = on_attach,
     handlers = handlers,
-    capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities),
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities),
     root_dir = root_pattern{
         "go.mod",
         ".git",
