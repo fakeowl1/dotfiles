@@ -11,6 +11,7 @@ fi
 if [ -e $PID_FILE ]; then
     kill -s INT "$(cat $PID_FILE)"
     notify-send "Screen record was ended" -t 2000
+    # https://github.com/mwh/dragon
     dragon "$(cat /tmp/screencast.filename)"
     rm -- "${PID_FILE}"
 else
