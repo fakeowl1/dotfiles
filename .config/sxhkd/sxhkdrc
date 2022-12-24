@@ -5,8 +5,8 @@
 # Default keybinds 
 # -------------------------------------------------------
 
-super + e
-	pkill -USR1 -x sxhkd
+super + shift + e
+	$HOME/bin/restart_sxhkd
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -34,41 +34,26 @@ super + g
 super + Return
     kitty
 
-super + shift + n
-    kitty -e notetaker
+super + d 
+	rofi -show drun -show-icons -modi drun
+
+super + c
+    rofi -show calc -modi calc -no-show-match -no-sort
 
 super + n
-    kitty -e ranger
+    thunar
 
-super + shift + t
-    kotatogram-desktop
-
-super + shift + b
+super + shift + {b,f}
     librewolf 
 
 super + shift + s
     /home/q/bin/screenrecord
 
-super + c
-    rofi -show calc -modi calc -no-show-match -no-sort
-
-super + alt + l
-    /home/q/.config/scripts/lofi.sh
-
-super + alt + j 
-    /home/q/.config/scripts/jazz.sh
-
-super + d 
-	rofi -show drun -show-icons -modi drun  	
+super + shift + n
+    kitty -e notetaker
 
 Print
 	flameshot gui
-
-{super+alt+t} 
-	kotatogram-desktop
-
-{F9,super+alt+f} 
-	librewolf
 
 super + x 
 	betterlockscreen -l dimblur
@@ -81,11 +66,11 @@ super + x
 
 # Down
 {F2,XF86AudioLowerVolume} 
-	pactl set-sink-volume @DEFAULT_SINK@ -10% 
+	pactl set-sink-volume @DEFAULT_SINK@ -1% 
 
 # Up
 {F3,XF86AudioRaiseVolume}}
-	pactl set-sink-volume @DEFAULT_SINK@ +10%
+	pactl set-sink-volume @DEFAULT_SINK@ +1%
 
 # Mute
 {F1,F86AudioMute}
@@ -101,10 +86,10 @@ super + x
 # --------------------------------------------------------------
 
 {F4,XF86MonBrightnessDown}
-	light -U 10
+	light -U 1
 
 {F5, XF86MonBrightnessUp}
-	light -A 10
+	light -A 1
 
 # --------------------------------------------------------------
 
