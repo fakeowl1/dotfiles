@@ -32,7 +32,6 @@ cmp.setup {
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
-            -- local kind = string.format("%s %s",vim.g.icons.kind[vim_item.kind], vim_item.kind)
             local kind = require("lspkind").cmp_format({mode = "symbol_text", maxwidth = 50})(entry, vim_item) 
             
             local strings = vim.split(kind.kind, "%s",{trimempty = true})
@@ -40,14 +39,6 @@ cmp.setup {
             kind.menu = "    (" .. strings[2] .. ")"
 
             return kind
-
-            -- vim_item.menu = ({
-            --     nvim_lsp = "[LSP]",
-            --     nvim_lua = "[Lua]",
-            --     buffer   = "[BUF]",
-            -- })[entry.source.name]
-            --
-            -- return vim_item
         end
 
     },
