@@ -87,7 +87,7 @@ install_aur_helper() {
 
 install_aur_pkgs() {
     paru -S librewolf-bin timeshift-bin kotatogram-desktop-bin spotify pandoc-bin 
-    paru -S polybar-git light-git picom-jonaburg-fix betterlockscreen
+    paru -S polybar-git light-git picom-animations-git betterlockscreen
     paru -S nordic-darker-theme 
     paru -S jmtpfs
     paru -S epson-inkjet-printer-escpr
@@ -101,37 +101,9 @@ finishing() {
     # NeoVim
     echo -e "${green}[*] Installing neovim.${no_color}"
     sudo pacman -S neovim neovim-qt
-    sudo pacman -S clang python-black
-    sudo pacman -S npm ninja cargo 
+    sudo pacman -S npm ninja cargo go 
     git clone --depth 1 https://github.com/wbthomason/packer.nvim\
         ~/.local/share/nvim/site/pack/packer/start/packer.nvim 
-    sudo npm i -g pyright
     echo -e "${green}[*] Updating nvim extensions.${no_color}"
     nvim +PackerSync
 }
-
-# cmd=(dialog --clear --separate-output --checklist "Select (with space) what script should do.\\nChecked options are required for proper installation, do not uncheck them if you do not know what you are doing." 26 86 16)
-# options=(
-#          1 "Install basic packages" on
-#          2 "Install software packages" on
-#          3 "Install aur helper" on
-#          4 "Install additional packages (aur)" on
-#          5 "Create default directories" on
-#          6 "Copy fonts" on
-#          7 "Copy wallpapers,set zsh as default shell,install & update nvim extensions." on)
-# choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-#
-# clear
-#
-# for choice in $choices
-# do
-#     case $choice in
-#         1) install_base_pkgs;;
-#         2) install_software_pkgs;;
-#         3) install_aur_helper;;
-#         4) install_aur_pkgs;;
-#         5) create_dotfiles;;
-#         6) copy_fonts;;
-#         7) finishing;;
-#     esac
-# done
