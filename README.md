@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="images/my-rice.png" alt="">
+<img src="images/my_rice.png" alt="">
 
 ### My first rice
 
@@ -19,7 +19,7 @@
 
 
 # TODO
-- [] Update neovim configuration
-    - [] custom statusline
-    - [] code folding
-- [] write eww config
+- [x] Update neovim configuration
+    - [ ] custom statusline
+    - [ ] code folding
+- [ ] write eww config
