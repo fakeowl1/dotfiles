@@ -5,8 +5,14 @@
 # Default keybinds 
 # -------------------------------------------------------
 
-super + shift + e
-	$HOME/bin/sxhkd-restart
+super + alt + e
+    $HOME/bin/restart --sxhkd
+
+super + alt + b
+    $HOME/bin/restart --polybar 
+
+super + alt + p 
+    $HOME/bin/restart --picom 
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -42,6 +48,9 @@ super + c
 
 super + n
     thunar
+
+super + shift + t
+    kotatogram-desktop
 
 super + shift + {b,f}
     librewolf 
