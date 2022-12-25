@@ -6,7 +6,7 @@
 # -------------------------------------------------------
 
 super + shift + e
-	$HOME/bin/restart_sxhkd
+	$HOME/bin/sxhkd-restart
 
 # quit/restart bspwm
 super + alt + {q,r}

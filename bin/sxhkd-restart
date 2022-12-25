@@ -1,0 +1,2 @@
+pkill -USR1 -x sxhkd
+dunstify "sxhkd restarted" -t 3500
