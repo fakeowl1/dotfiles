@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if [ -z "$1" ] 
+then
+    echo "./restart --picom/--polybar/--sxhkd";
+    exit 1;
+fi
+
+
+case $1 in 
+    "--picom")
+        pkill -USR1 -x picom
+        dunstify "picom restarted" -t 3500
+    ;;
+    
+    "--polybar")
+        pkill -USR1 -x polybar
+        dunstify "polybar restarted" -t 3500
+    ;;
+
+    "--sxhkd")
+        pkill -USR1 -x sxhkd
+        dunstify "sxhkd restarted" -t 3500
+    ;;
+
+esac
