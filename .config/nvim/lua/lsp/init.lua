@@ -12,14 +12,15 @@ end
 local sign = vim.fn.sign_define
 local sign_name = {"Error","Warn","Info","Hint"} 
 
-vim.g.lsp_path = os.getenv("HOME") .. "/.local/share/nvim/mason/bin/" 
 
-vim.g.lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-vim.g.lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-vim.g.lsp_capabilities.textDocument.foldingRange = {
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
 }
+
+vim.g.lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
 
 vim.diagnostic.config {
     signs = true,
@@ -59,9 +60,9 @@ local servers = mason_lsp.get_installed_servers()
 for _, server in ipairs(servers) do
     local ok, result = pcall(require, "lsp.servers."..server)
     if ok then
-        local lsp_srv = lsp[server]
-        if lsp_srv ~= nil then
-            local ok, err = pcall(lsp_srv.setup, result)
+        local lsp_server = lsp[server]
+        if lsp_server ~= nil then
+            local ok, err = pcall(lsp_server.setup, result)
             if err ~= nil then
                 vim.pretty_print(err)
             end

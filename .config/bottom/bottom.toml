@@ -28,7 +28,7 @@
 # Defaults to Celsius.  Temperature is one of:
 #temperature_type = "k"
 #temperature_type = "f"
-temperature_type = "c"
+#temperature_type = "c"
 #temperature_type = "kelvin"
 #temperature_type = "fahrenheit"
 #temperature_type = "celsius"
