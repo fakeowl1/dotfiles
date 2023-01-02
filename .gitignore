@@ -2,3 +2,5 @@
 .config/polybar/scripts/weather/.env
 wallpapers/
 images/
+README.md
+install-on-arch.sh
