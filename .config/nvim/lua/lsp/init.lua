@@ -1,25 +1,15 @@
-local ok, lsp = pcall(require,"lspconfig")
-if not ok then
-    vim.notify("Failed to load lspconfig\n\n")
-    return
-end
+local lsp = require_mod("lspconfig")
 
-local ok, mason_lsp = pcall(require, "mason-lspconfig")
-if not ok then
-    vim.notify("Failed load mason-lspconfig")
-end
+local mason_lsp = require_mod("mason-lspconfig")
+
+local navic = require_mod("nvim-navic")
 
 local sign = vim.fn.sign_define
 local sign_name = {"Error","Warn","Info","Hint"} 
 
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-}
-
-vim.g.lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+for k, icon in pairs(vim.g.diagnostic_sings) do 
+    sign("DiagnosticSign" .. sign_name[k],{text=icon,texthl="DiagnosticSign" .. sign_name[k]})
+end
 
 
 vim.diagnostic.config {
@@ -37,15 +27,25 @@ vim.g.lsp_handler = {
     ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help,{border="rounded"})
 }
 
-for k, icon in pairs(vim.g.diagnostic_sings) do 
-    sign("DiagnosticSign" .. sign_name[k],{text=icon,texthl="DiagnosticSign" .. sign_name[k]})
-end
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true,
+}
+
+
+vim.g.lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 
 vim.g.lsp_on_attach = function(client,bufnr)
     print("Attaching to:",client.name)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr,...) end
     local opts = {noremap = true,silent=true}
+    
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+    end
 
     buf_set_keymap('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>',opts)
     buf_set_keymap('n','K', '<cmd>lua vim.lsp.buf.hover()<CR>',opts)
@@ -67,8 +67,8 @@ for _, server in ipairs(servers) do
                 vim.pretty_print(err)
             end
         else
-            vim.notify("Missing server configuration for " .. server,"error")
             vim.pretty_print({server = server, result = result})
+            vim.notify("Missing server configuration for " .. server, "error")
         end
     end
 end

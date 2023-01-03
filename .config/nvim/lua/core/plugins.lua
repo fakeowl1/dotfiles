@@ -1,4 +1,4 @@
-local ok,packer = pcall(require,"packer")
+local ok, packer = pcall(require,"packer")
 if not ok then
     vim.notify("Failed to load packer\n\n")
     return
@@ -22,11 +22,13 @@ packer.startup{
         }
 
          -- Colorchemes
-        use {"catppuccin/nvim", as = "catppuccin"}
-        use {"tiagovla/tokyodark.nvim"}
-        use {"rebelot/kanagawa.nvim"}
-        use {"projekt0n/github-nvim-theme"}
-        use {"Mofiqul/vscode.nvim"}
+        -- use {"catppuccin/nvim", as = "catppuccin"}
+        -- use {"tiagovla/tokyodark.nvim"}
+        use {'Everblush/everblush.nvim',as = 'everblush'}
+        -- use {"frenzyexists/aquarium-vim"}
+        -- use {"rebelot/kanagawa.nvim"}
+        -- use {"projekt0n/github-nvim-theme"}
+        -- use {"Mofiqul/vscode.nvim"}
         
         use {"dstein64/vim-startuptime"}
 
@@ -36,7 +38,16 @@ packer.startup{
             config = function() require("plugins.nvim-tree") end
         }
         
-        use {"rcarriga/nvim-notify"}
+        use {
+            "rcarriga/nvim-notify",
+            config = function()
+                require("notify").setup({
+                    on_open = function(win)
+                        vim.api.nvim_win_set_config(win,{focusable = false})
+                    end,
+                })
+            end,
+        }
 
         use {
             "lewis6991/gitsigns.nvim",
@@ -102,12 +113,6 @@ packer.startup{
             end
         }
         
-        use {
-            'romgrk/barbar.nvim',
-            requires = {'kyazdani42/nvim-web-devicons'},
-            config = function() require("plugins.barbar") end
-        }
-
         -- Language Server Protocol
         use {
             "neovim/nvim-lspconfig",
@@ -117,7 +122,7 @@ packer.startup{
                 require("mason").setup()
             end
         }
-        
+         
         use {
             "hrsh7th/nvim-cmp",
             requires = {
@@ -185,9 +190,18 @@ packer.startup{
 
 
         use {
-            "SmiteshP/nvim-gps",
-            requires = "nvim-treesitter/nvim-treesitter",
-            config = function() require("nvim-gps").setup() end,
+            "SmiteshP/nvim-navic",
+            requires = {"neovim/nvim-lspconfig"},
+            config = function()
+                local navic = require("nvim-navic")
+                navic.setup {
+                    highlight = false,
+                    separator = " > ",
+                    depth_limit = 0.01,
+                    depth_limit_indicator = "..",
+                    safe_output = true
+                }
+            end,
         }
         
         use {
