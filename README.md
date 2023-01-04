@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="images/my_rice.png" alt="">
-
 ### My first rice
 
 </div>
