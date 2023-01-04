@@ -19,7 +19,11 @@
 
 
 # TODO
-- [x] Update neovim configuration
-    - [ ] custom statusline
+- [x] Neovim
+    - [x] Update configurations
+    - [x] Language server installer
+    - [x] Telescope configuration
+    - [ ] winbar lsp-gps cursor
+    - [ ] Debugger Protocol
+    - [ ] Quickfix
     - [ ] code folding
-- [ ] write eww config
