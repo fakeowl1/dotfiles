@@ -4,3 +4,4 @@ wallpapers/
 images/
 README.md
 install-on-arch.sh
+.config/nvim/plugin/
