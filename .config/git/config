@@ -6,4 +6,6 @@
 [core]
     editor = nvim
     pager = less
-	excludesfile = .gitignore
+    excludesfile = .gitignore
+[diff]
+    noprefix = true
