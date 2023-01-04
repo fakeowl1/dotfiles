@@ -25,14 +25,19 @@ opt.swapfile = false
 opt.number = true
 opt.relativenumber = true
 
+vim.g.mapleader = " "
+
 opt.list = true
 opt.listchars = {tab = '| '}
 
-vim.g.lsp_path = os.getenv("HOME") .. "/.local/share/nvim/mason/bin/" 
+opt.splitbelow = true
+opt.splitright = true
+
+opt.undofile = true
 
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
 opt.mouse = "a"
 
-vim.g.mapleader = " "
+vim.g.lsp_path = os.getenv("HOME") .. "/.local/share/nvim/mason/bin/" 

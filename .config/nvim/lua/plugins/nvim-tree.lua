@@ -4,6 +4,8 @@ if not ok then
     return
 end
 
+local keymap = vim.keymap.set
+
 nvim_tree.setup({
     sort_by = "case_sensitive",
     view = {
@@ -13,11 +15,11 @@ nvim_tree.setup({
         },
     },
 
-    renderer = {
-        group_empty = true,
-    },
-    
     filters = {
         dotfiles = true,
     },
 })
+
+keymap("n","<C-n>",":NvimTreeToggle<CR>")
+keymap("n","<leader>n",":NvimTreeFindFile<CR>")
+keymap("n","<C-]>","gh defx#do_action('cd',getcwd())<CR>")

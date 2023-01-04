@@ -8,12 +8,9 @@ vim.api.nvim_set_keymap('', '<right>', '<nop>',{noremap = true})
 
 keymap("n","<space>,",":nohlsearch<CR>")
 
--- Telescope --
-keymap("n","<leader>ff","<cmd> Telescope find_files <cr>")
-keymap("n","<leader>fg","<cmd> Telescope live_grep <cr>")
-keymap("n","<leader>fb","<cmd> Telescope buffers   <cr>")
+keymap("n","s",'"_d"')
 
--- NvimTree --
-keymap("n","<C-n>",":NvimTreeToggle<CR>")
-keymap("n","<leader>n",":NvimTreeFindFile<CR>")
-keymap("n","<C-]>","gh defx#do_action('cd',getcwd())<CR>")
+keymap('n', 'gwh', '<C-w>h')
+keymap('n', 'gwj', '<C-w>j')
+keymap('n', 'gwk', '<C-w>k')
+keymap('n', 'gwl', '<C-w>l')
