@@ -9,6 +9,8 @@ if status is-interactive
     alias la="lsd -la"
     
     alias dotfiles="git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME/"
+    
+    set -U fish_user_paths $HOME/bin $fish_user_paths
 
     set -x PF_INFO "ascii title os kernel wm shell pkgs memory"
 
