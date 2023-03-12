@@ -1,0 +1,199 @@
+* {
+  /* `otf-font-awesome` is required to be installed for icons */
+  font-family: FontAwesome, JetBrainsMono, sans-serif;
+  font-size: 13px;
+}
+
+@import "./colors.css";
+
+window#waybar {
+  background-color: rgba(43, 48, 59, 0.0);
+  color: @foreground; 
+  transition-property: background-color;
+  transition-duration: .5s;
+  padding: 0;
+  margin: 0;
+}
+
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+
+button {
+  margin: 0;
+  padding: 10px;
+  background-color: @background;
+  color: #d8dee8;
+  border-radius: 15px;
+}
+
+button:hover {
+  margin: 0;
+  padding: 10px;
+  background-color: @background;
+  color: #d8dee8;
+  border-radius: 15px;
+}
+
+button:focus {
+  margin: 0;
+  padding: 10px;
+  background-color: @background;
+  color: #d8dee8;
+  border-radius: 15px;
+}
+
+
+#workspaces {
+  margin: 0;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  margin: 5px;
+  background-color: @background;
+  color: #444b6a;
+  border-radius: 16px;
+}
+
+#workspaces button:hover {
+  color: @background;
+}
+
+#workspaces button.active {
+  background-color: @background;
+  color: @blue;
+}
+
+#workspaces button.urgent {
+  background-color: #eb4d4b;
+}
+
+
+#tray {
+  padding: 7px;
+  margin: 5px 0 5px 0;
+  background-color: @background;
+  color: #d8dee8;
+  border-radius: 12px;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+
+#custom-cmus {
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  background-color: @background;
+  color: #b9f27c;
+  border-radius: 15px;
+}
+
+
+#window {
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  background-color: @background;
+  color: @white;
+  border-radius: 12px;
+}
+
+
+#clock {
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  background-color: @background;
+  color: @white;
+  border-radius: 12px;
+}
+
+
+#mode,
+#custom-weather {
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  background-color: @background;
+  color: #d8dee8;
+  border-radius: 15px;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+label:focus {
+  background-color: #ffffff;
+}
+
+#custom-language {
+	background-color: @background;
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  border-radius: 12px;
+}
+
+
+/* #keyboard-state { */
+/*   background: #97e1ad; */
+/*   color: #000000; */
+/*   padding: 0 0px; */
+/*   margin: 0 5px; */
+/*   min-width: 16px; */
+/* } */
+/**/
+/* #keyboard-state > label { */
+/*   padding: 0 0px; */
+/* } */
+/**/
+/* #keyboard-state > label.locked { */
+/*   background: rgba(0, 0, 0, 0.2); */
+/* } */
+
+#pulseaudio {
+	background-color: @background;
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  border-radius: 12px;
+}
+
+#battery {
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+	border-radius: 12px;
+	color: @blue;
+	background: @background;
+}
+
+#battery.charging, #battery.plugged {
+	color: @green;
+  background-color: @background;
+}
+
+#battery.warning:not(.charging) {
+  background-color: @background;
+  color: @orange;
+} 
+
+#battery.critical:not(.charging) {
+  background-color: @barkground;
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
