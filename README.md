@@ -2,7 +2,7 @@
 
 ### My rice
 
-![images/rice.png](My rice)
+![](images/rice.png)
 
 </div>
 
