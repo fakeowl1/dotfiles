@@ -7,11 +7,11 @@
 </div>
 
 # Overview
-- **wm** [**`bspwm`**](https://github.com/hok7z/dotfiles/tree/main/.config/bspwm) & [**`sxhkd`**](https://github.com/hok7z/dotfiles/tree/main/.config/sxhkd)
-- **terminal** [**`kitty`**](https://github.com/hok7z/dotfiles/tree/main/.config/kitty)
+- **wm** [**`hyprland`**](https://github.com/hok7z/dotfiles/tree/main/.config/hypr)
+- **terminal** [**`foot`**](https://github.com/hok7z/dotfiles/tree/main/.config/foot)
 - **editor** [**`neovim`**](https://github.com/hok7z/dotfiles/tree/main/.config/nvim)
-- **status bar** [**`polybar`**](https://github.com/hok7z/dotfiles/tree/main/.config/polybar)
-- **launcher** [**`rofi`**](https://github.com/hok7z/dotfiles/tree/main/.config/rofi)
+- **status bar** [**`waybar`**](https://github.com/hok7z/dotfiles/tree/main/.config/waybar)
+- **launcher** [**`wofi`**](https://github.com/hok7z/dotfiles/tree/main/.config/wofi)
 - **shell** [**`fish`**](https://github.com/hok7z/dotfiles/tree/main/.config/fish)
 - **notifications** [**`dunst`**](https://github.com/hok7z/dotfiles/tree/main/.config/dunst)
 - [**`shell scripts`**](https://github.com/hok7z/dotfiles/tree/main/.config/scripts)
@@ -20,10 +20,7 @@
 
 # TODO
 - [x] Neovim
-  - [x] Update configurations
-  - [x] Language server installer
-  - [x] Telescope configuration
-  - [ ] winbar lsp-gps cursor
+  - [ ] Migrate from packer to lazy
   - [ ] Debugger Protocol
   - [ ] Quickfix
-  - [ ] code folding
+  - [ ] Code folding
