@@ -12,7 +12,6 @@ local ok, err = pcall(function()
 	-- vim.cmd('colorscheme catppuccin-macchiato')
 	-- vim.cmd('colorscheme aquarium')
 	opt.termguicolors = true
-	vim.cmd('colorscheme nord')
 end)
 
 if not ok then

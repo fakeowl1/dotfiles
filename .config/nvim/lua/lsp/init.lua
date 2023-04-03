@@ -32,11 +32,9 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
-
 local navic = require("nvim-navic")
 
 vim.g.lsp_capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
 
 vim.g.lsp_on_attach = function(client,bufnr)
   print("Attaching to:",client.name)
