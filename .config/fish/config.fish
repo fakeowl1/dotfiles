@@ -10,7 +10,7 @@ if status is-interactive
 	
 	alias la="lsd -la"
 	
-	alias dotfiles="git --git-dir=/home/q/repos/dotfiles.git --work-tree=$HOME"
+	alias dotfiles="git --git-dir=/home/q/repos/dotfiles --work-tree=$HOME"
 	
 	set -U fish_user_paths $HOME/bin $fish_user_paths
 

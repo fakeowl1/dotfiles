@@ -4,7 +4,7 @@
   font-size: 13px;
 }
 
-@import "./colors.css";
+@import "./nord.css";
 
 window#waybar {
   background-color: rgba(43, 48, 59, 0.0);
@@ -164,6 +164,13 @@ label:focus {
 /* } */
 
 #pulseaudio {
+	background-color: @background;
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  border-radius: 12px;
+}
+
+#bluetooth {
 	background-color: @background;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
