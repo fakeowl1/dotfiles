@@ -4,4 +4,4 @@ Pictures/screenshots/
 images/
 README.md
 install-on-arch.sh
-.config/nvim/plugin/
+.config/nvim/lazy-lock.json
