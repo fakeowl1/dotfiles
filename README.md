@@ -1,12 +1,12 @@
 <div align="center">
 
-### My rice
+### Rice
 
 ![](images/rice.png)
 
 </div>
 
-# Overview
+# Setup
 - **wm** [**`hyprland`**](https://github.com/hok7z/dotfiles/tree/main/.config/hypr)
 - **terminal** [**`foot`**](https://github.com/hok7z/dotfiles/tree/main/.config/foot)
 - **editor** [**`neovim`**](https://github.com/hok7z/dotfiles/tree/main/.config/nvim)
