@@ -8,9 +8,9 @@ end
 cmp.setup {
   mapping = {
 		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<C-N>"] = cmp.mapping.select_next_item(),
+		["<C-k>"] = cmp.mapping.select_next_item(),
 		["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<C-P>"] = cmp.mapping.select_prev_item(),
+    ["<C-j>"] = cmp.mapping.select_prev_item(),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({select = false}),
   },
