@@ -25,7 +25,7 @@ opt.number = true
 opt.relativenumber = true
 
 vim.g.lsp_path = os.getenv("HOME") .. "/.local/share/nvim/mason/bin/" 
-
+vim.lsp.set_log_level("debug")
 vim.g.mapleader = ","
 
 opt.list = true

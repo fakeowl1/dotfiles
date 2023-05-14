@@ -10,9 +10,6 @@ nvim_tree.setup({
     sort_by = "case_sensitive",
     view = {
         adaptive_size = true,
-        mappings = {
-            list = {{ key = "u", action = "dir_up" }},
-        },
     },
 
     filters = {
@@ -21,5 +18,3 @@ nvim_tree.setup({
 })
 
 keymap("n","<C-n>",":NvimTreeToggle<CR>")
-keymap("n","<leader>n",":NvimTreeFindFile<CR>")
-keymap("n","<C-]>","gh defx#do_action('cd',getcwd())<CR>")

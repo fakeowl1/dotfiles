@@ -16,6 +16,8 @@ if status is-interactive
 
 	set -x PF_INFO "ascii title os kernel wm shell pkgs memory"
 	set -x TERM "xterm"
+  set -x EDITOR "nvim" 
+  set -x XDG_DATA_HOME $HOME/.local/share
 
 	set srcdir "$HOME/.cache/"
 	set pkgdir "$HOME/.npm/"

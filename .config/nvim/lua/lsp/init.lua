@@ -50,7 +50,7 @@ vim.g.lsp_on_attach = function(client,bufnr)
   buf_set_keymap('n','[d','<cmd>lua vim.diagnostic.goto_prev()<CR>',opts)
   buf_set_keymap('n',']d','<cmd>lua vim.diagnostic.goto_next()<CR>',opts)
   buf_set_keymap('n','<leader>d','<cmd>lua vim.diagnostic.open_float({border="rounded"})<CR>',opts)
-  buf_set_keymap('n','<space>f','<cmd>lua vim.lsp.buf.formatting()<CR>',opts)
+  buf_set_keymap('n','<space>f','<cmd>lua vim.lsp.buf.format()<CR>',opts)
 end
 
 local servers = mason_lsp.get_installed_servers()

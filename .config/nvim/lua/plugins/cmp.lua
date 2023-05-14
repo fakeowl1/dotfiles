@@ -4,23 +4,21 @@ if not ok then
   return
 end
 
-
-cmp.setup {
-  mapping = {
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
 		["<Tab>"] = cmp.mapping.select_next_item(),
 		["<C-k>"] = cmp.mapping.select_next_item(),
+		["<C-j>"] = cmp.mapping.select_prev_item(),
 		["<S-Tab>"] = cmp.mapping.select_prev_item(),
-    ["<C-j>"] = cmp.mapping.select_prev_item(),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({select = false}),
-  },
-
+  }),
+  
   completion = {
-    autocomplete = true,
+    -- autocomplete = true,
     completeopt = "menu,menuone,noinsert",
     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
   },
-
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -51,4 +49,5 @@ cmp.setup {
     { name = "emoji" },
     { name = "calc" },
   },
-}
+
+})
