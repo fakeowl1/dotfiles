@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-if [ -n "$TMUX" ] ; then
-    tmux split-window -h "nvim \"$*\""
-else
-    kitty -e "nvim \"$*\""
-fi
