@@ -141,37 +141,73 @@ require("lazy").setup({
         preset = 'codicons',
         
         symbol_map = {
-          Text = "",
-          Method = "",
-          Function = "",
+          Text = "󰉿",
+          Method = "󰆧",
+          Function = "󰊕",
           Constructor = "",
-          Field = "ﰠ",
-          Variable = "",
-          Class = "ﴯ",
+          Field = "󰜢",
+          Variable = "󰀫",
+          Class = "󰠱",
           Interface = "",
           Module = "",
-          Property = "ﰠ",
-          Unit = "塞",
-          Value = "",
+          Property = "󰜢",
+          Unit = "󰑭",
+          Value = "󰎠",
           Enum = "",
-          Keyword = "",
+          Keyword = "󰌋",
           Snippet = "",
-          Color = "",
-          File = "",
-          Reference = "",
-          Folder = "",
+          Color = "󰏘",
+          File = "󰈙",
+          Reference = "󰈇",
+          Folder = "󰉋",
           EnumMember = "",
-          Constant = "",
-          Struct = "פּ",
+          Constant = "󰏿",
+          Struct = "󰙅",
           Event = "",
-          Operator = "",
-          TypeParameter = ""
-        }
+          Operator = "󰆕",
+          TypeParameter = "",
+        },
+
+        -- symbol_map = {
+        --   Text = "",
+        --   Method = "",
+        --   Function = "",
+        --   Constructor = "",
+        --   Field = "ﰠ",
+        --   Variable = "",
+        --   Class = "ﴯ",
+        --   Interface = "",
+        --   Module = "",
+        --   Property = "ﰠ",
+        --   Unit = "塞",
+        --   Value = "",
+        --   Enum = "",
+        --   Keyword = "",
+        --   Snippet = "",
+        --   Color = "",
+        --   File = "",
+        --   Reference = "",
+        --   Folder = "",
+        --   EnumMember = "",
+        --   Constant = "",
+        --   Struct = "פּ",
+        --   Event = "",
+        --   Operator = "",
+        --   TypeParameter = ""
+        -- }
       }
     end
   },
   
-  {"folke/which-key.nvim", opts = {}, lazy = true},
+  {
+    "folke/which-key.nvim", 
+    opts = {}, lazy = true,
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup()
+    end
+  },
 
   {
     "L3MON4D3/LuaSnip",
@@ -199,18 +235,18 @@ require("lazy").setup({
     end,
   },
   
-  {
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      local lsp_signature = require("lsp_signature")
-      
-      lsp_signature.setup{
-        hint_enable = false,
-        verbose = true
-      }
-
-    end
-  },
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   config = function()
+  --     local lsp_signature = require("lsp_signature")
+  --     
+  --     lsp_signature.setup{
+  --       hint_enable = false,
+  --       verbose = true
+  --     }
+  --
+  --   end
+  -- },
 
   -- Debug Adapter Protocol
   {

@@ -20,7 +20,6 @@
 
 # TODO
 - [x] Neovim
-  - [ ] Migrate from packer to lazy
+  - [x] Migrate from packer to lazy
   - [ ] Debugger Protocol
   - [ ] Quickfix
-  - [ ] Code folding

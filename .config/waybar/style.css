@@ -29,7 +29,7 @@ button {
   padding: 10px;
   background-color: @background;
   color: #d8dee8;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 button:hover {
@@ -37,7 +37,7 @@ button:hover {
   padding: 10px;
   background-color: @background;
   color: #d8dee8;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 button:focus {
@@ -45,20 +45,24 @@ button:focus {
   padding: 10px;
   background-color: @background;
   color: #d8dee8;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 
 #workspaces {
-  margin: 0;
+  padding: 0 15px 0 15px;
+  margin: 5px 0 5px 0;
+  background-color: @background;
+  color: @white;
+  border-radius: 14px;
+  /* margin: 0; */
 }
 
 #workspaces button {
   padding: 0 5px;
   margin: 5px;
-  background-color: @background;
+  /* background-color: ; */
   color: #444b6a;
-  border-radius: 16px;
 }
 
 #workspaces button:hover {
@@ -80,7 +84,7 @@ button:focus {
   margin: 5px 0 5px 0;
   background-color: @background;
   color: #d8dee8;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 #tray > .passive {
@@ -97,7 +101,7 @@ button:focus {
   margin: 5px 0 5px 0;
   background-color: @background;
   color: #b9f27c;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 
@@ -106,7 +110,7 @@ button:focus {
   margin: 5px 0 5px 0;
   background-color: @background;
   color: @white;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 
@@ -115,7 +119,7 @@ button:focus {
   margin: 5px 0 5px 0;
   background-color: @background;
   color: @white;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 
@@ -125,7 +129,7 @@ button:focus {
   margin: 5px 0 5px 0;
   background-color: @background;
   color: #d8dee8;
-  border-radius: 15px;
+  border-radius: 8px;
 }
 
 @keyframes blink {
@@ -143,44 +147,28 @@ label:focus {
 	background-color: @background;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
-
-/* #keyboard-state { */
-/*   background: #97e1ad; */
-/*   color: #000000; */
-/*   padding: 0 0px; */
-/*   margin: 0 5px; */
-/*   min-width: 16px; */
-/* } */
-/**/
-/* #keyboard-state > label { */
-/*   padding: 0 0px; */
-/* } */
-/**/
-/* #keyboard-state > label.locked { */
-/*   background: rgba(0, 0, 0, 0.2); */
-/* } */
 
 #pulseaudio {
 	background-color: @background;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 #bluetooth {
 	background-color: @background;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 #battery {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-	border-radius: 12px;
+	border-radius: 8px;
 	color: @blue;
 	background: @background;
 }
