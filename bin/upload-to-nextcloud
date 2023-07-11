@@ -1,0 +1,68 @@
+#!/bin/bash
+
+username="user"
+password="pass123456"
+url="https://domain.nextcloud.com/remote.php/dav/files/$username"
+
+if [[ $# -lt 2 ]]; then
+  echo "upload-to-nextcloud - upload directory to nextcloud"
+  echo "Usage: ./upload-to-nextcloud [local directory] [remote directory]"
+  exit 0
+fi
+
+function create_directory {
+  local directory_path=$1
+  local directory_name=$(basename "$directory_path")
+  
+  local source_path="$2"
+  if [ -z "$source_path" ]; then
+    source_path=$(dirname "$directory_path") 
+  fi
+  
+  local remote_dir="$3"
+
+  local create_dir_url="$url/$remote_dir${directory_path#$source_path}/"
+  create_dir_url="${create_dir_url// /%20}"
+  
+  curl -u "$username:$password" -X MKCOL "$create_dir_url"
+}
+
+
+function upload_file {
+  local file_path=$1
+  local file_name=$(basename "$file_path")
+
+  local source_path="$2"
+  if [ -z "$source_path" ]; then
+    source_path=$(dirname "$file_path") 
+  fi
+
+  local remote_dir="$3"
+  
+  local upload_url="$url/$remote_dir${file_path#$source_path}"
+  upload_url="${upload_url// /%20}"
+
+  echo $upload_url
+  curl -u "$username:$password" -T "$file_path" "$upload_url"
+}
+
+function upload_to_nextcloud {
+  local local_dir=$1
+  local remote_dir=$2
+
+  local source_path=$3
+  if [ -z "$source_path" ]; then
+    source_path=$local_dir 
+  fi
+
+  for file in "$local_dir"/*; do
+    if [[ -f "$file" ]]; then
+      upload_file "$file" "$source_path" "$remote_dir"
+    elif [[ -d "$file" ]]; then
+      create_directory "$file" "$source_path" "$remote_dir"
+      upload_to_nextcloud "$file" "$remote_dir" "$source_path" 
+    fi
+  done
+}
+
+upload_to_nextcloud "$1" "$2"

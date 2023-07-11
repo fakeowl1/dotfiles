@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [[ $# -lt 2 ]]; then
+  echo "yt-music - download music from youtube"
+  echo "Using: ./yt-music [link] \"Autor - Song\" (yt-dlp args)"
+  exit 0
+fi
+
+filename="${2}.mp3"
+
+IFS="-" read -a array <<< "$2"
+
+artist=${array[0]}
+artist=`echo $artist | sed 's/ *$//g'` 
+song=${array[1]}
+song=`echo $song | sed 's/ *$//g'` 
+
+yt-dlp $1 -x --audio-format mp3 -o "$filename" $3 
+
+id3v2 -a "${artist}" "$filename"
+id3v2 -t "${song}" "$filename"
