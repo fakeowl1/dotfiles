@@ -1,0 +1,16 @@
+#!/bin/sh
+
+num=$(checkupdates | wc -l) && [ "$num" -gt 0 ]
+last_pkg_updates=$(grep 'pacman -Suuy' /var/log/pacman.log | tail -1 | tr -d '[' | cut -f 1 -d 'T')
+
+case $1 in
+	"--notification")
+		dunstify -a "Updates" \
+		"$num updates available" \
+		"Last update: $last_pkg_updates ($(date +'%Y-%m-%d'))" \
+		-r 100 \
+	;;
+esac
+
+
+#echo "Last update: $last_pkg_updates ($(date +'%Y-%m-%d'))"
