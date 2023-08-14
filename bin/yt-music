@@ -15,7 +15,7 @@ artist=`echo $artist | sed 's/ *$//g'`
 song=${array[1]}
 song=`echo $song | sed 's/ *$//g'` 
 
-yt-dlp $1 -x --audio-format mp3 -o "$filename" $3 
+yt-dlp $1 -x --verbose --audio-format mp3 -o "$filename" $3 
 
 id3v2 -a "${artist}" "$filename"
 id3v2 -t "${song}" "$filename"

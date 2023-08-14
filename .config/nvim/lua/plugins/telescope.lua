@@ -23,17 +23,13 @@ telescope.setup{
 
 local keymap = vim.keymap.set
 
-keymap("n","<leader>f",builtin.find_files)
-keymap("n","<leader>l",builtin.live_grep)
-keymap("n","<leader>L",builtin.grep_string)
+keymap("n","<leader>sf",builtin.find_files, {desc = "[S]earch [F]iles"})
+keymap("n","<leader>sg",builtin.live_grep, {desc = "[S]earch by [G]rep"})
+keymap("n","<leader>sw",builtin.grep_string, {desc = "[S]earch current [W]ord"})
+keymap("n","<leader>ff",builtin.current_buffer_fuzzy_find, {desc = "[F]uzzy [F]ind in current [B]uffer"})
 
-keymap("n","<leader>;",builtin.current_buffer_fuzzy_find)
-keymap("n","<leader>b",builtin.buffers)
+keymap("n","<leader>fb",builtin.buffers, {desc = "[F]ind existing [B]uffers"})
 
-keymap("n","<leader>e",function()
-  builtin.diagnostics{bufnr = 0,severity_limit = "WARN"}
-end)
-
-keymap("n","<leader>E",function()
-  builtin.diagnostics{severity_limit = "WARN"}
-end)
+keymap("n","<leader>sd",builtin.diagnostics, {desc = "[S]earch [D]iagnostics"})
+keymap("n","<leader>sdc",function() builtin.diagnostics{bufnr = 0} end, {desc = "[S]earch [D]iagnostics in current [B]uffer"})
+keymap("n","<leader>sk",builtin.keymaps, {desc = "[S]earch existing [K]eymaps"})

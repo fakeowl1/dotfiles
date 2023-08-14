@@ -5,12 +5,11 @@ last_pkg_updates=$(grep 'pacman -Suuy' /var/log/pacman.log | tail -1 | tr -d '['
 
 case $1 in
 	"--notification")
-		dunstify -a "Updates" \
-		"$num updates available" \
-		"Last update: $last_pkg_updates ($(date +'%Y-%m-%d'))" \
+		dunstify  -a "Updates" \
 		-r 100 \
+		"Updates" \
+		"$num updates available\nLast update: $last_pkg_updates ($(date +'%Y-%m-%d'))" 
 	;;
 esac
-
 
 #echo "Last update: $last_pkg_updates ($(date +'%Y-%m-%d'))"

@@ -26,6 +26,13 @@ require("lazy").setup({
       vim.cmd.colorscheme "nord"
     end
   },
+  -- {
+  --   "andersevenrud/nordic.nvim",
+  --   config = function()
+  --     vim.cmd.colorscheme "nordic"
+  --   end
+  -- },
+
   -- use {"catppuccin/nvim", as = "catppuccin"}
   -- use {"tiagovla/tokyodark.nvim"}
   -- use {'Everblush/everblush.nvim',as = 'everblush'}
@@ -107,7 +114,10 @@ require("lazy").setup({
     dependencies = { 
       {"williamboman/mason.nvim", opts}, 
       "williamboman/mason-lspconfig.nvim",
-      {"j-hui/fidget.nvim", opts = {}}
+      {"j-hui/fidget.nvim", 
+        tag = "legacy",
+        opts = {}
+      }
     },
     config = function()
       require("lsp") 

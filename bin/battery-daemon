@@ -27,7 +27,14 @@ while true; do
       "Battery is low ($time_to_empty hours left)" \
       -r 100 \
       -i "$notify_icons/battery-low.png"
-    mpv "/home/q/.config/alarm/low-battery-sound.mp3"
+    mpv "/home/q/.config/alarm/low-battery-sound.mp3" > /dev/null 2>&1
+  fi
+
+  if [ "$battery_level" -gt 80 ] && [ "$discharging" -eq 0 ]; then
+    dunstify -a "Battery" \
+      "Battery is charged: ${battery_level}%" \
+      -r 100 \
+      -i "$notify_icons/battery-charged.png"
   fi
 
   sleep ${check_interval}s

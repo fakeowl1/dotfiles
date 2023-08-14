@@ -1,5 +1,0 @@
-#!/bin/sh
-
-last_pkg_updates=$(grep 'pacman -Suuy' /var/log/pacman.log | tail -1 | tr -d '[' | cut -f 1 -d 'T')
-
-echo "Last update: $last_pkg_updates ($(date +'%Y-%m-%d'))"

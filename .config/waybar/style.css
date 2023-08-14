@@ -71,7 +71,7 @@ button:focus {
 
 #workspaces button.active {
   background-color: @background;
-  color: @blue;
+  color: @white;
 }
 
 #workspaces button.urgent {

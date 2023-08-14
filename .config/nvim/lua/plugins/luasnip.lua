@@ -5,10 +5,10 @@ end
 
 local s = ls.s
 
-local fmt = require("luasnip.extras.fmt").fmt
+local fmt = require("luasnip.extras.fmt")
 
 local i = ls.insert_node
-
+local t = ls.text_node
 local rep = require("luasnip.extras").rep
 
 ls.setup({
@@ -20,22 +20,52 @@ ls.setup({
 })
 
 
-ls.add_snippets("lua", {
-	s(
-		"reqm",
-		fmt(
-			[[
-				local ok, {} = pcall(require,"{}")
-				if not ok then
-					vim.notify("Failed load {}\n")
-				end
-			]], {
-				i(1, "mod"),
-				i(2),
-				rep(2),
-			}
-		)
-	)
+-- ls.add_snippets("lua", {
+-- 	ls.snippet("reqm", 
+--     fmt.fmta(
+-- 			[[
+-- 				local ok, {} = pcall(require,"{}")
+-- 				if not ok then
+-- 					vim.notify("Failed load {}\n")
+-- 				end
+-- 			]], {
+-- 				i(1, "mod"),
+-- 				i(2),
+-- 				rep(2),
+-- 			}
+--     )
+--   )
+-- })
+
+
+
+ls.add_snippets("go", {
+  ls.snippet("func",
+    fmt.fmta(
+      [[
+        <>, err := <>
+        if err != nil {
+          <>
+        }
+      ]], {
+        i(1, "out"),
+        i(2, "func()"),
+        i(3, "// some code")
+      }
+    )
+  ),
+  
+  ls.snippet(
+    "main",
+    fmt.fmta(
+      [[
+        func main() {
+        <><>
+        }
+      ]],
+      { t("\t"), i(0) }
+    )
+  ),
 })
 
 -- Configuring keybinds

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-username="user"
-password="pass123456"
-url="https://domain.nextcloud.com/remote.php/dav/files/$username"
+username="q"
+password="k6gHR-3DPiD-s5fow-pNbzr-4MfdG"
+url="https://cloud.fakeowl1.com/remote.php/dav/files/$username"
 
 if [[ $# -lt 2 ]]; then
   echo "upload-to-nextcloud - upload directory to nextcloud"

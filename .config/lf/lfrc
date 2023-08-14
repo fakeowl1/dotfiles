@@ -8,8 +8,8 @@ set shellopts '-eu'
 
 set previewer ctpv
 set cleaner ctpvclear
-&ctpv -s $id
-&ctpvquit $id
+&ctpv -d -s $id >> ~/temp/lf_ctpv.log
+&ctpvquit $id >> ~/temp/lf_ctpvquit.log
 
 cmd edit-config ${{
   $EDITOR ~/.config/lf/lfrc
@@ -27,7 +27,7 @@ cmd open &{{
   esac
 }}
 
-cmd setwallpaper %swww img "$f" --transition-type right --transition-fps 60
+cmd setwallpaper %swww img "$f" --transition-type wipe --transition-fps 60
 
 cmd fzf_jump ${{
   res="$(find . | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
@@ -41,7 +41,7 @@ cmd fzf_jump ${{
   lf -remote "send $id $cmd \"$res\""
 }}
 
-cmd fzf_search ${{
+cmd rg_search ${{
   res="$( \
     RG_PREFIX="rg --column --line-number --no-heading --color=always \
       --smart-case "
@@ -83,15 +83,28 @@ cmd zip ${{
 
 
 # Trash bindings
-cmd trash ${{
+cmd move-to-trash ${{
   files=$(printf "$fx" | tr '\n' ';')
   while [ "$files" ]; do
     file=${files%%;*}
     
-    if [[ "$(pwd)" == "/home/$USER/.local/share/Trash/files" ]]; then
-      rm -rf "$fx"
+    trash-put "$(basename "$file")" 
+
+    if [ "$files" = "$file" ]; then
+      files=''
     else
-      trash-put "$(basename "$file")" 
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd delete-from-trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+    
+    if [[ "$(pwd)" == "$HOME/.local/share/Trash/files" ]]; then
+      rm -rf "$file"
     fi
 
     if [ "$files" = "$file" ]; then
@@ -121,7 +134,9 @@ cmd trash ${{
 # }}
 
 # lfrc
-cmd restore-from-trash ${{
+
+
+cmd trash-restore-list ${{
   ids="$(echo -ne '\n'              | \
     trash-restore                   | \
     awk '$1 ~ /^[0-9]+/ {print $0}' | \
@@ -130,6 +145,27 @@ cmd restore-from-trash ${{
     sed -z 's/\n/,/g;s/,$/\n/')"
   echo $ids | trash-restore 
   clear
+}}
+
+cmd restore-from-trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+
+    Id="$(echo -ne '\n'|
+      trash-restore ~ |  
+      grep $(basename "$file") | 
+      awk '{print $1}'
+    )"
+
+    echo $Id | trash-restore ~    
+    
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
 }}
 
 map m 
@@ -142,7 +178,7 @@ map e
 map f
 map t
 map u
-map a
+map a 
 
 map ua unarchive
 
@@ -158,13 +194,16 @@ map x cut
 map <enter> open
 
 map f :fzf_jump
-map gf :fzf_search
+map gf :rg_search
 
 map C edit-config
 map bg setwallpaper
 
-map dd trash
-map dr restore-from-trash
+map mt move-to-trash
+map dt delete-from-trash
+map tr restore-from-trash  
+map trl trash-restore-list  
+
 
 map R reload
 
