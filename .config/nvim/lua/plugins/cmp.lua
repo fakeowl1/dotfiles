@@ -7,15 +7,15 @@ end
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
 		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<C-N>"] = cmp.mapping.select_next_item(),
-		["<C-P>"] = cmp.mapping.select_prev_item(),
+		["<C-P>"] = cmp.mapping.select_next_item(),
+		["<C-N>"] = cmp.mapping.select_prev_item(),
 		["<S-Tab>"] = cmp.mapping.select_prev_item(),
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({select = false}),
   }),
   
   completion = {
-    -- autocomplete = true,
+    autocomplete = false,
     completeopt = "menu,menuone,noinsert",
     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
   },

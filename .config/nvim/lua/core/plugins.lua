@@ -19,11 +19,18 @@ require("lazy").setup({
   },
 
   -- Colorchemes
+  -- {
+  --   "gbprod/nord.nvim",
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme "nord"
+  --   end
+  -- },
+
   {
-    "gbprod/nord.nvim",
-    priority = 1000,
+    "ray-x/aurora",
     config = function()
-      vim.cmd.colorscheme "nord"
+      vim.cmd.colorscheme "aurora"
     end
   },
   -- {
