@@ -1,0 +1,228 @@
+set drawbox
+set icons true
+set ignorecase true 
+
+# interpreter for shell commands
+set shell sh
+set shellopts '-eu'
+
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -d -s $id >> ~/temp/lf_ctpv.log
+&ctpvquit $id >> ~/temp/lf_ctpvquit.log
+
+cmd edit-config ${{
+  $EDITOR ~/.config/lf/lfrc
+  lf -remote "send $id source ~/.config/lf/lfrc"
+}}
+
+cmd open &{{
+  case $(file --mime-type "$f" -bL) in 
+    text/*|application/json) lf -remote "send $id \$$EDITOR \"$fx\"";;
+    image/*) swayimg -f "$f";;
+    audio/*) lf -remote "send $id \$mpv --audio-display=no \"$fx\" && clear";; 
+    video/*) mpv "$f";;
+    application/pdf|application/epub) zathura "$f";;
+    *) xdg-open "$f";;
+  esac
+}}
+
+cmd setwallpaper %swww img "$f" --transition-type wipe --transition-fps 60
+
+cmd fzf_jump ${{
+  res="$(find . | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
+  if [ -d "$res" ] ; then
+    cmd="cd"
+  elif [ -f "$res" ] ; then
+    cmd="select"
+  else
+    exit 0
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd rg_search ${{
+  res="$( \
+    RG_PREFIX="rg --column --line-number --no-heading --color=always \
+      --smart-case "
+    FZF_DEFAULT_COMMAND="$RG_PREFIX ''" \
+      fzf --bind "change:reload:$RG_PREFIX {q} || true" \
+      --ansi --layout=reverse --header 'Search in files' \
+      | cut -d':' -f1
+  )"
+  [ ! -z "$res" ] && lf -remote "send $id select \"$res\""
+}}
+
+cmd unarchive ${{
+  set -f
+  case $f in
+    *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf "$f";;
+    *.tar.gz|*.tgz) tar xzvf "$f";;
+    *.tar.xz|*.txz) tar xJvf "$f";;
+    *.zip) unzip "$f";;
+    *.rar) unrar x "$f";;
+    *.7z) 7z x "$f";;
+  esac
+}}
+
+cmd tar ${{
+  set -f
+  mkdir $1
+  cp -r $fx $1
+  tar czf $1.tar.gz $1
+  rm -rf $1
+}}
+
+cmd zip ${{
+  set -f
+  mkdir $1
+  cp -r $fx $1
+  zip -r $1.zip $1
+  rm -rf $1
+}}
+
+
+# Trash bindings
+cmd move-to-trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+    
+    trash-put "$(basename "$file")" 
+
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd delete-from-trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+    
+    if [[ "$(pwd)" == "$HOME/.local/share/Trash/files" ]]; then
+      rm -rf "$file"
+    fi
+
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+# cmd trash ${{
+#   files=$(printf "$fx" | tr '\n' ';')
+#   while [ "$files" ]; do
+#     file=${files%%;*}
+#     if [[ $PWD == "$HOME/.local/share/Trash/files" ]]; then
+#       rm -rf "$file"
+#     else
+#       trash-put "$(basename "$filename")" 
+#     fi
+#
+#     if [ "$files" = "$file" ]; then
+#       files=''
+#     else
+#       files="${files#*;}"
+#     fi
+#   done
+# }}
+
+# lfrc
+
+
+cmd trash-restore-list ${{
+  ids="$(echo -ne '\n'              | \
+    trash-restore                   | \
+    awk '$1 ~ /^[0-9]+/ {print $0}' | \
+    fzf --multi                     | \
+    awk '{print $1}'                | \
+    sed -z 's/\n/,/g;s/,$/\n/')"
+  echo $ids | trash-restore 
+  clear
+}}
+
+cmd restore-from-trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+
+    Id="$(echo -ne '\n'|
+      trash-restore ~ |  
+      grep $(basename "$file") | 
+      awk '{print $1}'
+    )"
+
+    echo $Id | trash-restore ~    
+    
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+map m 
+map o 
+map n
+map "'"
+map '"'
+map d 
+map e
+map f
+map t
+map u
+map a 
+
+map ua unarchive
+
+map . set hidden!
+
+map md push %mkdir<space>
+map gp jump-prev
+
+map y copy
+map p paste
+map x cut
+
+map <enter> open
+
+map f :fzf_jump
+map gf :rg_search
+
+map C edit-config
+map bg setwallpaper
+
+map mt move-to-trash
+map dt delete-from-trash
+map tr restore-from-trash  
+map trl trash-restore-list  
+
+
+map R reload
+
+map gh cd ~
+map gd cd ~/Downloads
+map gD cd ~/Documents
+
+map gc cd ~/.config
+map gr cd ~/repos
+
+map gC cd ~/code
+
+map gp cd ~/Pictures
+map gw cd ~/Pictures/wallpapers
+map gs cd ~/Pictures/screenshots 
+
+map gv cd ~/Videos
+map gm cd ~/Music
+map gA cd ~/Anime
+
+map gt cd ~/.local/share/Trash/files
+map tc %rm -rf ~/.local/share/Trash/files/*

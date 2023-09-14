@@ -17,36 +17,32 @@ require("lazy").setup({
     "lewis6991/impatient.nvim",
     config = function() require('impatient') end
   },
-
-  -- Colorchemes
+  
   -- {
-  --   "gbprod/nord.nvim",
-  --   priority = 1000,
+  --   "gbprod/nord.nvim", 
   --   config = function()
   --     vim.cmd.colorscheme "nord"
   --   end
-  -- },
-
+  -- }, 
+  
   {
-    "ray-x/aurora",
+    "neanias/everforest-nvim",
     config = function()
-      vim.cmd.colorscheme "aurora"
+      vim.cmd.colorscheme "everforest"
+      require("everforest").setup()
     end
   },
-  -- {
-  --   "andersevenrud/nordic.nvim",
-  --   config = function()
-  --     vim.cmd.colorscheme "nordic"
-  --   end
-  -- },
 
-  -- use {"catppuccin/nvim", as = "catppuccin"}
-  -- use {"tiagovla/tokyodark.nvim"}
-  -- use {'Everblush/everblush.nvim',as = 'everblush'}
-  -- use {"frenzyexists/aquarium-vim"}
-  -- use {"rebelot/kanagawa.nvim"}
-  -- use {"projekt0n/github-nvim-theme"}
-  -- use {"Mofiqul/vscode.nvim"}
+  -- { "rebelot/kanagawa.nvim" }, 
+  -- { "ellisonleao/gruvbox.nvim" },
+  -- { "ray-x/aurora" },
+  -- {"catppuccin/nvim"}
+  -- {"tiagovla/tokyodark.nvim"}
+  -- {'Everblush/everblush.nvim'}
+  -- {"frenzyexists/aquarium-vim"}
+  -- {"rebelot/kanagawa.nvim"}
+  -- {"projekt0n/github-nvim-theme"}
+  -- {"Mofiqul/vscode.nvim"}
   
   {
     "kyazdani42/nvim-tree.lua",
