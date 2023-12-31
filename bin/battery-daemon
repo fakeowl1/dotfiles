@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 for pid in $(pidof -x battery); do
     if [ "$pid" != $$ ]; then
@@ -9,9 +9,11 @@ done
 notify_icons="/home/q/.config/dunst/icons"
 
 # notify when below this percentage
-warning_level=30
+warning_level=20
 # how often to check battery status, in seconds
-check_interval=300
+check_interval=120
+
+is_first_start=true
 
 while true; do
   path_to_battery=$(upower -e | grep BAT)
@@ -20,7 +22,7 @@ while true; do
   time_to_empty=$(upower -i "$path_to_battery"  | grep -E "time to empty" | sed 's/[^0-9,.]//g')
   
   # check if battery is low and discharging
-  if [ "$battery_level" -lt "$warning_level" ] && [ "$discharging" -eq 1 ]    
+  if [ "$battery_level" -lt "$warning_level" ] && [ "$discharging" -eq 1 ] && [ "$is_first_start" = false ];  
   then
     dunstify -a "Battery" \
       "Low battery: ${battery_level}%" \
@@ -28,14 +30,22 @@ while true; do
       -r 100 \
       -i "$notify_icons/battery-low.png"
     mpv "/home/q/.config/alarm/low-battery-sound.mp3" > /dev/null 2>&1
+    # check_interval=$check_interval/2+$check_interval
+    check_interval=$(python -c "print(round($check_interval*1.5))")
   fi
 
-  if [ "$battery_level" -gt 80 ] && [ "$discharging" -eq 0 ]; then
+  if [ "$battery_level" -gt 80 ] && [ "$discharging" -eq 0 ] && ["$is_first_start" = false]; then
     dunstify -a "Battery" \
       "Battery is charged: ${battery_level}%" \
       -r 100 \
       -i "$notify_icons/battery-charged.png"
+    check_interval=300
   fi
 
   sleep ${check_interval}s
+  
+  if [ "$is_first_start" = true ]; then
+    is_first_start=false
+    echo $is_first_start 
+  fi
 done
