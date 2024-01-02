@@ -19,14 +19,14 @@ while true; do
   path_to_battery=$(upower -e | grep BAT)
   battery_level=$(upower -i "$path_to_battery"  | grep -E "percentage" | sed 's/[^0-9]//g')
   discharging=$(upower   -i "$path_to_battery"  | grep -E "state" | grep -c "discharging")
-  time_to_empty=$(upower -i "$path_to_battery"  | grep -E "time to empty" | sed 's/[^0-9,.]//g')
+  time_to_empty=$(upower -i "$path_to_battery"  | grep -E "time to empty" | sed 's/^[[:space:]]*time to empty:[[:space:]]*//')
   
   # check if battery is low and discharging
   if [ "$battery_level" -lt "$warning_level" ] && [ "$discharging" -eq 1 ] && [ "$is_first_start" = false ];  
   then
     dunstify -a "Battery" \
       "Low battery: ${battery_level}%" \
-      "Battery is low ($time_to_empty hours left)" \
+      "Battery is low ($time_to_empty left)" \
       -r 100 \
       -i "$notify_icons/battery-low.png"
     mpv "/home/q/.config/alarm/low-battery-sound.mp3" > /dev/null 2>&1
