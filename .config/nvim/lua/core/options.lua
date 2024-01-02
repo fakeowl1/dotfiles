@@ -19,7 +19,7 @@ local ok, err = pcall(function()
   end
 
   if colorscheme == "everforest" then 
-    vim.g.diagnostic_sings = {" ", " ", " ", " "}
+    vim.g.diagnostic_sings = {" ", " ", " ", " "}
   end
 
 	-- vim.cmd('colorscheme catppuccin-macchiato')

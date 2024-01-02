@@ -1,0 +1,88 @@
+* {{
+  font-family: "RobotoMono Nerd Font Mono";
+  font-size: 10px;
+}}
+
+ /* Window */
+window {{
+  margin: 0px;
+  padding: 10px;
+  border: 3px solid {color11};
+  border-radius: 7px;
+  background-color: {background};
+  animation: slideIn 0.5s ease-in-out both;
+}}
+
+ /* Slide In */
+@keyframes slideIn {{
+  0% {{
+    opacity: 0;
+  }}
+
+  100% {{
+    opacity: 1;
+  }}
+}}
+
+/* Inner Box */
+#inner-box {{
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: {background};
+  animation: fadeIn 0.5s ease-in-out both;
+}}
+
+/* Fade In */
+@keyframes fadeIn {{
+  0% {{
+    opacity: 0;
+  }}
+
+  100% {{
+    opacity: 1;
+  }}
+}}
+
+/* Outer Box */
+#outer-box {{
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: {background};
+}}
+
+/* Scroll */
+#scroll {{
+  margin: 0px;
+  padding: 10px;
+  border: none;
+}}
+
+/* Input */
+#input {{
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  color: {color11};
+  background-color: {color0};
+  animation: fadeIn 0.5s ease-in-out both;
+}}
+
+/* Text */
+#text {{
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  color: {color15};
+  animation: fadeIn 0.5s ease-in-out both;
+}}
+
+/* Selected Entry */
+#entry:selected {{
+  background-color: {color11};
+}}
+
+#entry:selected #text {{
+  color: {color0};
+}}

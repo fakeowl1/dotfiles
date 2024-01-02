@@ -8,8 +8,8 @@ set shellopts '-eu'
 
 set previewer ctpv
 set cleaner ctpvclear
-&ctpv -d -s $id >> ~/temp/lf_ctpv.log
-&ctpvquit $id >> ~/temp/lf_ctpvquit.log
+&ctpv -d -s $id
+&ctpvquit $id
 
 cmd edit-config ${{
   $EDITOR ~/.config/lf/lfrc
@@ -26,8 +26,6 @@ cmd open &{{
     *) xdg-open "$f";;
   esac
 }}
-
-cmd setwallpaper %swww img "$f" --transition-type wipe --transition-fps 60
 
 cmd fzf_jump ${{
   res="$(find . | fzf --reverse --header='Jump to location' | sed 's/\\/\\\\/g;s/"/\\"/g')"
@@ -197,7 +195,7 @@ map f :fzf_jump
 map gf :rg_search
 
 map C edit-config
-map bg setwallpaper
+map bg %setwallpaper "$f"
 
 map mt move-to-trash
 map dt delete-from-trash

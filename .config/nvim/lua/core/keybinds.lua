@@ -15,5 +15,6 @@ keymap('n', 'gwj', '<C-w>j')
 keymap('n', 'gwk', '<C-w>k')
 keymap('n', 'gwl', '<C-w>l')
 
-keymap("n", "<space>bf",":bf<CR>",{desc = "[G]oto first buffer"})
-keymap("n", "<space>bl",":bl<CR>",{desc = "[G]oto last buffer"})
+keymap("n", "<space>bf", ":bfirst<CR>",{desc = "[G]oto first buffer"})
+keymap("n", "<space>bl", ":blast<CR>", {desc = "[G]oto last buffer"})
+keymap("n", "<space>bn", ":bnext<CR>", {desc = "[G]oto next buffer"})

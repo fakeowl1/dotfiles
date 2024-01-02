@@ -18,13 +18,6 @@ require("lazy").setup({
     config = function() require('impatient') end
   },
   
-  -- {
-  --   "gbprod/nord.nvim", 
-  --   config = function()
-  --     vim.cmd.colorscheme "nord"
-  --   end
-  -- }, 
-  
   {
     "neanias/everforest-nvim",
     config = function()
@@ -32,10 +25,11 @@ require("lazy").setup({
       require("everforest").setup()
     end
   },
-
-  -- { "rebelot/kanagawa.nvim" }, 
-  -- { "ellisonleao/gruvbox.nvim" },
-  -- { "ray-x/aurora" },
+  
+  -- { "gbprod/nord.nvim" }
+  -- { "rebelot/kanagawa.nvim" } 
+  -- { "ellisonleao/gruvbox.nvim" }
+  -- { "ray-x/aurora" }
   -- {"catppuccin/nvim"}
   -- {"tiagovla/tokyodark.nvim"}
   -- {'Everblush/everblush.nvim'}
@@ -60,6 +54,11 @@ require("lazy").setup({
       })
     end
   },
+  
+  {
+    "norcalli/nvim-colorizer.lua",
+    opts = {},
+  },
 
   {
     "lewis6991/gitsigns.nvim",
@@ -76,13 +75,18 @@ require("lazy").setup({
 
   { "windwp/nvim-autopairs", opts = {} },
   
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    }
-  },
+  -- {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   main = "ibl",
+  --   opts = {
+  --     -- indent = { highlight = {"CursorColumn", "Whitespace"}},
+  --     -- whitespace = {
+  --     --     highlight = highlight,
+  --     --     remove_blankline_trail = false,
+  --     -- },
+  --     -- scope = { enabled = false },
+  --   }
+  -- },
   
   {
     "numToStr/Comment.nvim",
@@ -180,34 +184,6 @@ require("lazy").setup({
           Operator = "󰆕",
           TypeParameter = "",
         },
-
-        -- symbol_map = {
-        --   Text = "",
-        --   Method = "",
-        --   Function = "",
-        --   Constructor = "",
-        --   Field = "ﰠ",
-        --   Variable = "",
-        --   Class = "ﴯ",
-        --   Interface = "",
-        --   Module = "",
-        --   Property = "ﰠ",
-        --   Unit = "塞",
-        --   Value = "",
-        --   Enum = "",
-        --   Keyword = "",
-        --   Snippet = "",
-        --   Color = "",
-        --   File = "",
-        --   Reference = "",
-        --   Folder = "",
-        --   EnumMember = "",
-        --   Constant = "",
-        --   Struct = "פּ",
-        --   Event = "",
-        --   Operator = "",
-        --   TypeParameter = ""
-        -- }
       }
     end
   },
@@ -248,19 +224,6 @@ require("lazy").setup({
     end,
   },
   
-  -- {
-  --   "ray-x/lsp_signature.nvim",
-  --   config = function()
-  --     local lsp_signature = require("lsp_signature")
-  --     
-  --     lsp_signature.setup{
-  --       hint_enable = false,
-  --       verbose = true
-  --     }
-  --
-  --   end
-  -- },
-
   -- Debug Adapter Protocol
   {
     "mfussenegger/nvim-dap",
