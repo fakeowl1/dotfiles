@@ -4,11 +4,11 @@
   font-size: 13px;
 }
 
-@import "./nord.css";
+@import "./colors.css";
 
 window#waybar {
   background-color: rgba(43, 48, 59, 0.0);
-  color: @foreground; 
+  color: @fg; 
   transition-property: background-color;
   transition-duration: .5s;
   padding: 0;
@@ -27,7 +27,7 @@ window#waybar {
 button {
   margin: 0;
   padding: 10px;
-  background-color: @background;
+  background-color: @bg;
   color: #d8dee8;
   border-radius: 8px;
 }
@@ -35,7 +35,7 @@ button {
 button:hover {
   margin: 0;
   padding: 10px;
-  background-color: @background;
+  background-color: @bg;
   color: #d8dee8;
   border-radius: 8px;
 }
@@ -43,7 +43,7 @@ button:hover {
 button:focus {
   margin: 0;
   padding: 10px;
-  background-color: @background;
+  background-color: @bg;
   color: #d8dee8;
   border-radius: 8px;
 }
@@ -52,8 +52,8 @@ button:focus {
 #workspaces {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  background-color: @background;
-  color: @white;
+  background-color: @bg;
+  color: @fg;
   border-radius: 14px;
   /* margin: 0; */
 }
@@ -66,11 +66,11 @@ button:focus {
 }
 
 #workspaces button:hover {
-  color: @background;
+  color: @bg;
 }
 
 #workspaces button.active {
-  background-color: @background;
+  background-color: @bg;
   color: @white;
 }
 
@@ -82,7 +82,7 @@ button:focus {
 #tray {
   padding: 7px;
   margin: 5px 0 5px 0;
-  background-color: @background;
+  background-color: @bg;
   color: #d8dee8;
   border-radius: 10px;
 }
@@ -99,7 +99,7 @@ button:focus {
 #custom-cmus {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  background-color: @background;
+  background-color: @bg;
   color: #b9f27c;
   border-radius: 8px;
 }
@@ -108,8 +108,8 @@ button:focus {
 #window {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  background-color: @background;
-  color: @white;
+  background-color: @bg;
+  color: @fg;
   border-radius: 8px;
 }
 
@@ -117,8 +117,8 @@ button:focus {
 #clock {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  background-color: @background;
-  color: @white;
+  background-color: @bg;
+  color: @fg;
   border-radius: 8px;
 }
 
@@ -127,8 +127,8 @@ button:focus {
 #custom-weather {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-  background-color: @background;
-  color: #d8dee8;
+  background-color: @bg;
+  color: @fg;
   border-radius: 8px;
 }
 
@@ -144,7 +144,7 @@ label:focus {
 }
 
 #custom-language {
-	background-color: @background;
+	background-color: @bg;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
   border-radius: 8px;
@@ -152,14 +152,14 @@ label:focus {
 
 
 #pulseaudio {
-	background-color: @background;
+	background-color: @bg;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
   border-radius: 8px;
 }
 
 #bluetooth {
-	background-color: @background;
+	background-color: @bg;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
   border-radius: 8px;
@@ -169,17 +169,17 @@ label:focus {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
 	border-radius: 8px;
-	color: @blue;
-	background: @background;
+	color: @green;
+	background: @bg;
 }
 
 #battery.charging, #battery.plugged {
 	color: @green;
-  background-color: @background;
+  background-color: @bg;
 }
 
 #battery.warning:not(.charging) {
-  background-color: @background;
+  background-color: @bg;
   color: @orange;
 } 
 

@@ -7,10 +7,10 @@
   "spacing": 3,
 
   "modules-left": ["hyprland/window", "pulseaudio","tray"],
-  "modules-center": ["wlr/workspaces"],
+  "modules-center": ["hyprland/workspaces"],
   "modules-right": ["custom/cmus", "custom/weather", "custom/language", "clock", "battery"],
 
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -18,7 +18,7 @@
     "all-outputs": false,
     "format": "{icon}",
     
-    // "format-icons": {
+    //"format-icons": {
     //  "1": "",
     //  "2": "",
     //  "3": "",
@@ -28,7 +28,7 @@
     //  "urgent": "",
     //  "focused": "",
     //  "default": ""
-    //}
+    //},
 
     "format-icons": {
       "1": "",
@@ -42,8 +42,9 @@
       "9": "",
       "focused": " ",
       "urgent": " ",
-      //"default": " ",
+      "default": " ",
     },
+
     "icon-size": 14
   },
 
@@ -86,25 +87,32 @@
   },
 
   "custom/language": {
-    "exec": "~/.config/hypr/scripts/kb_hypr",
+    "exec": "~/.config/hypr/.scripts/kb_hypr",
     "interval": 1,
     "format": " {}",
   },
 
   "battery": {
+    "interval": 5, 
+    
     "states": {
-      "good": 60,
-      "warning": 40,
-      "critical": 30
+      "good": 70,
+      "warning": 35,
+      "critical": 20
     },
-    "format": "{icon}  {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-full": " full charged",
-    "format-warning": " {capacity}%",
-    "format-critical": " {capacity}%",
-    "format-alt": "{time} {icon}",
-    "format-icons": ["", "", "", "", ""]
+    
+    "format": "{icon} {capacity}%",
+      "format-icons": {
+          "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+          "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+      },
+    //"format-charging": " {capacity}%",
+    //"format-plugged": " {capacity}%",
+    //"format-full": " full charged",
+    //"format-warning": " {capacity}%",
+    //"format-critical": " {capacity}%",
+    //"format-alt": "{time} {icon}",
+    //"format-icons": ["", "", "", "", ""]
   },
   
   "bluetooth": {
