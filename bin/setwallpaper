@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z "$1" ] 
+then
+  echo "./setwallpaper [path]";
+  exit 1;
+fi
+
+swww img --transition-type wipe --transition-fps 90 "$1" && wal -i "$1"
