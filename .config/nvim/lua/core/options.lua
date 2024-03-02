@@ -33,6 +33,7 @@ end
 
 opt.encoding = "utf-8"
 opt.swapfile = false
+opt.clipboard = "unnamedplus"
 
 opt.number = true
 opt.relativenumber = true

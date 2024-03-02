@@ -177,6 +177,7 @@ map f
 map t
 map u
 map a 
+map b
 
 map ua unarchive
 
@@ -186,6 +187,7 @@ map md push %mkdir<space>
 map gp jump-prev
 
 map y copy
+map by %wl-copy < "$f" 2>&1 /dev/null
 map p paste
 map x cut
 

@@ -27,14 +27,13 @@ require("lazy").setup({
   },
   
   -- { "gbprod/nord.nvim" }
-  -- { "rebelot/kanagawa.nvim" } 
+  { "rebelot/kanagawa.nvim" }, 
   -- { "ellisonleao/gruvbox.nvim" }
   -- { "ray-x/aurora" }
-  -- {"catppuccin/nvim"}
+  {"catppuccin/nvim"},
   -- {"tiagovla/tokyodark.nvim"}
   -- {'Everblush/everblush.nvim'}
   -- {"frenzyexists/aquarium-vim"}
-  -- {"rebelot/kanagawa.nvim"}
   -- {"projekt0n/github-nvim-theme"}
   -- {"Mofiqul/vscode.nvim"}
   

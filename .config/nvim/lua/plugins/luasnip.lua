@@ -3,8 +3,6 @@ if not ok then
   vim.notify("Failed load luasnip\n")
 end
 
-local s = ls.s
-
 local fmt = require("luasnip.extras.fmt")
 
 local i = ls.insert_node
@@ -13,9 +11,7 @@ local rep = require("luasnip.extras").rep
 
 ls.setup({
 	history = true,
-
 	update_events = "TextChanged,TextChangedI",
-
 	enable_autosnippets = true,
 })
 
