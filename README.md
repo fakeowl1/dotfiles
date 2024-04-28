@@ -2,7 +2,7 @@
 
 ### Rice
 
-[](./Pictures/rices/rice1.png)
+![](./Pictures/rices/rice1.png)
 
 </div>
 
