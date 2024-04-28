@@ -2,6 +2,8 @@
 
 ### Rice
 
+[](../Pictures/rices/rice1.png)
+
 </div>
 
 # Setup
