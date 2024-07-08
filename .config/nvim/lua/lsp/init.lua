@@ -52,6 +52,7 @@ vim.g.lsp_on_attach = function(client, bufnr)
   end
    
   nmap('gd', vim.lsp.buf.definition, "[G]oto [D]efinition")
+  nmap("<leader>f", vim.lsp.buf.format(), "Format current buffer")
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences') 
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation') 
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')

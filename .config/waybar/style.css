@@ -1,25 +1,25 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
   font-family: FontAwesome, JetBrainsMono, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @import "./colors.css";
 
 window#waybar {
   background-color: rgba(43, 48, 59, 0.0);
-  color: @fg; 
+  color: @fg;
   transition-property: background-color;
   transition-duration: .5s;
   padding: 0;
   margin: 0;
 }
 
-.modules-left > widget:first-child > #workspaces {
+.modules-left>widget:first-child>#workspaces {
   margin-left: 0;
 }
 
-.modules-right > widget:last-child > #workspaces {
+.modules-right>widget:last-child>#workspaces {
   margin-right: 0;
 }
 
@@ -87,11 +87,11 @@ button:focus {
   border-radius: 10px;
 }
 
-#tray > .passive {
+#tray>.passive {
   -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
+#tray>.needs-attention {
   -gtk-icon-effect: highlight;
 }
 
@@ -144,7 +144,7 @@ label:focus {
 }
 
 #custom-language {
-	background-color: @bg;
+  background-color: @bg;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
   border-radius: 8px;
@@ -152,14 +152,14 @@ label:focus {
 
 
 #pulseaudio {
-	background-color: @bg;
+  background-color: @bg;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
   border-radius: 8px;
 }
 
 #bluetooth {
-	background-color: @bg;
+  background-color: @bg;
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
   border-radius: 8px;
@@ -168,20 +168,21 @@ label:focus {
 #battery {
   padding: 0 15px 0 15px;
   margin: 5px 0 5px 0;
-	border-radius: 8px;
-	color: @green;
-	background: @bg;
+  border-radius: 8px;
+  color: @green;
+  background: @bg;
 }
 
-#battery.charging, #battery.plugged {
-	color: @green;
+#battery.charging,
+#battery.plugged {
+  color: @green;
   background-color: @bg;
 }
 
 #battery.warning:not(.charging) {
   background-color: @bg;
   color: @orange;
-} 
+}
 
 #battery.critical:not(.charging) {
   background-color: @barkground;

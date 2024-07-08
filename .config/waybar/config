@@ -2,9 +2,9 @@
   "layer": "top", // Waybar at top layer
   "position": "top",
 
-  "height": 39,
+  "height": 47,
   "width": 1895,
-  "spacing": 3,
+  "spacing": 5,
 
   "modules-left": ["hyprland/window", "pulseaudio","tray"],
   "modules-center": ["hyprland/workspaces"],

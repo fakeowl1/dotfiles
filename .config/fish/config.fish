@@ -45,6 +45,13 @@ if status is-interactive
   set pkgdir "$HOME/.npm/"
   alias npm="npm --cache $srcir/npm-cache"
   
+  bind \el forward-word
+  bind \eh backward-word
+
+  bind \eg beginning-of-line
+  bind \eG end-of-line
+
+
   set fish_greeting
   # Commands to run in interactive sessions can go here
 end

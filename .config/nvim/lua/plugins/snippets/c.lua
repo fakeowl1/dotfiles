@@ -1,7 +1,7 @@
 local ok, ls = pcall(require,"luasnip")
 if not ok then
-	vim.notify("Failed load luasnip\n")
-	return
+  vim.notify("Failed load luasnip\n")
+  return
 end
 
 local s = ls.s
@@ -17,19 +17,19 @@ return {
 }
 
 -- ls.add_snippets("lua", {
--- 	s(
--- 		"reqm",
--- 		fmt(
--- 			[[
--- 				local ok, {} = pcall(require,"{}")
--- 				if not ok then
--- 					vim.notify("Failed load {}\n")
--- 				end
--- 			]], {
--- 				i(1, "mod"),
--- 				i(2),
--- 				rep(2),
--- 			}
--- 		)
--- 	)
+--  s(
+--    "reqm",
+--    fmt(
+--      [[
+--        local ok, {} = pcall(require,"{}")
+--        if not ok then
+--          vim.notify("Failed load {}\n")
+--        end
+--      ]], {
+--        i(1, "mod"),
+--        i(2),
+--        rep(2),
+--      }
+--    )
+--  )
 -- })

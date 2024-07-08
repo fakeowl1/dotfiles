@@ -7,29 +7,34 @@ end
 
 -- Setup colorscheme
 local ok, err = pcall(function()
-
-  local colorscheme = "everforest"
-  
+  local colorscheme = "kanagawa-wave"
   if colorscheme == "nord" then 
-	  vim.g.diagnostic_sings = {"", "", "", ""}
+    vim.g.diagnostic_sings = {"", "", "", ""}
   end
   
   if colorscheme == "catppuccin-macchiato" then
-	  vim.g.diagnostic_sings = {"", "", "", ""}
+    vim.g.diagnostic_sings = {"", "", "", ""}
   end
+  
+  vim.g.diagnostic_sings = {" ", " ", " ", " "}
 
-  if colorscheme == "everforest" then 
-    vim.g.diagnostic_sings = {" ", " ", " ", " "}
-  end
+  -- if colorscheme == "everforest" then 
+  --   vim.g.diagnostic_sings = {" ", " ", " ", " "}
+  -- end
 
-	-- vim.cmd('colorscheme catppuccin-macchiato')
-	-- vim.cmd('colorscheme aquarium')
-	opt.termguicolors = true
+  -- vim.cmd('colorscheme catppuccin-macchiato')
+  -- vim.cmd('colorscheme aquarium')
+  opt.termguicolors = true
 end)
 
 if not ok then
-	print(err)
+  print(err)
 end
+
+-- vim.opt.statusline=statusline_output
+-- if ok then
+--
+-- end
 
 opt.encoding = "utf-8"
 opt.swapfile = false
@@ -43,7 +48,7 @@ vim.g.lsp_path = os.getenv("HOME") .. "/.local/share/nvim/mason/bin/"
 vim.g.mapleader = ","
 
 opt.list = true
-opt.listchars = {tab = '| '}
+opt.listchars = {multispace = "·", tab = "⬄ "}
 
 opt.splitbelow = true
 opt.splitright = true

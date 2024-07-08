@@ -8,6 +8,7 @@ return {
 
   settings = {
     pylsp = {
+      
       plugins = {
         pycodestyle = {
           ignore = {'W391','W293',"E128","E124"},

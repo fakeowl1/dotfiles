@@ -17,20 +17,17 @@ require("lazy").setup({
     "lewis6991/impatient.nvim",
     config = function() require('impatient') end
   },
-  
-  {
-    "neanias/everforest-nvim",
+
+  {"rebelot/kanagawa.nvim",
     config = function()
-      vim.cmd.colorscheme "everforest"
-      require("everforest").setup()
+      vim.cmd.colorscheme"kanagawa"
     end
-  },
-  
-  -- { "gbprod/nord.nvim" }
-  { "rebelot/kanagawa.nvim" }, 
+  }, 
+  {"neanias/everforest-nvim"},
+  -- {"gbprod/nord.nvim"},
+  {"catppuccin/nvim"},
   -- { "ellisonleao/gruvbox.nvim" }
   -- { "ray-x/aurora" }
-  {"catppuccin/nvim"},
   -- {"tiagovla/tokyodark.nvim"}
   -- {'Everblush/everblush.nvim'}
   -- {"frenzyexists/aquarium-vim"}
@@ -59,33 +56,9 @@ require("lazy").setup({
     opts = {},
   },
 
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    }
-  },
+  { "lewis6991/gitsigns.nvim", opts = {} },
 
   { "windwp/nvim-autopairs", opts = {} },
-  
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   main = "ibl",
-  --   opts = {
-  --     -- indent = { highlight = {"CursorColumn", "Whitespace"}},
-  --     -- whitespace = {
-  --     --     highlight = highlight,
-  --     --     remove_blankline_trail = false,
-  --     -- },
-  --     -- scope = { enabled = false },
-  --   }
-  -- },
   
   {
     "numToStr/Comment.nvim",
@@ -130,7 +103,7 @@ require("lazy").setup({
       require("mason").setup()
     end
   },
-  
+   
   {
     "hrsh7th/nvim-cmp",
     -- load cmp on InsertEnter
@@ -157,36 +130,22 @@ require("lazy").setup({
         preset = 'codicons',
         
         symbol_map = {
-          Text = "󰉿",
-          Method = "󰆧",
-          Function = "󰊕",
-          Constructor = "",
-          Field = "󰜢",
-          Variable = "󰀫",
-          Class = "󰠱",
-          Interface = "",
-          Module = "",
-          Property = "󰜢",
-          Unit = "󰑭",
-          Value = "󰎠",
-          Enum = "",
-          Keyword = "󰌋",
-          Snippet = "",
-          Color = "󰏘",
-          File = "󰈙",
-          Reference = "󰈇",
-          Folder = "󰉋",
-          EnumMember = "",
-          Constant = "󰏿",
-          Struct = "󰙅",
-          Event = "",
-          Operator = "󰆕",
-          TypeParameter = "",
-        },
+          Text = "󰦨 ", Method = "󰅲 ", Function = "󰊕 ", Constructor = " ", Field = " ",
+          Variable = "󰫧 ", Class = "󰠱 ", Interface = " ", Module = " ", Property = " ",
+          Unit = " ", Value = "󰎠 ", Enum = " ", Keyword = "󰌋 ", Snippet = " ",
+          Color = "󰏘 ", File = "󰈙 ", Reference = "", Folder = "󰉋", EnumMember = " ",
+          Constant = "󰏿 ", Struct = " ", Event = " ", Operator = "󰆕 ", TypeParameter = " ",
+        }
       }
     end
   },
   
+  {
+    'akinsho/toggleterm.nvim', 
+    version = "*", 
+    config = true
+  },
+
   {
     "folke/which-key.nvim", 
     opts = {}, lazy = true,
@@ -194,6 +153,16 @@ require("lazy").setup({
       vim.o.timeout = true
       vim.o.timeoutlen = 300
       require("which-key").setup()
+    end
+  },
+
+  {
+    'quarto-dev/quarto-nvim',
+    'jmbuhr/otter.nvim',
+    config = function()
+      local quarto = require"quarto"
+      quarto.setup()
+      vim.keymap.set('n', '<leader>pq', quarto.quartoPreview, { silent = true, noremap = true })
     end
   },
 

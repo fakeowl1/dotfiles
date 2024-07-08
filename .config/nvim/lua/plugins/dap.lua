@@ -10,10 +10,10 @@ keymap("n", "<F5>",  dap.continue)
 keymap("n", "<F10>", dap.step_over)
 keymap("n", "<F11>", dap.step_into)
 keymap("n", "<F12>", dap.step_out)
-keymap("n", "<leader>b", dap.toggle_breakpoint)
-keymap("n", "<leader>B",  function() 
-  dap.set_breakpoint{vim.fn.input("Breakpoint condition: ")} 
-end)
+-- keymap("n", "<leader>b", dap.toggle_breakpoint)
+-- keymap("n", "<leader>B",  function() 
+--   dap.set_breakpoint{vim.fn.input("Breakpoint condition: ")} 
+-- end)
 keymap("n", "<leader>lp", function() 
   dap.set_breakpoint{nil, nil, vim.fn.input('Log point message: ')} 
 end)
