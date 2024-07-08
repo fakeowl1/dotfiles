@@ -20,9 +20,7 @@
 
 # TODO
 
-- [ ] Migrate to everforest theme
-    - [x] Archieve nord colorscheme dotfiles
-    - [ ] Add an screenshot
+- [x] Configure pywal
 
 - [x] Neovim
     - [x] Migrate from Packer to Lazy
