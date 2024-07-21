@@ -14,10 +14,12 @@ if status is-interactive
   set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
   set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup" 
   set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
-  set -x WINEPREFIX "$XDG_DATA_HOME/wine/"                             
+  set -x WINEPREFIX "$XDG_DATA_HOME/wine/" 
   set -x JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME/jupyter"
   set -x ANDROID_HOME "$XDG_DATA_HOME/android" 
   set -x _CONDA_ROOT "/opt/anaconda"
+  
+  set -x PYENV_ROOT "$HOME/.pyenv"
 
   alias ls="lsd"
 
@@ -32,6 +34,8 @@ if status is-interactive
   
   set -U fish_user_paths $HOME/bin $fish_user_paths
   set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  
   alias dotfiles="git --git-dir=/home/q/repos/dotfiles --work-tree=$HOME"
   alias chromium-browser-stable="chromium-browser-stable --disable-gpu --disable-software-rasterizer"
 
@@ -50,8 +54,7 @@ if status is-interactive
 
   bind \eg beginning-of-line
   bind \eG end-of-line
-
-
+  
   set fish_greeting
   # Commands to run in interactive sessions can go here
 end

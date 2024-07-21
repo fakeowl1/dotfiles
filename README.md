@@ -1,10 +1,15 @@
 <div align="center">
 
-### Rice
+### Current rice
 
 ![](./Pictures/rices/rice.png)
 
+### Nord Rice
+
+![](./Pictures/rices/riceOld.png)
+
 </div>
+
 
 # Setup
 - **wm** [**`hyprland`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/hypr)

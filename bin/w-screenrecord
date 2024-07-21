@@ -2,8 +2,11 @@
 
 SCREENCAST_FILE="$HOME/Videos/$(date +'%Y-%m-%d_%H:%M').mp4"
 
-geometry=$(slurp -d -f "%wx%h %x,%y")
-
-status=$(pkill -f "wf-recorder" || wf-recorder -f $SCREENCAST_FILE --codec=libx264)
-
-notify-send "Screen recording started" -i "$HOME/.config/dunst/icons/record.png" -t 1000
+if [ -z "$status" ]; then
+  geometry=$(slurp -d -f "%wx%h %x,%y")
+  wf-recorder -f $SCREENCAST_FILE --codec=libx264
+  status=0
+else
+  pkill -f "wf-recorder"
+  notify-send "Screen recording started" -i "$HOME/.config/dunst/icons/record.png" -t 1000
+fi
