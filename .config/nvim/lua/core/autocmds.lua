@@ -1,10 +1,5 @@
 vim.api.nvim_create_autocmd({"BufEnter","BufWinEnter","WinEnter","CmdwinEnter"},{
   callback = function()
-    if vim.fn.expand("%") == "NvimTree_1" then
-      vim.opt.statusline = " NvimTree"
-      return ""
-    end
-
     local ok, statusline_output = pcall(require, "core.statusline")
     if ok then 
       vim.opt.statusline = statusline_output
@@ -19,9 +14,3 @@ vim.api.nvim_create_autocmd({"BufEnter","BufWinEnter","WinEnter","CmdwinEnter"},
     end
   end
 })
-
--- vim.api.nvim_create_autocmd({"BufEnter","BufWinEnter","WinEnter","CmdwinEnter"},{
---   callback = function()
---
---   end,
--- })

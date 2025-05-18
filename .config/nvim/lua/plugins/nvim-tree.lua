@@ -4,17 +4,16 @@ if not ok then
     return
 end
 
-local keymap = vim.keymap.set
-
 nvim_tree.setup({
-    sort_by = "case_sensitive",
-    view = {
-        adaptive_size = true,
+    sort = {
+      sorter = "case_sensitive",
     },
-
+    view = {
+      adaptive_size = true,
+    },
     filters = {
-        dotfiles = true,
+      dotfiles = true,
     },
 })
 
-keymap("n","<C-n>",":NvimTreeToggle<CR>")
+vim.keymap("n","<C-n>",":NvimTreeToggle<CR>")

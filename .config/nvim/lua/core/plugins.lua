@@ -17,29 +17,24 @@ require("lazy").setup({
     "lewis6991/impatient.nvim",
     config = function() require('impatient') end
   },
-
-  {"rebelot/kanagawa.nvim",
+  
+  -- {"ellisonleao/gruvbox.nvim"},
+  {"rebelot/kanagawa.nvim"},
+  -- {"neanias/everforest-nvim"},
+  -- {"projekt0n/github-nvim-theme"},
+  -- {"tiagovla/tokyodark.nvim"},
+  {"catppuccin/nvim", 
     config = function()
-      vim.cmd.colorscheme"kanagawa"
-    end
-  }, 
-  {"neanias/everforest-nvim"},
+      vim.cmd("colorscheme catppuccin-mocha")
+    end,
+    priority = 1000, 
+  },
   -- {"gbprod/nord.nvim"},
-  {"catppuccin/nvim"},
-  -- { "ellisonleao/gruvbox.nvim" }
   -- { "ray-x/aurora" }
-  -- {"tiagovla/tokyodark.nvim"}
   -- {'Everblush/everblush.nvim'}
   -- {"frenzyexists/aquarium-vim"}
-  -- {"projekt0n/github-nvim-theme"}
   -- {"Mofiqul/vscode.nvim"}
-  
-  {
-    "kyazdani42/nvim-tree.lua",
-    dependencies = { "kyazdani42/nvim-web-devicons" },
-    config = function() require("plugins.nvim-tree") end
-  },
-  
+
   {
     "rcarriga/nvim-notify",
     config = function()
@@ -51,19 +46,25 @@ require("lazy").setup({
     end
   },
   
-  {
-    "norcalli/nvim-colorizer.lua",
-    opts = {},
-  },
-
-  { "lewis6991/gitsigns.nvim", opts = {} },
-
-  { "windwp/nvim-autopairs", opts = {} },
+  {"norcalli/nvim-colorizer.lua", opts = {}},
+  
+  {"nvim-tree/nvim-web-devicons"},
   
   {
-    "numToStr/Comment.nvim",
-    opts = {}
+    'stevearc/oil.nvim',
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {},
+    -- Optional dependencies
+    dependencies = {{"echasnovski/mini.icons", opts = {}}},
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
   },
+  
+  { "lewis6991/gitsigns.nvim", opts = {} },
+  {"windwp/nvim-autopairs", opts = {}},
+  {"numToStr/Comment.nvim", opts = {}},
   
   {
     "folke/todo-comments.nvim",
@@ -87,23 +88,20 @@ require("lazy").setup({
     config = function() require("plugins.telescope") end
   },
   
+
   -- Language Server Protocol
   {
     "neovim/nvim-lspconfig",
     dependencies = { 
-      {"williamboman/mason.nvim", opts}, 
       "williamboman/mason-lspconfig.nvim",
-      {"j-hui/fidget.nvim", 
-        tag = "legacy",
-        opts = {}
-      }
+      {"j-hui/fidget.nvim", tag = "legacy", opts = {}},
+      {"williamboman/mason.nvim", opts = {}}, 
     },
     config = function()
       require("lsp") 
-      require("mason").setup()
     end
   },
-   
+  
   {
     "hrsh7th/nvim-cmp",
     -- load cmp on InsertEnter
@@ -127,24 +125,27 @@ require("lazy").setup({
     config = function()
       require("lspkind").init{
         mode = 'symbol_text',
-        preset = 'codicons',
+        preset = 'default',
         
-        symbol_map = {
-          Text = "󰦨 ", Method = "󰅲 ", Function = "󰊕 ", Constructor = " ", Field = " ",
-          Variable = "󰫧 ", Class = "󰠱 ", Interface = " ", Module = " ", Property = " ",
-          Unit = " ", Value = "󰎠 ", Enum = " ", Keyword = "󰌋 ", Snippet = " ",
-          Color = "󰏘 ", File = "󰈙 ", Reference = "", Folder = "󰉋", EnumMember = " ",
-          Constant = "󰏿 ", Struct = " ", Event = " ", Operator = "󰆕 ", TypeParameter = " ",
-        }
+        symbol_map = require("plugins.lspkind-symbol_map")
       }
     end
   },
   
+  {'akinsho/toggleterm.nvim', version = "*", config = true},
+  
   {
-    'akinsho/toggleterm.nvim', 
-    version = "*", 
-    config = true
-  },
+    "sontungexpt/url-open",
+    event = "VeryLazy",
+    cmd = "URLOpenUnderCursor",
+    config = function()
+        local status_ok, url_open = pcall(require, "url-open")
+        if not status_ok then
+            return
+        end
+        url_open.setup ({})
+    end,
+  }, 
 
   {
     "folke/which-key.nvim", 
@@ -157,12 +158,16 @@ require("lazy").setup({
   },
 
   {
-    'quarto-dev/quarto-nvim',
-    'jmbuhr/otter.nvim',
-    config = function()
-      local quarto = require"quarto"
-      quarto.setup()
-      vim.keymap.set('n', '<leader>pq', quarto.quartoPreview, { silent = true, noremap = true })
+    "lervag/vimtex",
+    event = "VeryLazy",
+    ft = {"tex"},
+    init = function()
+      vim.g.vimtex_view_general_viewer = 'zathura'
+      
+      vim.g.vimtex_compiler_latexrun_engines = {
+        _ =  'pdflatex'
+      }
+      vim.g.tex_comment_nospell = 1
     end
   },
 
@@ -177,28 +182,63 @@ require("lazy").setup({
     config = function() require("plugins.null-ls") end
   },
   
-  {
-    "SmiteshP/nvim-navic",
-    dependencies = {"neovim/nvim-lspconfig"},
-    config = function()
-      local navic = require("nvim-navic")
-      navic.setup {
-        highlight = false,
-        separator = " > ",
-        depth_limit = 0.01,
-        depth_limit_indicator = "..",
-        safe_output = true
-      }
-    end,
-  },
-  
   -- Debug Adapter Protocol
   {
     "mfussenegger/nvim-dap",
     dependencies = {
       "arywz11/DAPInstall.nvim",
-      "rcarriga/nvim-dap-ui"
+      "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
     },
-    config = function() require("plugins.dap") end,
+    config = function() 
+      require("dapui").setup()
+      require("plugins.dap") 
+    end,
+  },
+  
+  {
+    "esmuellert/nvim-eslint",
+    opts = {},
+  },
+  
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    dependencies = {"nvim-lua/plenary.nvim"},
+    keys = {
+        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  },
+
+  {
+    "quarto-dev/quarto-nvim",
+    dependencies = {
+      "jmbuhr/otter.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    after = { 'nvim-treesitter' },
+    dependencies = { 'echasnovski/mini.nvim', opt = true }, -- if you use the mini.nvim suite
+    config = function() 
+      require('render-markdown').setup({
+        latex = {
+          enabled = true,
+          converter = 'latex2text',
+          highlight = 'RenderMarkdownMath',
+          top_pad = 0,
+          bottom_pad = 0,
+        }
+      }) 
+    end
   }
 })

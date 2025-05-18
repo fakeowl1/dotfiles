@@ -3,93 +3,50 @@ if not ok then
   vim.notify("Failed load luasnip\n")
 end
 
-local fmt = require("luasnip.extras.fmt")
-
-local i = ls.insert_node
-local t = ls.text_node
-local rep = require("luasnip.extras").rep
-
 ls.setup({
-	history = true,
-	update_events = "TextChanged,TextChangedI",
-	enable_autosnippets = true,
+  history = true,
+  update_events = "TextChanged,TextChangedI",
+  enable_autosnippets = true,
 })
 
+local utils = require("core.utils")
+local snippets_directory = utils.scandir("$HOME/.config/nvim/lua/snippets")
 
--- ls.add_snippets("lua", {
--- 	ls.snippet("reqm", 
---     fmt.fmta(
--- 			[[
--- 				local ok, {} = pcall(require,"{}")
--- 				if not ok then
--- 					vim.notify("Failed load {}\n")
--- 				end
--- 			]], {
--- 				i(1, "mod"),
--- 				i(2),
--- 				rep(2),
--- 			}
---     )
---   )
--- })
+-- Load snippets from directory
+for _, snippet_path in ipairs(snippets_directory) do
+  local snippet_name = get_file_name(snippet_path)
+  local ok, snippet_path = pcall(require, "plugins.snippets." .. snippet_name)
+  if ok then
+    ls.add_snippets(snippet_name, snippet_path)
+  end
+end
 
-
-
-ls.add_snippets("go", {
-  ls.snippet("func",
-    fmt.fmta(
-      [[
-        <>, err := <>
-        if err != nil {
-          <>
-        }
-      ]], {
-        i(1, "out"),
-        i(2, "func()"),
-        i(3, "// some code")
-      }
-    )
-  ),
-  
-  ls.snippet(
-    "main",
-    fmt.fmta(
-      [[
-        func main() {
-        <><>
-        }
-      ]],
-      { t("\t"), i(0) }
-    )
-  ),
-})
-
--- Configuring keybinds
-local mapopts = { silent = true, expr = true }
+-- Keybind options
+local mapopts = {silent = true, expr = true}
 
 -- c-k is expansion key
-vim.keymap.set({ "s", "i" }, "<C-k>", function()
+vim.keymap.set({"s", "i"}, "<C-k>", function()
   if ls.expand_or_jumpable() then
-		ls.expand_or_jump()
-	else
+    ls.expand_or_jump()
+  else
     return "<C-k>"
   end
 end, mapopt)
 
 -- c-j is jump backwards key
-vim.keymap.set({ "s", "i" }, "<C-j>", function()
+vim.keymap.set({"s", "i"}, "<C-j>", function()
   if ls.jumpable(-1) then
     ls.jump(-1)
-	else
+  else
     return "<C-j>"
   end
 end, mapopt)
 
 -- c-l is selecting withing a list of options
-vim.keymap.set({ "s", "i" }, "<C-l>", function()
+vim.keymap.set({"s", "i"}, "<C-l>", function()
   if ls.choice_active() then
-		ls.change_choice(1)
-	else
+    ls.change_choice(1)
+  else
     return "<C-l"
   end
 end, mapopt)

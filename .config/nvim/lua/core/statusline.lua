@@ -45,4 +45,5 @@ local function filename()
 end
 
 statusline = mode() .. " " .. "%F"
+
 return statusline

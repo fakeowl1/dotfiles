@@ -16,6 +16,22 @@ function M.debounce(func, timeout)
   end
 end
 
+function M.scandir(directory)
+    local i, t, popen = 0, {}, io.popen
+    local pfile = popen('ls -A "'..directory..'"')
+    for filename in pfile:lines() do
+        i = i + 1
+        t[i] = filename
+    end
+    pfile:close()
+    return t
+end
+
+function get_file_name(file)
+      local file_name = file:match("[^/]*.lua$")
+      return file_name:sub(0, #file_name - 4)
+end
+
 -- Convert UTF-8 hex code to character
 function M.u(code)
   if type(code) == 'string' then
@@ -40,6 +56,28 @@ function M.u(code)
     t[4] = c(bit.bor(0x80, bit.band(code, 0x3f)))
   end
   return table.concat(t)
+end
+
+function M.filepath()
+  local fpath = vim.fn.fnamemodify(vim.fn.expand "%", ":~:.:h")
+  if fpath == "" or fpath == "." then
+      return " "
+  end
+
+  return string.format(" %%<%s/", fpath)
+end
+
+function M.filename()
+  local fname = vim.fn.expand "%:t"
+  if fname == "" then
+      return ""
+  end
+  return fname .. " "
+end
+
+function M.file_exists(path)
+   local f=io.open(path,"r")
+   if f~=nil then io.close(f) return true else return false end
 end
 
 return M

@@ -76,7 +76,18 @@ nvim_treesitter_configs.setup {
     }
   },
 
-  ensure_installed = {"lua","go","python","html","css","javascript","c","cpp","fish"},
+  ensure_installed = {
+    "lua",
+    "go",
+    "python",
+    "html",
+    "css",
+    "javascript",
+    "c",
+    "cpp",
+    "fish",
+    "markdown"
+  },
 }
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

@@ -1,4 +1,4 @@
-local keymap = vim.keymap.set
+-- local keymap = vim.keymap.set
 
 -- Block arrows
 vim.api.nvim_set_keymap('', '<up>', '<nop>',   {noremap = true})
@@ -6,23 +6,18 @@ vim.api.nvim_set_keymap('', '<down>', '<nop>', {noremap = true})
 vim.api.nvim_set_keymap('', '<left>', '<nop>', {noremap = true})
 vim.api.nvim_set_keymap('', '<right>', '<nop>',{noremap = true})
 
-keymap("n","<space>,",":nohlsearch<CR>", {desc = "Clear an selected strings"})
+vim.keymap.set("n","<space>,",":nohlsearch<CR>", {desc = "Clear an selected strings"})
 
-keymap("n","s",'"_d"')
+vim.keymap.set('n', 'gwk', [[<Cmd>wincmd k<CR>]], {desc = "[S]elect up window"})
+vim.keymap.set('n', 'gwj', [[<Cmd>wincmd j<CR>]], {desc = "[S]elect bottom window"})
+vim.keymap.set('n', 'gwl', [[<Cmd>wincmd l<CR>]], {desc = "[S]elect right window"})
+vim.keymap.set('n', 'gwh', [[<Cmd>wincmd h<CR>]], {desc = "[S]elect left window"})
 
-keymap('n', 'gwh', '<C-w>h')
-keymap('n', 'gwj', '<C-w>j')
-keymap('n', 'gwk', '<C-w>k')
-keymap('n', 'gwl', '<C-w>l')
+vim.keymap.set("n", "<space>bf", ":bfirst<CR>",{desc = "[G]oto first buffer"})
+vim.keymap.set("n", "<space>bl", ":blast<CR>", {desc = "[G]oto last buffer"})
+vim.keymap.set("n", "<space>bn", ":bnext<CR>", {desc = "[G]oto next buffer"})
 
-keymap("n", "<space>bf", ":bfirst<CR>",{desc = "[G]oto first buffer"})
-keymap("n", "<space>bl", ":blast<CR>", {desc = "[G]oto last buffer"})
-keymap("n", "<space>bn", ":bnext<CR>", {desc = "[G]oto next buffer"})
+vim.keymap.set("n", "gx", "<esc>:URLOpenUnderCursor<cr>")
 
-vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
-vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
 vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)

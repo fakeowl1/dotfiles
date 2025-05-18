@@ -1,7 +1,7 @@
 if status --is-login
-  if test -z "$DISPLAY" -a $XDG_VTNR = 1
-    exec Hyprland &> ~/.hyprland.log
-  end
+ if test -z "$DISPLAY" -a $XDG_VTNR = 1
+   startx &> ~/.bspwm.log
+ end
 end
 
 if status is-interactive
@@ -17,9 +17,9 @@ if status is-interactive
   set -x WINEPREFIX "$XDG_DATA_HOME/wine/" 
   set -x JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME/jupyter"
   set -x ANDROID_HOME "$XDG_DATA_HOME/android" 
-  set -x _CONDA_ROOT "/opt/anaconda"
-  
+  set -x _CONDA_ROOT "/opt/anaconda"  
   set -x PYENV_ROOT "$HOME/.pyenv"
+  set -g fish_autosuggestion_enabled 0
 
   alias ls="lsd"
 
@@ -35,6 +35,7 @@ if status is-interactive
   set -U fish_user_paths $HOME/bin $fish_user_paths
   set -U fish_user_paths $HOME/.local/bin $fish_user_paths
   set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  set -U fish_user_paths /opt/cuda/bin $fish_user_paths
   
   alias dotfiles="git --git-dir=/home/q/repos/dotfiles --work-tree=$HOME"
   alias chromium-browser-stable="chromium-browser-stable --disable-gpu --disable-software-rasterizer"
@@ -45,9 +46,9 @@ if status is-interactive
   set -x EDITOR "nvim" 
   set -x VISUAL "nvim"
 
-  set srcdir "$HOME/.cache/"
-  set pkgdir "$HOME/.npm/"
-  alias npm="npm --cache $srcir/npm-cache"
+  # set srcdir "$HOME/.cache"
+  set pkgdir "$HOME/.npm"
+  alias npm="npm --cache $HOME/.cache/npm-cache"
   
   bind \el forward-word
   bind \eh backward-word
@@ -55,6 +56,8 @@ if status is-interactive
   bind \eg beginning-of-line
   bind \eG end-of-line
   
+  fish_ssh_agent
+
   set fish_greeting
   # Commands to run in interactive sessions can go here
 end

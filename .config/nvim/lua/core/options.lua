@@ -7,34 +7,21 @@ end
 
 -- Setup colorscheme
 local ok, err = pcall(function()
-  local colorscheme = "kanagawa-wave"
-  if colorscheme == "nord" then 
-    vim.g.diagnostic_sings = {"", "", "", ""}
-  end
-  
-  if colorscheme == "catppuccin-macchiato" then
-    vim.g.diagnostic_sings = {"", "", "", ""}
-  end
-  
+  local colorscheme = "catppuccin-mocha"
   vim.g.diagnostic_sings = {" ", " ", " ", " "}
-
-  -- if colorscheme == "everforest" then 
+  -- vim.g.diagnostic_sings = {"", "", "", ""}
+  -- if colorscheme == "nord" or colorscheme == "catppuccin-macchiato" then 
+  --   vim.g.diagnostic_sings = {"", "", "", ""}
+  -- else
   --   vim.g.diagnostic_sings = {" ", " ", " ", " "}
   -- end
 
-  -- vim.cmd('colorscheme catppuccin-macchiato')
-  -- vim.cmd('colorscheme aquarium')
   opt.termguicolors = true
 end)
 
 if not ok then
   print(err)
 end
-
--- vim.opt.statusline=statusline_output
--- if ok then
---
--- end
 
 opt.encoding = "utf-8"
 opt.swapfile = false
@@ -59,3 +46,5 @@ opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.mouse = "a"
+
+vim.ui.enable = false

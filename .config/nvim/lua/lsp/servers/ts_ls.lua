@@ -6,7 +6,12 @@ return {
   handlers = vim.g.lsp_handlers,
   capabilities = vim.g.lsp_capabilities,
 
-  init_options = {hostInfo = "neovim"},
+  init_options = {
+    hostInfo = "neovim",
+    preferences = {
+      disableSuggestions = true,
+    },
+  },
   root_dir = require"lspconfig.util".root_pattern{
     "package.json", 
     "tsconfig.json", 

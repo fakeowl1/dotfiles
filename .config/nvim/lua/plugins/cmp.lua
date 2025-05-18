@@ -6,12 +6,12 @@ end
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
-		["<Tab>"] = cmp.mapping.select_next_item(),
-		["<C-P>"] = cmp.mapping.select_next_item(),
-		["<C-N>"] = cmp.mapping.select_prev_item(),
-		["<S-Tab>"] = cmp.mapping.select_prev_item(),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({select = false}),
+    ["<Tab>"] = cmp.mapping.select_next_item(),
+    ["<C-P>"] = cmp.mapping.select_next_item(),
+    ["<C-N>"] = cmp.mapping.select_prev_item(),
+    ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({select = false}),
   }),
   
   completion = {
@@ -40,7 +40,6 @@ cmp.setup({
 
       return kind
     end
-
   },
 
   sources = {
@@ -49,5 +48,4 @@ cmp.setup({
     { name = "emoji" },
     { name = "calc" },
   },
-
 })

@@ -1,4 +1,4 @@
-local ok, ls = pcall(require,"luasnip")
+local ok, ls = pcall(require, "luasnip")
 if not ok then
   vim.notify("Failed load luasnip\n")
 end
@@ -11,6 +11,7 @@ local i = ls.insert_node
 
 local rep = require("luasnip.extras").rep
 
+
 return {
-  -- Golang snippets
+
 }

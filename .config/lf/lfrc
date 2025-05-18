@@ -2,14 +2,14 @@ set drawbox
 set icons true
 set ignorecase true 
 
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
 # interpreter for shell commands
 set shell sh
 set shellopts '-eu'
-
-set previewer ctpv
-set cleaner ctpvclear
-&ctpv -d -s $id
-&ctpvquit $id
 
 cmd edit-config ${{
   $EDITOR ~/.config/lf/lfrc
