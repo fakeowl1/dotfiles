@@ -8,13 +8,12 @@ end
 -- Setup colorscheme
 local ok, err = pcall(function()
   local colorscheme = "catppuccin-mocha"
-  vim.g.diagnostic_sings = {" ", " ", " ", " "}
-  -- vim.g.diagnostic_sings = {"", "", "", ""}
-  -- if colorscheme == "nord" or colorscheme == "catppuccin-macchiato" then 
-  --   vim.g.diagnostic_sings = {"", "", "", ""}
-  -- else
-  --   vim.g.diagnostic_sings = {" ", " ", " ", " "}
-  -- end
+  vim.g.diagnostic_sings = {
+    error = " ", 
+    warn = " ", 
+    info = " ", 
+    hint = " "
+  }
 
   opt.termguicolors = true
 end)

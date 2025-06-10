@@ -1,4 +1,4 @@
-local core = {"options", "globals", "keybinds", "autocmds", "plugins"}
+local core = {"options", "keybinds", "autocmds", "plugins", "lsp"}
 
 for _,source in ipairs(core) do
   local ok, fault = pcall(require,'core.' .. source)

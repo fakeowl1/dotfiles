@@ -7,5 +7,5 @@ then
 fi
 
 pkill -USR1 -x $1
-dunstify "$1 restarted" -t 3500
+dunstify "$1 has been restarted" -t 3000
 $1 & > /dev/null 2>&1

@@ -18,14 +18,14 @@ require("lazy").setup({
     config = function() require('impatient') end
   },
   
-  -- {"ellisonleao/gruvbox.nvim"},
-  {"rebelot/kanagawa.nvim"},
+  { "ellisonleao/gruvbox.nvim" },
+  -- {"rebelot/kanagawa.nvim"},
   -- {"neanias/everforest-nvim"},
   -- {"projekt0n/github-nvim-theme"},
   -- {"tiagovla/tokyodark.nvim"},
   {"catppuccin/nvim", 
     config = function()
-      vim.cmd("colorscheme catppuccin-mocha")
+      vim.cmd("colorscheme catppuccin-frappe")
     end,
     priority = 1000, 
   },
@@ -93,13 +93,8 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
     dependencies = { 
-      "williamboman/mason-lspconfig.nvim",
       {"j-hui/fidget.nvim", tag = "legacy", opts = {}},
-      {"williamboman/mason.nvim", opts = {}}, 
     },
-    config = function()
-      require("lsp") 
-    end
   },
   
   {
@@ -132,19 +127,11 @@ require("lazy").setup({
     end
   },
   
-  {'akinsho/toggleterm.nvim', version = "*", config = true},
-  
   {
     "sontungexpt/url-open",
     event = "VeryLazy",
     cmd = "URLOpenUnderCursor",
-    config = function()
-        local status_ok, url_open = pcall(require, "url-open")
-        if not status_ok then
-            return
-        end
-        url_open.setup ({})
-    end,
+    opts = {},
   }, 
 
   {
@@ -178,10 +165,10 @@ require("lazy").setup({
   },
   
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function() require("plugins.null-ls") end
+    "stevearc/conform.nvim",
+    config = function() require('plugins.conform') end
   },
-  
+
   -- Debug Adapter Protocol
   {
     "mfussenegger/nvim-dap",
@@ -201,30 +188,6 @@ require("lazy").setup({
     opts = {},
   },
   
-  {
-    "kdheepak/lazygit.nvim",
-    lazy = true,
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    dependencies = {"nvim-lua/plenary.nvim"},
-    keys = {
-        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    }
-  },
-
-  {
-    "quarto-dev/quarto-nvim",
-    dependencies = {
-      "jmbuhr/otter.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-  },
-
   {
     'MeanderingProgrammer/render-markdown.nvim',
     after = { 'nvim-treesitter' },

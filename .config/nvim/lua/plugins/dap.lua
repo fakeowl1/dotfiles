@@ -1,5 +1,5 @@
-local dap = require_mod("dap")
-local dapui = require_mod("dapui")
+local dap = require("dap")
+local dapui = require("dapui")
 
 local nmap = function(mode, keys, func, desc) 
   if desc then 
@@ -22,7 +22,6 @@ dap.listeners.before.event_exited.dapui_config = function()
 end
 
 -- Enable dap
-
 nmap("n", "<leader>dc", dap.continue, "Start debug session")
 nmap("n", "<leader>ds", dap.step_over, "Run again")
 nmap("n", "<leader>dsi", dap.step_into, "[S]tep into a function or method")

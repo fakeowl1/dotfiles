@@ -8,6 +8,8 @@ vim.api.nvim_set_keymap('', '<right>', '<nop>',{noremap = true})
 
 vim.keymap.set("n","<space>,",":nohlsearch<CR>", {desc = "Clear an selected strings"})
 
+vim.keymap.set('n', '<C-n>', [[<Cmd>NvimTreeToggle<CR>]], {desc = "[O]pen Nvim tree"})
+
 vim.keymap.set('n', 'gwk', [[<Cmd>wincmd k<CR>]], {desc = "[S]elect up window"})
 vim.keymap.set('n', 'gwj', [[<Cmd>wincmd j<CR>]], {desc = "[S]elect bottom window"})
 vim.keymap.set('n', 'gwl', [[<Cmd>wincmd l<CR>]], {desc = "[S]elect right window"})
