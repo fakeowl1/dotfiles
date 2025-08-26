@@ -1,0 +1,130 @@
+#!/bin/bash
+
+# mkdir assets
+
+typeOfWorks=("LAB" "RR")
+
+Help()
+{
+   # Display Help
+   echo "Usage: lab-gen (type) [-n|c|d]"
+   echo "Automaticaly create labs"
+   echo 
+   echo "disciplines:"
+   echo "  asd"
+   echo "  net"
+   echo
+   echo "type of work:"
+   echo "  lab    Лабораторна робота"
+   echo "  rr     Розрахункова робота"
+   echo "  other  Інше"
+   echo 
+   echo "options:"
+   echo "  h          Print help command"
+   echo "  d          Discipline"
+   echo "  n(opt)     Number of work"
+   # echo "  i(req)     Instructor"
+   echo 
+   echo "Example of using: lab-gen lab -d asd -n 1"
+   echo
+}
+
+if [ "$#" -lt 1 ]; then
+  echo "You must select type of work and discipline."
+  echo
+  Help
+  exit
+fi
+
+typeOfWork=$1
+
+case "$typeOfWork" in 
+  "rr")
+    nameOfWork="Розрахункова робота"
+    echo "You select: $nameOfWork"
+  ;;
+  "lab")
+    nameOfWork="Лабораторна робота"
+    echo "You select: $nameOfWork"
+  ;;
+  "other")
+    read -p "Enter name of work: " nameOfWork
+    echo "You select: $nameOfWork"
+  ;;
+  *)
+    echo "You must select type of work and discipline."
+    echo
+    Help
+    exit 1
+  ;;
+esac
+
+shift
+
+while getopts ":hn:c:d:i:" option; do
+    case $option in
+        h) # Display Help
+            Help
+            exit 0
+            ;;
+        n) # Number of work (optional)
+            numberOfWork=$OPTARG
+            ;;
+        c) # Instructor (required)
+            instructor=$OPTARG
+            ;;
+        d) # Discipline (required)
+            discipline=$OPTARG
+            ;;
+        # i) # Instructor (optional, allows spaces)
+        #     instructor=$OPTARG
+        #     ;;
+        \?) # Invalid option
+            echo "Error: Invalid option"
+            exit 1
+            ;;
+    esac
+done
+
+if [ -z "$discipline" ]; then
+  echo "Error: Discipline is required!"
+  exit 1
+fi
+
+# if [ -z "$instructor" ]; then
+#   echo "Error: Instructor is required!"
+#   exit 1
+# fi
+
+case "$discipline" in 
+  "asd")
+    nameOfDiscipline="Алгоритми та структури даних"
+  ;;
+  "net")
+    nameOfDiscipline="Основи комп'ютерних систем і мереж"
+  ;;
+  *)
+    echo "You must select type of work and discipline."
+    echo
+    Help
+    exit 1
+  ;;
+esac
+
+workTitle="$nameOfWork №$numberOfWork"
+
+templatesPath="$HOME/.templates"
+templates=("$templatesPath/temp1")
+
+currentTemplate="$PWD/report.md"
+cp "${templates[0]}/template.md" "$currentTemplate"
+mkdir assets
+
+cp "${templates[0]}/header.tex" .
+cp "${templates[0]}/settings.tex" .
+
+sed -i "s/<1>/$workTitle/g" "$currentTemplate"
+sed -i "s/<2>/$nameOfDiscipline/g" "$currentTemplate"
+
+nvim report.md
+# sed -i "s/<3>/$instructor/g" "$currentTemplate"
