@@ -163,6 +163,16 @@ require("lazy").setup({
     dependencies = {"rafamadriz/friendly-snippets"},
     config = function() require("plugins.luasnip") end
   },
+
+  { 
+     "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {}
+  },
   
   {
     "stevearc/conform.nvim",

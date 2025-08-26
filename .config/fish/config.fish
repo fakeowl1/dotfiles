@@ -21,6 +21,10 @@ if status is-interactive
   set -x PYENV_ROOT "$HOME/.pyenv"
   set -g fish_autosuggestion_enabled 0
 
+  if test -e ~/.cache/wal/colors.fish
+    source ~/.cache/wal/colors.fish
+  end
+
   alias ls="lsd"
 
   alias v="vim"

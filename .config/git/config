@@ -1,11 +1,15 @@
 [init]
     defaultbranch = main
 [user]
-    email = hok7zv@tutanota.com
-    name = hok7z
+    email = ukolov.roman@lll.kpi.ua
+    name = fakeowl1
+	signingkey = F004B32CB7BB78900BFA499342A51B5129AEB438
 [core]
     editor = nvim
     pager = less
     excludesfile = .gitignore
+	autocrlf = false
 [diff]
     noprefix = true
+[commit]
+	gpgsign = true

@@ -7,6 +7,4 @@ then
 fi
 
 feh --bg-scale "$1" 
-wal -i "$1" 2>&1> /dev/null &
-# killall polybar 
-# polybar example 2>&1> /dev/null &
+wal -i "$1" > /dev/null 2>&1 &
