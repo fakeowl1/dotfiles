@@ -1,0 +1,45 @@
+#!/bin/sh
+# Running events
+# ----------------------------------------------------------------------------
+xsetroot -cursor_name left_ptr
+polybar example &
+light -S 75
+feh --bg-scale "$(< "${HOME}/.cache/wal/wal")"
+betterlockscreen -u ~/Pictures/wallpapers/astronaut-watching-sunset-on-mars.jpg --blur 0.45 --display 1 --span &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+dunst -config ~/.config/dunst/dunstrc &
+/home/q/bin/battery &
+# ----------------------------------------------------------------------------
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+bspc monitor -d 1 2 3 4 5 6 7 8
+
+# Smart Gaps
+bspc config single_monocle true
+bspc config gapless_monocle true
+
+# Gaps 
+bspc config border_width         2 
+bspc config window_gap           8
+
+# Set color border
+bspc config focused_border_color '#BB9AF7'
+bspc config active_border_color  '#0C1115'
+bspc config normal_border_color  '#0C1115'
+
+bspc config split_ratio          1.5
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config focus_follows_pointer true
+bspc config pointer_modifier	super
+
+# Set floating window size
+bspc rule --add kitty rectangle=750x500+400+200
+
+# Configure allways floating window
+bspc rule -a Telegram           state=floating  follow=off rectangle=666x823+8-26     desktop='^2'
+bspc rule -a Steam              state=floating  follow=off rectangle=1105x777+226-57 
+bspc rule -a mpv                state=floating  follow=off rectangle=800x450+560+315
+bspc rule -a virt-manager       state=floating  follow=off rectangle=900x600
+bspc rule -a keepassxc          state=floating  follow=off rectangle=900x900          desktop='^3'

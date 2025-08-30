@@ -41,7 +41,7 @@ if status is-interactive
   set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
   set -U fish_user_paths /opt/cuda/bin $fish_user_paths
   
-  alias dotfiles="git --git-dir=/home/q/repos/dotfiles --work-tree=$HOME"
+  alias dotfiles="git --git-dir=$HOME/.cfg --work-tree=$HOME"
   alias chromium-browser-stable="chromium-browser-stable --disable-gpu --disable-software-rasterizer"
 
   set -x PF_INFO "ascii title os kernel wm shell pkgs memory"
@@ -60,7 +60,7 @@ if status is-interactive
   bind \eg beginning-of-line
   bind \eG end-of-line
   
-  fish_ssh_agent
+  # fish_ssh_agent
 
   set fish_greeting
   # Commands to run in interactive sessions can go here

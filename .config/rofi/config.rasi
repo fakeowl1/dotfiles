@@ -1,0 +1,8 @@
+@import "~/.cache/wal/colors-rofi-dark"
+
+configuration {
+  font: "Iosevka 13" ;
+  terminal: "kitty";
+}
+
+element-icon { size: 2ch ; }
