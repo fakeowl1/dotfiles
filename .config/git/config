@@ -1,15 +1,15 @@
 [init]
     defaultbranch = main
+
 [user]
     email = ukolov.roman@lll.kpi.ua
     name = fakeowl1
-	signingkey = F004B32CB7BB78900BFA499342A51B5129AEB438
+
 [core]
     editor = nvim
     pager = less
     excludesfile = .gitignore
-	autocrlf = false
+    autocrlf = false
+
 [diff]
     noprefix = true
-[commit]
-	gpgsign = true

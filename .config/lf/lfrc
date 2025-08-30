@@ -91,7 +91,6 @@ cmd zip ${{
   rm -rf $1
 }}
 
-
 # Trash bindings
 cmd move-to-trash ${{
   files=$(printf "$fx" | tr '\n' ';')
@@ -99,6 +98,21 @@ cmd move-to-trash ${{
     file=${files%%;*}
     
     trash-put "$(basename "$file")" 
+
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd destroy-files ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+    
+    shred -uvz 75 "$(basename "$file")" 
 
     if [ "$files" = "$file" ]; then
       files=''
