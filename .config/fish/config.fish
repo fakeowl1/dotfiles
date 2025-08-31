@@ -60,7 +60,7 @@ if status is-interactive
   bind \eg beginning-of-line
   bind \eG end-of-line
   
-  # fish_ssh_agent
+  fish_ssh_agent
 
   set fish_greeting
   # Commands to run in interactive sessions can go here
