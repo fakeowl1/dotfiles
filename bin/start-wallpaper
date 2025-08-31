@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if ! pgrep -x "swww-daemon" > /dev/null 
+then
+  swww init
+else
+  swww kill
+  swww init
+fi

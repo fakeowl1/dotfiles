@@ -1,0 +1,8 @@
+.config/polybar/scripts/weather/__pycache__/
+.config/polybar/scripts/weather/.env
+Pictures/screenshots/
+images/
+README.md
+install-on-arch.sh
+.config/nvim/lazy-lock.json
+.cfg

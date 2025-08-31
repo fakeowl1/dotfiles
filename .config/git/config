@@ -1,0 +1,15 @@
+[init]
+    defaultbranch = main
+
+[user]
+    email = ukolov.roman@lll.kpi.ua
+    name = fakeowl1
+
+[core]
+    editor = nvim
+    pager = less
+    excludesfile = .gitignore
+    autocrlf = false
+
+[diff]
+    noprefix = true

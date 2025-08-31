@@ -1,0 +1,91 @@
+#!/bin/bash
+
+function display_help {
+  echo "yt-music - download music from youtube with id3 metadata"
+  echo
+  echo "yt-music URL [OPTIONS]"
+  echo 
+  echo "OPTIONS"
+  echo "  --audio-format FORMAT"
+  echo "    Format to convert the audio (supported: aac, alac, flac, m4a, mp3, opus, vorbis, wav)"
+  echo
+  echo "  --album"
+  echo "    If it's album use this flag"
+  echo
+  echo "  --id3-metadata Author-Song name"
+  echo "    Add id3v2 metadata to file"
+  echo "Example: yt-music URL --audio-format mp3 --album"
+  exit 0
+}
+
+
+if [[ $# -lt 2 ]]; then
+  display_help
+fi
+
+URL=$1
+shift
+ALBUM=false
+AUDIO_FORMAT="m4a"
+
+while true; do
+  case "$1" in
+    -h | --help) display_help;;
+    --audio-format) AUDIO_FORMAT="$2"; shift 2;;
+    --album) ALBUM=true; shift ;;
+    --id3-metadata) CUSTOM_ID3="$2"; shift 2 ;; 
+    -- ) shift; break ;;
+    *) break ;;
+  esac
+done
+
+if [[ $ALBUM && $CUSTOM_ID3 ]]; then
+  echo "You can't use custom id3 with album flag"
+  exit 0
+fi
+
+function parseMetadataString {
+  IFS="-" read -a array <<< "$1"
+  artist=${array[0]}
+  artist=`echo $artist | sed 's/ *$//g'` 
+  song=${array[1]}
+  song=`echo $song | sed 's/ *$//g'`
+}
+
+filename=$CUSTOM_ID3
+
+yt-dlp $URL \
+  -x \
+  -f bestaudio \
+  --audio-format $AUDIO_FORMAT \
+  --audio-quality 0 \
+  --embed-thumbnail \
+  --ppa "ThumbnailsConvertor+ffmpeg_o:-c:v png -vf crop='ih'" \
+  --add-metadata \
+  --parse-metadata "album:%(album)s" \
+  --parse-metadata "title:%(title)s" \
+  --parse-metadata "artist:%(artist)s" \
+  --parse-metadata "playlist_index:%(track_number)s" \
+  --parse-metadata "release_year:%(release_year)s" \
+  -o '%(artist)s - %(title)s.%(ext)s' \
+  --verbose
+
+if [[ $CUSTOM_ID3 ]]; then
+  IFS="-" read -a array <<< "$CUSTOM_ID3"
+  artist=${array[0]}
+  artist=`echo $artist | sed 's/ *$//g'` 
+  song=${array[1]}
+  song=`echo $song | sed 's/ *$//g'`
+  id3v2 -a "${artist}" "$filename"
+  id3v2 -t "${song}" "$filename"
+fi
+
+
+# echo "Audio format: $AUDIO_FORMAT"
+# echo "Album metadata: $ALBUM"
+# echo "Extract ID3 metadata: $EXTRACT_ID3"
+# echo "ID3 metadata: $CUSTOM_ID3"
+# yt-dlp $1 -x --verbose --audio-format mp3 -o "$filename" $3 
+#
+# id3v2 -a "${artist}" "$filename"
+# id3v2 -t "${song}" "$filename"

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -z "$1" ] 
+then
+    echo "./restart [service]";
+    exit 1;
+fi
+
+pkill -USR1 -x $1
+dunstify "$1 has been restarted" -t 3000
+$1 & > /dev/null 2>&1
