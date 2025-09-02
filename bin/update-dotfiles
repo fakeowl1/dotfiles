@@ -1,0 +1,18 @@
+#!/bin/bash
+
+DOTFILES_DIR=$HOME/.cfg
+
+function dotfiles () {
+  git --git-dir=$DOTFILES_DIR --work-tree=$HOME "$@"
+}
+
+check=$(dotfiles status -s)
+
+if [ ! -z "$check" ]; then
+  dotfiles add -u
+  dotfiles commit -m "$(date +'%a, %b %d %H:%M') update configs"
+  dotfiles push origin main
+  notify-send "$(date +'%d.%m.%Y') has updated" -t 4000
+else
+  echo "Configs up-to-date"
+fi
