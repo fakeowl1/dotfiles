@@ -12,7 +12,7 @@ if [ ! -z "$check" ]; then
   dotfiles add -u
   dotfiles commit -m "$(date +'%a, %b %d %H:%M') update configs"
   dotfiles push origin main
-  notify-send "$(date +'%d.%m.%Y') has updated" -t 4000
+  notify-send "$(date +'%d.%m.%Y') configs has updated" -t 4000
 else
   echo "Configs up-to-date"
 fi
