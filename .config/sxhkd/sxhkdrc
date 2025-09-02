@@ -6,13 +6,13 @@
 # -------------------------------------------------------
 
 super + alt + e
-    $HOME/bin/restart --sxhkd
+    $HOME/bin/restart sxhkd
 
 super + alt + b
-    $HOME/bin/restart --polybar 
+    $HOME/bin/restart polybar 
 
 super + alt + p 
-    $HOME/bin/restart --picom 
+    $HOME/bin/restart picom 
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -44,11 +44,17 @@ super + Return
 super + d 
   rofi -show drun -show-icons -modi drun
 
+super + shift + b 
+  thorium-browser
+
 Print
-  flameshot gui
+  flameshot gui --raw | xclip -sel clip -t image/jpg
+
+ctrl + Print
+  flameshot gui 
 
 super + x 
-  betterlockscreen -l dimblur
+  betterlockscreen -l dim
 #  --------------------------------------------------------
 
 
