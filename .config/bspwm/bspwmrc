@@ -8,7 +8,7 @@ feh --bg-scale "$(< "${HOME}/.cache/wal/wal")"
 betterlockscreen -u ~/Pictures/wallpapers/Nature/forest_stream_landscape_165405_1920x1080.jpg --fx dim --span
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst -config ~/.config/dunst/dunstrc &
-/home/q/bin/battery &
+/home/q/bin/battery-daemon &
 # ----------------------------------------------------------------------------
 
 pgrep -x sxhkd > /dev/null || sxhkd &
