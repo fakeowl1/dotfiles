@@ -1,9 +1,9 @@
 #!/bin/bash
 
 for pid in $(pidof -x battery); do
-    if [ "$pid" != $$ ]; then
-        kill -9 "$pid"
-    fi
+  if [ "$pid" != $$ ]; then
+      kill -9 "$pid"
+  fi
 done
 
 notify_icons="/home/q/.config/dunst/icons"
