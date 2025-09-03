@@ -4,9 +4,11 @@
 
 ![](./Pictures/rice.png)
 
+</div>
+
 # Setup
-- **wm** [**`bspwm`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/bspwm)
-- **terminal** [**`kitty`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/kitty)
+**wm** [**`bspwm`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/bspwm)
+**terminal** [**`kitty`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/kitty)
 - **editor** [**`neovim`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/nvim)
 - **status bar** [**`polybar`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/polybar)
 - **launcher** [**`rofi`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/rofi)
