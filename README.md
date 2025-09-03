@@ -2,7 +2,7 @@
 
 ### Current rice
 
-![](./Pictures/rices/rice.png)
+![](./Pictures/rice.png)
 
 # Setup
 - **wm** [**`bspwm`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/bspwm)
