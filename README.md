@@ -4,29 +4,16 @@
 
 ![](./Pictures/rices/rice.png)
 
-### Nord Rice
-
-![](./Pictures/rices/riceOld.png)
-
-</div>
-
-
 # Setup
-- **wm** [**`hyprland`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/hypr)
-- **terminal** [**`foot`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/foot)
+- **wm** [**`bspwm`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/bspwm)
+- **terminal** [**`kitty`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/kitty)
 - **editor** [**`neovim`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/nvim)
-- **status bar** [**`waybar`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/waybar)
-- **launcher** [**`wofi`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/wofi)
+- **status bar** [**`polybar`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/polybar)
+- **launcher** [**`rofi`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/rofi)
 - **shell** [**`fish`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/fish)
 - **notifications** [**`dunst`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/dunst)
-- [**`shell scripts`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/scripts)
+- [**`shell scripts`**](https://github.com/fakeowl1/dotfiles/tree/main/bin)
 - [**`user systemd units`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/systemd/user)
 
 
 # TODO
-
-- [x] Configure pywal
-
-- [x] Neovim
-    - [x] Migrate from Packer to Lazy
-    - [ ] Add configuration for debugger protocol
