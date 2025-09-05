@@ -2,10 +2,8 @@ set drawbox
 set icons true
 set ignorecase true 
 
-set previewer ctpv
-set cleaner ctpvclear
-&ctpv -s $id
-&ctpvquit $id
+set previewer ~/bin/preview
+set cleaner ~/bin/cleaner
 
 # interpreter for shell commands
 set shell sh

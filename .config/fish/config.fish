@@ -5,10 +5,19 @@ if status --is-login
 end
 
 if status is-interactive
+  set -x EDITOR "nvim" 
+  set -x VISUAL "nvim"
+  set -x TERM "xterm-256color"
+  
+  set -U fish_user_paths $HOME/bin $fish_user_paths
+  set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  set -U fish_user_paths /opt/cuda/bin $fish_user_paths
+
   set -x XDG_CONFIG_HOME "$HOME/.config"
   set -x XDG_STATE_HOME "$HOME/.local/state"
   set -x XDG_CACHE_HOME "$HOME/.cache"
-  set -x XDG_DATA_HOME $HOME/.local/share
+  set -x XDG_DATA_HOME "$HOME/.local/share"
 
   set -x DOCKER_CONFIG "$XDG_CONFIG_HOME/docker" 
   set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
@@ -19,8 +28,11 @@ if status is-interactive
   set -x ANDROID_HOME "$XDG_DATA_HOME/android" 
   set -x _CONDA_ROOT "/opt/anaconda"  
   set -x PYENV_ROOT "$HOME/.pyenv"
+
   set -g fish_autosuggestion_enabled 0
 
+  alias lf="~/bin/lfub"
+  
   if test -e ~/.cache/wal/colors.fish
     source ~/.cache/wal/colors.fish
   end
@@ -36,21 +48,10 @@ if status is-interactive
 
   alias la="lsd -la"
   
-  set -U fish_user_paths $HOME/bin $fish_user_paths
-  set -U fish_user_paths $HOME/.local/bin $fish_user_paths
-  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-  set -U fish_user_paths /opt/cuda/bin $fish_user_paths
-  
   alias dotfiles="git --git-dir=$HOME/.cfg --work-tree=$HOME"
-  alias chromium-browser-stable="chromium-browser-stable --disable-gpu --disable-software-rasterizer"
 
   set -x PF_INFO "ascii title os kernel wm shell pkgs memory"
-  
-  set -x TERM "xterm-256color"
-  set -x EDITOR "nvim" 
-  set -x VISUAL "nvim"
 
-  # set srcdir "$HOME/.cache"
   set pkgdir "$HOME/.npm"
   alias npm="npm --cache $HOME/.cache/npm-cache"
   
