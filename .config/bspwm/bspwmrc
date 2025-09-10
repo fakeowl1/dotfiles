@@ -8,7 +8,9 @@ light -S 75
 polybar example &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst -config ~/.config/dunst/dunstrc &
+/usr/bin/blueman-manager
 /home/q/bin/battery-daemon &
+/usr/bin/blueman-applet &
 # ----------------------------------------------------------------------------
 
 pgrep -x sxhkd > /dev/null || sxhkd &
