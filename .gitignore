@@ -6,3 +6,4 @@ README.md
 install-on-arch.sh
 .config/nvim/lazy-lock.json
 .cfg
+bin/student.env
