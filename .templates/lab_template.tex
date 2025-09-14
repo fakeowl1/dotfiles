@@ -1,0 +1,46 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[T1,T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,ukrainian]{babel}
+
+\newcommand{\thetitlepage}[6]{
+  \def\discipline{#1}
+  \def\labno{#2}
+  \def\student{#3}
+  \def\studentgroup{#4}
+  \def\studentno{#5}
+  \def\instructor{#6}
+
+  \begin{titlepage}
+  \begin{center}
+    \vspace{1cm}
+    \textbf{Міністерство освіти і науки України\\
+    Національний технічний університет України\\
+    <<Київський політехнічний інститут імені Ігоря Сікорського>>\\
+    Факультет інформатики та обчислювальної техніки\\
+    Кафедра обчислювальної техніки\\}
+    \vspace*{5cm}
+    \textbf{Лабораторна робота №\labno\\}
+    \vspace{0.5cm}
+    з дисціпліни\\
+    <<\discipline>>
+    \vspace*{7cm}
+    
+    \begin{tabular}{ll}
+    \begin{minipage}[t]{0.54\linewidth}
+      Виконав:\\
+      студент групи \studentgroup \\
+      номер у списку групи: \studentno
+    \end{minipage}
+    &
+    \begin{minipage}[t]{0.3\linewidth}
+      Перевірив: \\
+      \instructor.
+    \end{minipage}
+    \end{tabular}
+
+    \vfill
+    Київ \the\year\\
+  \end{center}
+  \end{titlepage}
+}
