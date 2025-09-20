@@ -57,7 +57,6 @@ ex      01;32   # EXEC
 fi      00      # FILE
 
 # archives or compressed (dircolors defaults)
-
 *.tar   01;31
 *.tgz   01;31
 *.arc   01;31

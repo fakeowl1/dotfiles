@@ -26,3 +26,6 @@ sed -i "s/<studentname>/$STUDENT/g" "$reportPath"
 sed -i "s/<studentgroup>/$STUDENT_GROUP/g" "$reportPath"
 sed -i "s/<studentnumber>/$STUDENT_NUMBER/g" "$reportPath"
 sed -i "s/<instructorname>/$instructor/g" "$reportPath"
+
+pdflatex $reportPath
+nvim $reportPath
