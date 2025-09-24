@@ -5,14 +5,14 @@
 # Default keybinds 
 # -------------------------------------------------------
 
-super + alt + e
+super + alt + s
     $HOME/bin/restart sxhkd
 
-super + alt + b
+super + alt + p
     $HOME/bin/restart polybar 
 
-super + alt + p 
-    $HOME/bin/restart picom 
+# super + alt + c 
+#     $HOME/bin/restart picom 
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -45,7 +45,7 @@ super + d
   rofi -show drun -show-icons -modi drun
 
 super + shift + b 
-  thorium-browser
+  librewolf
 
 Print
   flameshot gui --raw | xclip -sel clip -t image/jpg
@@ -62,31 +62,38 @@ super + x
 # ----------------------------------------------------------
 
 # Down
-{F2,XF86AudioLowerVolume} 
-  pactl set-sink-volume @DEFAULT_SINK@ -1% 
+{F2,XF86AudioLowerVolume}
+  $HOME/bin/media-control volume_down
 
 # Up
-{F3,XF86AudioRaiseVolume}}
-  pactl set-sink-volume @DEFAULT_SINK@ +1%
+{F3,XF86AudioRaiseVolume}
+  $HOME/bin/media-control volume_up
 
 # Mute
 {F1,F86AudioMute}
-  pactl set-sink-mute @DEFAULT_SINK@ toggle
+  $HOME/bin/media-control volume_mute
 
-# Mute microfon
+# Mute mic
 {F9,XF86AudioMicMute}
-  pactl set-source-mute @DEFAULT_SOURCE@ toggle
+  $HOME/bin/media-control mic_mute
 
+shift + {F9,XF86AudioMicMute}
+  $HOME/bin/media-control mic_up
+
+ctrl + {F9,XF86AudioMicMute}
+  $HOME/bin/media-control mic_down
+
+# pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # --------------------------------------------------------------
 
 # Brigness screen
 # --------------------------------------------------------------
 
-{F4,XF86MonBrightnessDown}
-  light -U 1
-
 {F5, XF86MonBrightnessUp}
-  light -A 1
+  $HOME/bin/media-control brightness_up
+
+{F4,XF86MonBrightnessDown}
+  $HOME/bin/media-control brightness_down
 
 # --------------------------------------------------------------
 
