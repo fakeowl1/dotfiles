@@ -1,4 +1,4 @@
-if pactl list sources | grep -A15 "Name:.*input" | grep -q "Mute: yes"; then
+if amixer get Capture | grep -q '\[off\]'; then
     echo " "
 else
     echo ""
