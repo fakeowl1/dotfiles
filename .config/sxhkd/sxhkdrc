@@ -18,6 +18,9 @@ super + alt + p
 super + alt + {q,r}
   bspc {quit,wm -r}
 
+super + b
+  $HOME/bin/rofi-bluetooth
+
 # close and kill
 super + {c,q}
     bspc node -{c,k}
