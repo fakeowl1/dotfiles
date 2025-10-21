@@ -23,11 +23,19 @@ require("lazy").setup({
   -- {"neanias/everforest-nvim"},
   -- {"projekt0n/github-nvim-theme"},
   -- {"tiagovla/tokyodark.nvim"},
-  {"catppuccin/nvim", 
+  {"catppuccin/nvim"
+    -- config = function()
+    --   vim.cmd("colorscheme catppuccin-frappe")
+    -- end,
+    -- priority = 1000, 
+  },
+
+  { 
+    'projekt0n/github-nvim-theme',
     config = function()
-      vim.cmd("colorscheme catppuccin-frappe")
+      vim.cmd('colorscheme github_dark_tritanopia')
     end,
-    priority = 1000, 
+    priority = 1000,
   },
   -- {"gbprod/nord.nvim"},
   -- { "ray-x/aurora" }

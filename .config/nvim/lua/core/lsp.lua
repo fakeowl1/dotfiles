@@ -1,3 +1,17 @@
+
+vim.lsp.config('pylsp', {
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          maxLineLength = 100,
+          ignore = {'W391','W293',"E128","E124"}
+        }
+      }
+    }
+  }
+})
+
 vim.lsp.enable({
   "pylsp",
   "ts_ls",

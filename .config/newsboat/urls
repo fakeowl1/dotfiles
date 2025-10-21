@@ -1,0 +1,31 @@
+"query:YouTube:tags # \"YouTube\""
+https://www.youtube.com/feeds/videos.xml?channel_id=UChLpUGaZO35ICTltBP50VSg "Youtube" #mark_solonin1941
+https://www.youtube.com/feeds/videos.xml?channel_id=UCHDodUZkV9WVsPAErEVx2kA "Youtube" #slubarskiy 
+https://www.youtube.com/feeds/videos.xml?channel_id=UCoD9llImi9qkagrcnwZBSpw "Youtube" #projectmova
+https://www.youtube.com/feeds/videos.xml?channel_id=UCA48oZ2Xo92EItsZO4OiEew "Youtube" #miliukhinxyz
+https://www.youtube.com/feeds/videos.xml?channel_id=UC344gX1JMEsLkLPAuQllAmw "Youtube" #poyarkov
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXx3yVx9paWJ-BLZVqQ8CRQ "Youtube" #istoriyabezmifiv
+
+"query:News:tags # \"News\""
+https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml "World" "News"
+http://www.forbes.com/business/feed2/ "World" "News"
+http://rss.cnn.com/rss/cnn_topstories.rss "World" "News"
+https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/science/rss.xml "Science" "News"
+https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/topic/destination/ukraine/rss.xml "Ukraine" "News"
+https://www.pravda.com.ua/rss/ "Ukraine" "News"
+https://rss.unian.net/site/news_ukr.rss "Ukraine" "News"
+
+"query:Telegram:tags # \"Telegram\""
+https://rss-bridge.org/bridge01/?action=display&bridge=TelegramBridge&username=kiev1&format=Atom "Telegram"
+https://rss-bridge.org/bridge01/?action=display&username=linux_ukraine&bridge=TelegramBridge&format=Atom "Telegram"
+https://rss-bridge.org/bridge01/?action=display&username=dekanat_fiot&bridge=TelegramBridge&format=Atom "Telegram"
+https://rss-bridge.org/bridge01/?action=display&username=kyiv_airraid_alert&bridge=TelegramBridge&format=Atom "Telegram"
+
+"query:Reddit:tags # \"Reddit\""
+https://www.reddit.com/r/steinsgate.rss "Reddit"
+https://www.reddit.com/r/musictheory.rss "Reddit"
+https://www.reddit.com/r/saxophone.rss "Reddit"
+
+"query:Blogs:tags # \"Blog\""
+https://www.archlinux.org/feeds/news/ "Blog"
+https://miliukhin.xyz/index.xml "Blog"
