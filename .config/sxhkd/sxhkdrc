@@ -86,6 +86,9 @@ shift + {F9,XF86AudioMicMute}
 ctrl + {F9,XF86AudioMicMute}
   $HOME/bin/media-control mic_down
 
+super + s
+  $HOME/bin/audio-switch
+
 # pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # --------------------------------------------------------------
 

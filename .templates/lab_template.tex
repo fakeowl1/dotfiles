@@ -31,7 +31,6 @@
 }
 
 \lstset{style=mystyle}
-
 \newcommand{\thetitlepage}[6]{
   \def\discipline{#1}
   \def\labno{#2}
@@ -42,7 +41,6 @@
 
   \begin{titlepage}
   \begin{center}
-    \vspace{1cm}
     \textbf{Міністерство освіти і науки України\\
     Національний технічний університет України\\
     <<Київський політехнічний інститут імені Ігоря Сікорського>>\\
@@ -50,14 +48,14 @@
     Кафедра обчислювальної техніки\\}
     \vspace*{5cm}
     \textbf{Лабораторна робота №\labno\\}
-    \vspace{0.5cm}
+    \vspace{0.25cm}
     з дисціпліни\\
     <<\discipline>>
-    \vspace*{7cm}
-    
+    \vspace{3cm}
+
     \begin{tabular}{ll}
     \begin{minipage}[t]{0.54\linewidth}
-      Виконав:\\
+      Виконав: \\
       студент групи \studentgroup \\
       \student \\
       номер у списку групи: \studentno
@@ -69,8 +67,8 @@
     \end{minipage}
     \end{tabular}
     \vfill
-    Київ \the\year\\
-  \end{center}
+    Київ \the\year  
+\end{center}
   \end{titlepage}
 }
 

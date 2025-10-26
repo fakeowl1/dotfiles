@@ -43,3 +43,4 @@ bspc rule -a Steam              state=floating  follow=off rectangle=1105x777+22
 bspc rule -a mpv                state=floating  follow=off rectangle=800x450+560+315
 bspc rule -a virt-manager       state=floating  follow=off rectangle=900x600
 bspc rule -a keepassxc          state=floating  follow=off rectangle=900x900          desktop='^3'
+bspc rule -a zoom               state=floating  follow=off
