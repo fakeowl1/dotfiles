@@ -29,7 +29,7 @@ cmd remove ${{
 cmd open &{{
   case $(file --mime-type "$f" -bL) in 
     text/*|application/json) lf -remote "send $id \$$EDITOR \"$fx\"";;
-    image/*) swayimg -f "$f";;
+    image/*) imv "$f";;
     audio/*) lf -remote "send $id \$mpv --audio-display=no \"$fx\" && clear";; 
     video/*) mpv "$f";;
     application/pdf|application/epub) zathura "$f";;
