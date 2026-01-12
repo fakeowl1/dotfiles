@@ -37,6 +37,8 @@ super + y
 super + g
   bspc node -s biggest.window
 
+ctrl + Escape 
+  $HOME/bin/keyboard-light
 # -------------------------------------------------------
 
 # Start programs
@@ -100,7 +102,6 @@ super + s
 
 {F4,XF86MonBrightnessDown}
   $HOME/bin/media-control brightness_down
-
 # --------------------------------------------------------------
 
 # state/flags
@@ -115,7 +116,6 @@ super + {t, f, shift + f}
 # set the node flags
 super + ctrl + {m,x,y,z}
   bspc node -g {marked,locked,sticky,private}
-
 # ----------------------------------------------------------------
 
 
@@ -151,7 +151,6 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
   bspc {desktop -f,node -d} '^{1-9,10}'
-
 # -----------------------------------------------------------------
 
 
@@ -173,7 +172,6 @@ super + ctrl + space
 # cancel the preselection for the focused desktop
 super + ctrl + shift + space
   bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
-
 # ------------------------------------------------------------------
 
 
@@ -191,5 +189,4 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
   bspc node -v {-20 0,0 20,0 -20,20 0}
-
 # -------------------------------------------------------------------

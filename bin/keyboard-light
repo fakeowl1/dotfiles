@@ -1,0 +1,11 @@
+#!/bin/bash
+
+brightness=$(cat /sys/class/leds/asus::kbd_backlight/brightness)
+
+if [ $brightness -ne 0 ]; then 
+  brightness=0
+else
+  brightness=2 
+fi
+
+echo $brightness | tee /sys/class/leds/asus::kbd_backlight/brightness

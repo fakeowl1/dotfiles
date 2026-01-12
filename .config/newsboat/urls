@@ -21,7 +21,7 @@ https://morss.it/https://news.ycombinator.com/rss "Tech News"
 "query:Telegram:tags # \"Telegram\""
 https://rss-bridge.org/bridge01/?action=display&bridge=TelegramBridge&username=kiev1&format=Atom "Telegram"
 https://rss-bridge.org/bridge01/?action=display&username=linux_ukraine&bridge=TelegramBridge&format=Atom "Telegram"
-https://rss-bridge.org/bridge01/?action=display&username=dekanat_fiot&bridge=TelegramBridge&format=Atom "Study" "Telegram"
+https://rss-bridge.org/bridge01/?action=display&username=dekanat_fiot&bridge=TelegramBridge&format=Atom "Telegram" 
 https://rss-bridge.org/bridge01/?action=display&username=kyiv_airraid_alert&bridge=TelegramBridge&format=Atom "Telegram"
 
 "query:Blogs:tags # \"Blog\""

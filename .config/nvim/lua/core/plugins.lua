@@ -207,19 +207,7 @@ require("lazy").setup({
   },
   
   {
-    'MeanderingProgrammer/render-markdown.nvim',
-    after = { 'nvim-treesitter' },
-    dependencies = { 'echasnovski/mini.nvim', opt = true }, -- if you use the mini.nvim suite
-    config = function() 
-      require('render-markdown').setup({
-        latex = {
-          enabled = true,
-          converter = 'latex2text',
-          highlight = 'RenderMarkdownMath',
-          top_pad = 0,
-          bottom_pad = 0,
-        }
-      }) 
-    end
-  }
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+  },
 })

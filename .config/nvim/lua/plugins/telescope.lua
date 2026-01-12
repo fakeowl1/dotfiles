@@ -8,6 +8,7 @@ local actions = require'telescope.actions'
 local builtin = require'telescope.builtin'
 
 telescope.setup{
+  file_ignore_patterns = {"node%_modules/.*", "venv/.*"},
   defaults = {
     mappings = {
       i = {
