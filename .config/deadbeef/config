@@ -1,0 +1,160 @@
+ape.write_apev2 1
+artwork.cache.expiration_time 0.000000
+artwork.cache.simplified 0
+artwork.cache_reset_time 1770923657
+artwork.enable_embedded 1
+artwork.enable_lastfm 0
+artwork.enable_localfolder 1
+artwork.enable_wos 0
+artwork.filemask front.png;front.jpg;front.jpeg;folder.png;folder.jpg;folder.jpeg;cover.png;cover.jpg;cover.jpeg;f.png;f.jpg;f.jpeg;*front*.png;*front*.jpg;*front*.jpeg;*cover*.png;*cover*.jpg;*cover.jpeg;*folder*.png;*folder*.jpg;*folder*.jpeg;*.png;*.jpg;*.jpeg
+artwork.folders art;scans;covers;artwork;artworks
+artwork.image_size 512.000000
+artwork.missing_artwork 1
+artwork.nocover_path 
+artwork.save_to_music_folders 0
+artwork.save_to_music_folders_relative_path cover.jpg
+cli_add_playlist_name Default
+deadbeef_version 1.10.0
+filebrowser.autofilter 1
+filebrowser.bgcolor 
+filebrowser.bgcolor_selected 
+filebrowser.bookmarks_file $HOME/.gtk-bookmarks
+filebrowser.coverart_files cover.jpg;folder.jpg;front.jpg
+filebrowser.coverart_size 24
+filebrowser.defaultpath 
+filebrowser.enabled 1
+filebrowser.expanded_rows file:///home/q/Music/Cannonball%20Adderley
+filebrowser.fgcolor 
+filebrowser.fgcolor_selected 
+filebrowser.filter 
+filebrowser.filter_enabled 1
+filebrowser.font_size 0
+filebrowser.hidden 0
+filebrowser.icon_size 24
+filebrowser.save_treeview 1
+filebrowser.showbookmarks 1
+filebrowser.showhidden 0
+filebrowser.showicons 1
+filebrowser.sidebar_width 200
+filebrowser.sort_treeview 1
+filebrowser.treelines 0
+filechooser.lastdir file:///home/q
+filechooser.playlist.lastdir file:///home/q
+gtkui.columns.playlist [{"title":"Album Art","id":"8","format":"","sort_format":"","size":"235","align":"0","color_override":"0","color":"#ffd8dee9"},{"title":"No","id":"-1","format":"%tracknumber%","sort_format":"","size":"42","align":"1","color_override":"0","color":"#ff000000"},{"title":"♫","id":"1","format":"%playstatus%","sort_format":"","size":"16","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)","sort_format":"","size":"261","align":"0","color_override":"0","color":"#ff000000"},{"title":"Album","id":"-1","format":"%album%","sort_format":"","size":"157","align":"0","color_override":"0","color":"#ffd8dee9"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"456","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"70","align":"0","color_override":"0","color":"#ff000000"},{"title":"Bitrate","id":"-1","format":"%bitrate%","sort_format":"","size":"100","align":"0","color_override":"0","color":"#ffd8dee9"}]
+gtkui.columns.search [{"title":"Artist / Album","id":"-1","format":"$if(%artist%,%artist%,Unknown Artist)[ - %album%]","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","sort_format":"","size":"50","align":"1","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","sort_format":"","size":"150","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","sort_format":"","size":"50","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.eq.visible 0
+gtkui.layout.1.9.0 {"type":"vbox","legacy_params":" expand=\"0 1\" fill=\"1 1\" homogeneous=0","children":[{"type":"hbox","legacy_params":" expand=\"0 1 0\" fill=\"1 1 1\" homogeneous=0","children":[{"type":"playtb"},{"type":"seekbar"},{"type":"volumebar","settings":{"scale":"db"}}]},{"type":"hsplitter","legacy_params":" locked=0 ratio=0.734375 pos=0 size2=0","children":[{"type":"tabbed_playlist","legacy_params":" hideheaders=0 width=1410"},{"type":"vsplitter","legacy_params":" locked=0 ratio=0.835084 pos=0 size2=0","children":[{"type":"vsplitter","legacy_params":" locked=0 ratio=0.587183 pos=0 size2=0","children":[{"type":"coverart","settings":{"mode":"selected"}},{"type":"selproperties","settings":{"section":"properties,metadata","showheaders":"0"}}]},{"type":"waveformz"}]}]}]}
+gtkui.log.autoopen 0
+gtkui.playlist.group_by_tf %album%
+gtkui.search.group_by_tf 
+gtkui.statusbar.visible 1
+gtkui.tabscroll 0
+gtkui.titlebar_playing_tf DeaDBeeF - %artist% - %title%
+gtkui.titlebar_stopped_tf DeaDBeeF
+hotkey.key01 "Ctrl f" 0 0 find
+hotkey.key02 "Ctrl o" 0 0 open_files
+hotkey.key03 "Ctrl q" 0 0 quit
+hotkey.key04 "Ctrl n" 0 0 new_playlist
+hotkey.key05 "Ctrl a" 0 0 select_all
+hotkey.key06 "Escape" 0 0 deselect_all
+hotkey.key07 "Ctrl m" 0 0 toggle_stop_after_current
+hotkey.key08 "Ctrl j" 0 0 jump_to_current_track
+hotkey.key09 "F1" 0 0 help
+hotkey.key10 "Delete" 1 0 remove_from_playlist
+hotkey.key11 "Ctrl w" 0 0 remove_current_playlist
+hotkey.key12 "Alt Return" 1 0 track_properties
+hotkey.key13 "Return" 0 0 play
+hotkey.key14 "Ctrl p" 0 0 toggle_pause
+hotkey.key15 "Alt 1" 0 0 playlist1
+hotkey.key16 "Alt 2" 0 0 playlist2
+hotkey.key17 "Alt 3" 0 0 playlist3
+hotkey.key18 "Alt 4" 0 0 playlist4
+hotkey.key19 "Alt 5" 0 0 playlist5
+hotkey.key20 "Alt 6" 0 0 playlist6
+hotkey.key21 "Alt 7" 0 0 playlist7
+hotkey.key22 "Alt 8" 0 0 playlist8
+hotkey.key23 "Alt 9" 0 0 playlist9
+hotkey.key24 "Alt 0" 0 0 playlist10
+hotkey.key25 "z" 0 0 prev
+hotkey.key26 "x" 0 0 play
+hotkey.key27 "c" 0 0 toggle_pause
+hotkey.key28 "v" 0 0 stop
+hotkey.key29 "b" 0 0 next
+hotkey.key30 "n" 0 0 playback_random
+hotkey.key31 "Ctrl k" 0 0 toggle_stop_after_album
+hotkey.key32 "Ctrl z" 0 0 undo
+hotkey.key33 "Ctrl Shift z" 0 0 redo
+hotkeys_created 1
+lastfm.disable_np 0
+lastfm.enable 1
+lastfm.mbid 0
+lastfm.prefer_album_artist 0
+lastfm.scrobbler_url http://post.audioscrobbler.com
+lastfm.submit_tiny_tracks 1
+lastfm.trace 1
+logwindow.geometry.h 200
+logwindow.geometry.w 400
+logwindow.geometry.x 34
+logwindow.geometry.y 34
+mainwin.geometry.h 1047
+mainwin.geometry.w 1920
+mainwin.geometry.x 0
+mainwin.geometry.y 33
+medialib.deadbeef.enabled 1
+medialib.deadbeef.paths []
+medialib.preset Albums
+mp3.id3v1_encoding iso8859-1
+mp3.id3v2_version 3
+mp3.write_id3v1 0
+mp3.write_id3v2 1
+network.proxy.port 8080
+output_plugin pipewire
+playback.loop 1
+playback.volume.normalized 1.0000000
+playlist.current 0
+playlist.cursor.0 -1
+playlist.cursor.1 0
+playlist.cursor.2 0
+playlist.scroll.0 0
+playlist.scroll.1 0
+playlist.scroll.2 0
+playlist.scroll.cursorfollowplayback 1
+playlist.tab.00000 Default
+playlist.tab.00001 Favorites
+prefwin.geometry.h 550
+prefwin.geometry.w 746
+prefwin.geometry.x 584
+prefwin.geometry.y 262
+resume.paused 0
+resume.playlist -1
+resume.position -1.000000
+resume.track -1
+searchwin.geometry.h 150
+searchwin.geometry.w 450
+searchwin.geometry.x 732
+searchwin.geometry.y 462
+streamer.bit_override 0
+streamer.samplerate 44100
+streamer.samplerate_mult_44 44100
+streamer.samplerate_mult_48 48000
+trkproperties.geometry.h 1025
+trkproperties.geometry.w 942
+trkproperties.geometry.x 403
+trkproperties.geometry.y -77
+waveformz.bgcolor #000
+waveformz.bgcolor_tooltip #222
+waveformz.buffer_db_scale 40
+waveformz.buffer_use_db 0
+waveformz.color_gradients 1
+waveformz.cursor_color #f00
+waveformz.fgcolor_shade_normal #999
+waveformz.fgcolor_shade_played #fb8
+waveformz.fgcolor_tooltip #fff
+waveformz.fgcolor_wave_normal #555
+waveformz.fgcolor_wave_played #f40
+waveformz.margin 2
+waveformz.refresh_rate 10
+waveformz.use_caching 1
+waveformz.wave_butterfly 0
+waveformz.waveform_rescale 1
+wv.write_apev2 1
