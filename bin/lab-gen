@@ -3,29 +3,96 @@
 source student.env
 
 # Display Help
-echo "lab-gen - Automaticaly create a lab report"
-echo
 
-read -p "Enter a discipline: " discipline
-echo
-read -p "Enter an instructor name: " instructor
-echo
-read -p "Enter a number of work: " number
+usage() {
+cat << EOF
+Usage: lab-gen [number of work] [template]
+Example: lab-gen 1 -s
 
-templatesPath="$HOME/.templates"
+Automaticaly create a lab report
+
+OPTIONS:
+  -h show this message
+  -c generate template for okr lab
+  -p generate template for phys lab
+  -s generate template for sysp lab
+EOF
+}
+if [ $# -lt 1 ]; then
+  usage 
+  exit 1
+fi
+
+declare -i number=$1
+
+if [ $number -eq 0 ]; then
+  echo "Error: First argument must be a number."
+  usage
+  exit 1
+fi
+
+prefix="general"
+
+shift
+
+while getopts ':hcps' OPTION
+do 
+  case $OPTION in 
+    h) usage; exit 1 ;;
+    c) 
+      discipline="Основи Клієнтської розробки"
+      prefix="okr"
+      instructor="Хмелюк М.C"
+      echo
+      read -p "Enter work topic: " topic
+      ;;
+    p)
+      discipline="Фізика"
+      prefix="phys"
+      instructor="Колган В.В"
+      echo
+      read -p "Enter work topic: " topic
+      ;;
+    s)
+      discipline="Системне Програмування"
+      prefix="sysp"
+      instructor="Павлов В.Г"
+      echo
+      read -p "Enter work topic: " topic
+      ;;
+    ?) usage; exit 1 ;;
+  esac
+done
+
+if [ $prefix = "general" ]; then
+  echo
+  read -p "Enter discipline: " discipline
+  echo
+  read -p "Enter instructor name: " instructor
+fi
+
+echo "---"
+echo "Створюємо лабу №$number"
+echo "Дисципліна: $discipline"
+echo "Викладач: $instructor"
+echo "Тема: $topic"
+
 reportPath="$PWD/report.tex"
+templatesPath="$HOME/.templates"
 
-cp "$templatesPath/lab_report.tex" report.tex
-cp "$templatesPath/lab_template.tex" template.tex
+report_filename="${prefix}_report.tex"
+template_filename="${prefix}_template.tex"
+
+cp "$templatesPath/${report_filename}" report.tex
+cp "$templatesPath/${template_filename}" template.tex
 
 mkdir assets
 
-sed -i "s/<discipline>/$discipline/g" "$reportPath"
-sed -i "s/<labnumber>/$number/g" "$reportPath"
-sed -i "s/<studentname>/$STUDENT/g" "$reportPath"
-sed -i "s/<studentgroup>/$STUDENT_GROUP/g" "$reportPath"
-sed -i "s/<studentnumber>/$STUDENT_NUMBER/g" "$reportPath"
-sed -i "s/<instructorname>/$instructor/g" "$reportPath"
+variables=($(grep -Po '(?<=\{\$)\w+(?=\})' $reportPath))
 
-pdflatex $reportPath
-nvim $reportPath
+for var in "${variables[@]}"; do
+  value="${!var}"
+  sed -i "s/{\\\$$var}/{$value}/g" "$reportPath"
+done
+
+nvim $reportPath +VimtexCompile

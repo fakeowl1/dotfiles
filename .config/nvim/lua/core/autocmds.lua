@@ -22,8 +22,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
     
-    map('gl', vim.diagnostic.open_float, "[O]pen floating diagnostic message")  
-    map('gd', vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+    map('gl', vim.diagnostic.open_float, "[O]pen floating diagnostic message")
+    map('gd', vim.lsp.buf.definition, "[G]oto [D]eclaration")
     map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
     map('K',vim.lsp.buf.hover, "[H]over Documentation")
     map('<leader>lr', vim.lsp.buf.rename, "Rename all references")

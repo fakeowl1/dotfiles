@@ -15,6 +15,7 @@ vim.lsp.config('pylsp', {
 vim.lsp.enable({
   "pylsp",
   "ts_ls",
+  "gopls",
   "cssls",
   "html",
   "texlab",
