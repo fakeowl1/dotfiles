@@ -1,5 +1,9 @@
 local dap = require("dap")
 local dapui = require("dapui")
+local dapgo = require("dap-go")
+
+dapui.setup()
+dapgo.setup()
 
 local nmap = function(mode, keys, func, desc) 
   if desc then 
@@ -21,22 +25,22 @@ dap.listeners.before.event_exited.dapui_config = function()
   dapui.close()
 end
 
--- Enable dap
+nmap("n", "<leader>dt", dapui.toggle, "Open dap ui")
 nmap("n", "<leader>dc", dap.continue, "Start debug session")
 nmap("n", "<leader>ds", dap.step_over, "Run again")
 nmap("n", "<leader>dsi", dap.step_into, "[S]tep into a function or method")
 nmap("n", "<leader>dso", dap.step_out, "[S]tep out of a function or method")
-
 nmap("n", "<leader>tb", dap.toggle_breakpoint, "[C]reates or removes a breakpoint at the current line")
-nmap( "n", "<leader>tB", dap.set_breakpoint, "Same as toggle_breakpoint, but is guranteed to overwrite previous breakpoint")
+nmap("n", "<leader>tB", dap.set_breakpoint, "Same as toggle_breakpoint, but is guranteed to overwrite previous breakpoint")
 
-nmap(
-  "n",
-  "<leader>lp", 
-  function()
-    dap.set_breakpoint{nil, nil, vim.fn.input('Log point message: ')} 
-  end
-)
+-- nmap(
+--   "n",
+--   "<leader>lp", 
+--   function()
+--     dap.set_breakpoint{nil, nil, vim.fn.input('Log point message: ')} 
+--   end,
+--   "Set breakpoint"
+-- )
 
 nmap("n","<leader>dr",dap.repl.open,"Open a debug-console")
 nmap("n","<leader>dl",dap.run_last,"Re-runs the last debug adapter")

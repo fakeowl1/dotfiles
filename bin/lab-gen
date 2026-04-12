@@ -16,6 +16,7 @@ OPTIONS:
   -c generate template for okr lab
   -p generate template for phys lab
   -s generate template for sysp lab
+  -g generate template for general lab
 EOF
 }
 if [ $# -lt 1 ]; then
@@ -26,12 +27,12 @@ fi
 declare -i number=$1
 
 if [ $number -eq 0 ]; then
-  echo "Error: First argument must be a number."
+  echo "Error: Lab number is requried as first argument"
   usage
   exit 1
 fi
 
-prefix="general"
+prefix=
 
 shift
 
@@ -60,22 +61,28 @@ do
       echo
       read -p "Enter work topic: " topic
       ;;
+    g)
+      echo
+      read -p "Enter discipline: " discipline
+      echo
+      read -p "Enter instructor name: " instructor
+      ;;
     ?) usage; exit 1 ;;
   esac
 done
 
-if [ $prefix = "general" ]; then
+if [ -z "$prefix" ]; then
+  usage
   echo
-  read -p "Enter discipline: " discipline
-  echo
-  read -p "Enter instructor name: " instructor
+  echo "Fail: template is required"
 fi
 
-echo "---"
-echo "Створюємо лабу №$number"
-echo "Дисципліна: $discipline"
-echo "Викладач: $instructor"
-echo "Тема: $topic"
+echo "---------"
+echo "Lab №$number"
+echo "Discipline: $discipline"
+echo "Instructor: $instructor"
+echo "Topic: $topic"
+echo "---------"
 
 reportPath="$PWD/report.tex"
 templatesPath="$HOME/.templates"

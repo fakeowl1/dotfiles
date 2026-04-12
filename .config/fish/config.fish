@@ -1,6 +1,6 @@
 if status --is-login
  if test -z "$DISPLAY" -a $XDG_VTNR = 1
-   startx &> ~/.bspwm.log
+   $HOME/bin/start-sway
  end
 end
 

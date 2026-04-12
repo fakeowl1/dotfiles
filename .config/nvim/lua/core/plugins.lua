@@ -194,9 +194,9 @@ require("lazy").setup({
       "arywz11/DAPInstall.nvim",
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
+      "leoluz/nvim-dap-go",
     },
     config = function() 
-      require("dapui").setup()
       require("plugins.dap") 
     end,
   },

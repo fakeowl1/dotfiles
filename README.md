@@ -18,5 +18,4 @@
 - [**`shell scripts`**](https://github.com/fakeowl1/dotfiles/tree/main/bin)
 - [**`user systemd units`**](https://github.com/fakeowl1/dotfiles/tree/main/.config/systemd/user)
 
-
 # TODO

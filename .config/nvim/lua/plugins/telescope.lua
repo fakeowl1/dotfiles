@@ -27,7 +27,7 @@ local keymap = vim.keymap.set
 keymap("n","<leader>sf",builtin.find_files, {desc = "[S]earch [F]iles"})
 keymap("n","<leader>sg",builtin.live_grep, {desc = "[S]earch by [G]rep"})
 keymap("n","<leader>sw",builtin.grep_string, {desc = "[S]earch current [W]ord"})
-keymap("n","<leader>ff",builtin.current_buffer_fuzzy_find, {desc = "[F]uzzy [F]ind in current [B]uffer"})
+keymap("n","<leader>fz",builtin.current_buffer_fuzzy_find, {desc = "[F]uzzy [F]ind in current [B]uffer"})
 
 keymap("n","<leader>sb",builtin.buffers, {desc = "[F]ind existing [B]uffers"})
 

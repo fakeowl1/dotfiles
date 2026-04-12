@@ -7,6 +7,12 @@ reload-threads 100
 
 browser "/usr/bin/xdg-open %u"
 
+urls-source "miniflux"
+miniflux-url "https://news.noleron.com"
+
+miniflux-login "fakeowl1"
+miniflux-password "Tav9eDcmmAj2y#@B"
+
 include /usr/share/doc/newsboat/contrib/colorschemes/solarized-dark
 
 bind-key h quit

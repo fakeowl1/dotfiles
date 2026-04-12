@@ -1,142 +1,64 @@
 {
-  "layer": "top", // Waybar at top layer
+  "layer": "top",
   "position": "top",
+  "height": 30,
+  "spacing": 0,
 
-  "height": 47,
-  "width": 1895,
-  "spacing": 5,
+  "modules-left": ["sway/workspaces", "custom/sep", "sway/window"],
+  "modules-center": [],
+  "modules-right": [
+    "tray", 
+    "custom/sep",
+    "bluetooth", 
+    "custom/sep",
+    "pulseaudio", 
+    "custom/sep",
+    "sway/language", 
+    "custom/sep",
+    "battery", 
+    "custom/sep",
+    "clock"
+  ],
 
-  "modules-left": ["hyprland/window", "pulseaudio","tray"],
-  "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["custom/cmus", "custom/weather", "custom/language", "clock", "battery"],
-
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
-    "on-click": "activate",
-    "all-outputs": false,
-    "format": "{icon}",
-    
-    //"format-icons": {
-    //  "1": "",
-    //  "2": "",
-    //  "3": "",
-    //  "4": "",
-    //  "5": "",
-    //  "6": "",
-    //  "urgent": "",
-    //  "focused": "",
-    //  "default": ""
-    //},
-
-    "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
-      "6": "",
-      "7": "",
-      "8": "",
-      "9": "",
-      "focused": " ",
-      "urgent": " ",
-      "default": " ",
-    },
-
-    "icon-size": 14
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}"
   },
 
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
+  "sway/window": {
+    "format": "{}",
+    "max-length": 50
   },
-  
+
   "tray": {
-    "spacing": 10,
-    "icon-size": 15
-  },
-  
-  "clock": {
-    "format": "{:%a, %d/%m/%Y %I:%M %p}",
-  },
-  
-  "custom/cmus": {
-    "format": "   {}",
-    "max-length": 45,
-    "interval": 10,
-    "exec": "cmus-remote -C \"format_print '%F'\"",
-    "exec-if": "pgrep cmus",
-    "on-click": "cmus-remote -u",
-    "on-scroll-up": "cmus-remote --next",
-    "on-scroll-down": "cmus-remote --prev",
-    "escape": true
-  },
-
-  "custom/weather": {
-    "format": "{}",
-    "exec": "~/.config/waybar/openweathermap-simple.sh",
-    // "exec": "curl 'https://wttr.in/?format=1'",
-    "interval": 3600
-  },
-
-  "hyprland/window": {
-    "format": "{}",
-    "separate-outputs": false,
-    "max-length": 20
-  },
-
-  "custom/language": {
-    "exec": "~/.config/hypr/.scripts/kb_hypr",
-    "interval": 1,
-    "format": " {}",
-  },
-
-  "battery": {
-    "interval": 5, 
-    
-    "states": {
-      "good": 70,
-      "warning": 35,
-      "critical": 20
-    },
-    
-    "format": "{icon} {capacity}%",
-      "format-icons": {
-          "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-          "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
-      },
-    //"format-charging": " {capacity}%",
-    //"format-plugged": " {capacity}%",
-    //"format-full": " full charged",
-    //"format-warning": " {capacity}%",
-    //"format-critical": " {capacity}%",
-    //"format-alt": "{time} {icon}",
-    //"format-icons": ["", "", "", "", ""]
-  },
-  
-  "bluetooth": {
-    // "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
-    "format": " {status}",
-    "format-disabled": "", // an empty format will hide the module
-    "format-connected": " {device_alias} connected",
-    "tooltip-format": "{controller_alias}\t{controller_address}",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    "icon-size": 15,
+    "spacing": 10
   },
 
   "pulseaudio": {
-    "scroll-step": 1,
-    "format": "{volume}%  {icon}",
-    "format-bluetooth": "{volume}% {icon} ",
-    "format-bluetooth-muted": " {icon} ",
-    "format-muted": "",
-    "format-source": "",
-    "format-source-muted": "",
-    "format-icons": {
-      "headphone": "",
-      "default": ["", "", ""]
-    },
-    "on-click": "pkill pulsemixer; foot -e pulsemixer"
+    "format": "VOL {volume}%",
+    "format-muted": "MUTED"
+  },
+
+  "sway/language": {
+    "format": " {short}"
+  },
+
+  "battery": {
+    "format": "BAT {capacity}%"
+  },
+
+  "clock": {
+    "format": "{:%a, %b %d %I:%M %p}"
+  },
+
+  "bluetooth": {
+    "format": "BT {status}"
+  },
+
+  "custom/sep": {
+    "format": "|",
+    "tooltip": false
   }
 }
