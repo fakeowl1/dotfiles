@@ -18,5 +18,5 @@ if [ -n "$check" ]; then
     notify-send "Dotfiles" "Push failed! Check your connection." -u critical
   fi
 else
-  echo "Configs up-to-date"
+  notify-send "Your configs up-to-date"
 fi
