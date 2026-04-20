@@ -17,7 +17,8 @@
     "custom/sep",
     "battery", 
     "custom/sep",
-    "clock"
+    "clock",
+    "custom/waycal"
   ],
 
   "sway/workspaces": {
@@ -38,11 +39,13 @@
 
   "pulseaudio": {
     "format": "VOL {volume}%",
-    "format-muted": "MUTED"
+    "format-muted": "MUTED",
+    "on-click": "pavucontrol"
   },
 
   "sway/language": {
-    "format": " {short}"
+    "format": " {short}",
+    "on-click": "swaymsg input type:keyboard xkb_switch_layout next"
   },
 
   "battery": {
@@ -50,15 +53,29 @@
   },
 
   "clock": {
-    "format": "{:%a, %b %d %I:%M %p}"
+    "format": "{:%a, %b %d %I:%M %p}",
+    "format-alt": "{:%y.%m.%d}"
   },
 
   "bluetooth": {
-    "format": "BT {status}"
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "on-click": "rofi-bluetooth",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
   },
 
   "custom/sep": {
     "format": "|",
     "tooltip": false
+  },
+
+  "custom/waycal": {
+    "format": "󰃭",
+    "on-click": "pkill -x waycal || waycal",
+    "tooltip-format": "Calendar"
   }
 }

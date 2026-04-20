@@ -54,7 +54,11 @@ require("lazy").setup({
     end
   },
   
-  {"norcalli/nvim-colorizer.lua", opts = {}},
+  {
+    "catgoose/nvim-colorizer.lua", 
+    event = "BufReadPre", 
+    opts = {}
+  },
   
   {"nvim-tree/nvim-web-devicons"},
   
@@ -82,14 +86,12 @@ require("lazy").setup({
   
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/playground",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
-    build = function() vim.cmd("TSUpdate") end,
+    build = ":TSUPDATE",
+    lazy = false,
     config = function() require("plugins.treesitter") end
   },
 
+  
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {"nvim-lua/plenary.nvim"},
