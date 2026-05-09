@@ -29,7 +29,7 @@ install_software_pkgs() {
 
   echo -e "${green}[*] Installing software.${no_color}"
   # Xorg application
-  # sudo pacman -S kitty nitrogen  
+  # sudo pacman -S kitty nitrogen
   sudo pacman -S foot 
   
   # TODO: Write bash scripts for build applications: flameshot, hyprland, swww, telegram-bot-api(server) 

@@ -13,11 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-  {
-    "lewis6991/impatient.nvim",
-    config = function() require('impatient') end
-  },
-  
   { "ellisonleao/gruvbox.nvim" },
   -- {"rebelot/kanagawa.nvim"},
   -- {"neanias/everforest-nvim"},
@@ -84,12 +79,12 @@ require("lazy").setup({
     opts = {}
   },
   
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUPDATE",
-    lazy = false,
-    config = function() require("plugins.treesitter") end
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   build = ":TSUPDATE",
+  --   lazy = false,
+  --   config = function() require("plugins.treesitter") end
+  -- },
 
   
   {
@@ -107,22 +102,43 @@ require("lazy").setup({
     },
   },
   
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   -- load cmp on InsertEnter
+  --   event = "InsertEnter",
+  --   -- these dependencies will only be loaded when cmp loads
+  --   -- dependencies are always lazy-loaded unless specified otherwise
+  --   dependencies = {
+  --     "hrsh7th/cmp-path",
+  --     "hrsh7th/cmp-buffer",
+  --     "saadparwaiz1/cmp_luasnip",
+  --     "hrsh7th/cmp-calc",
+  --     "hrsh7th/cmp-emoji",
+  --     "hrsh7th/cmp-cmdline",
+  --   },
+  --   config = function() require("plugins.cmp") end
+  -- },
+  --
   {
-    "hrsh7th/nvim-cmp",
-    -- load cmp on InsertEnter
-    event = "InsertEnter",
-    -- these dependencies will only be loaded when cmp loads
-    -- dependencies are always lazy-loaded unless specified otherwise
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-calc",
-      "hrsh7th/cmp-emoji",
-      "hrsh7th/cmp-cmdline",
+    "saghen/blink.cmp",
+    version = "1.*",
+    opts = {
+      keymap = { preset = 'default' },
+      appearance = {
+        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = 'mono'
+      },
+
+      completion = { documentation = { auto_show = false } },
+
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+
+      fuzzy = { implementation = "prefer_rust_with_warning" }
     },
-    config = function() require("plugins.cmp") end
+    opts_extend = { "sources.default" },
   },
   
   {
@@ -150,8 +166,25 @@ require("lazy").setup({
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup()
-    end
+    end,
+    opts = {}
+  },
+  
+  {
+    "obsidian-nvim/obsidian.nvim",
+    version = "*",
+    opts = {
+      legacy_commands = false, 
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/Notes",
+        },
+      },
+      ui = {
+        enable = false,
+      }
+    },
   },
 
   {

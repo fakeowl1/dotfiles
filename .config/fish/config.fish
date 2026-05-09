@@ -31,7 +31,7 @@ if status is-interactive
 
   set -g fish_autosuggestion_enabled 0
 
-  alias lf="~/bin/lfub"
+  # alias lf="~/bin/lfub"
   
   if test -e ~/.cache/wal/colors.fish
     source ~/.cache/wal/colors.fish

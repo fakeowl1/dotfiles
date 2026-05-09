@@ -36,3 +36,5 @@ keymap("n","<leader>sdc",function() builtin.diagnostics{bufnr = 0} end, {desc = 
 keymap("n","<leader>sk",builtin.keymaps, {desc = "[S]earch existing [K]eymaps"})
 
 keymap('n', '<leader>o', builtin.oldfiles, {desc = "[O]pen old files"})
+keymap("n","<leader>sb",builtin.buffers, {desc = "[F]ind existing [B]uffers"})
+keymap("n","<leader>sh",builtin.help_tags, {desc = "[S]earch [H]elp"})

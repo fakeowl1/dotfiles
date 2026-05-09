@@ -8,6 +8,7 @@ end
 -- Setup colorscheme
 local ok, err = pcall(function()
   local colorscheme = "catppuccin-mocha"
+
   vim.g.diagnostic_sings = {
     error = " ", 
     warn = " ", 
