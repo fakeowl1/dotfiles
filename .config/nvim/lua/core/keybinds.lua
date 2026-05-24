@@ -60,3 +60,29 @@ vim.keymap.set("n", "<leader>oz", function()
         prompt_title = "Obsidian Live Grep",
     })
 end, { desc = "Obsidian: Live grep note text" })
+
+vim.keymap.set("n", "<leader>odd", function()
+  local current_file = vim.api.nvim_buf_get_name(0)
+
+  if current_file == "" then
+    vim.notify("Cannot delete an unsaved buffer!", vim.log.levels.WARN)
+    return
+  end
+
+  local file_name = vim.fs.basename(current_file)
+
+  local confirm = vim.fn.confirm("Permanently delete " .. file_name .. "?", "&Yes\n&No", "N")
+
+  if confirm == "Y" then
+    local success, err = vim.uv.fs_unlink(current_file)
+    
+    if success then
+      vim.cmd("bdelete")
+      vim.notify("File successfully deleted", vim.log.levels.INFO)
+    else
+      vim.notify("Error deleting file: " .. tostring(err), vim.log.levels.ERROR)
+    end
+  else
+    vim.notify("Deletion cancelled", vim.log.levels.INFO)
+  end
+end, { desc = "Obsidian: Delete current note" })

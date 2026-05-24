@@ -50,6 +50,9 @@ if status is-interactive
   
   alias dotfiles="git --git-dir=$HOME/.cfg --work-tree=$HOME"
 
+  alias on="cd ~/Notes"
+  alias rn="nvim ~/Notes/inbox/*.md"
+
   set -x PF_INFO "ascii title os kernel wm shell pkgs memory"
 
   set pkgdir "$HOME/.npm"
