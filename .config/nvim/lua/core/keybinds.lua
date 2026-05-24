@@ -1,25 +1,33 @@
--- local keymap = vim.keymap.set
-
 -- Block arrows
 vim.api.nvim_set_keymap('', '<up>', '<nop>',   {noremap = true})
 vim.api.nvim_set_keymap('', '<down>', '<nop>', {noremap = true})
 vim.api.nvim_set_keymap('', '<left>', '<nop>', {noremap = true})
 vim.api.nvim_set_keymap('', '<right>', '<nop>',{noremap = true})
 
-vim.keymap.set("n","<space>,",":nohlsearch<CR>", {desc = "Clear an selected strings"})
+vim.keymap.set("n", "<space>,", ":nohlsearch<CR>", {desc = "Clear selected search highlights"})
 
-vim.keymap.set('n', '<C-n>', [[<Cmd>NvimTreeToggle<CR>]], {desc = "[O]pen Nvim tree"})
+-- Windows navigation
+vim.keymap.set('n', 'gwk', "<cmd>wincmd k<CR>", {desc = "Go to window above"})
+vim.keymap.set('n', 'gwj', "<cmd>wincmd j<CR>", {desc = "Go to window below"})
+vim.keymap.set('n', 'gwl', "<cmd>wincmd l<CR>", {desc = "Go to window on the right"})
+vim.keymap.set('n', 'gwh', "<cmd>wincmd h<CR>", {desc = "Go to window on the left"})
 
-vim.keymap.set('n', 'gwk', [[<Cmd>wincmd k<CR>]], {desc = "[S]elect up window"})
-vim.keymap.set('n', 'gwj', [[<Cmd>wincmd j<CR>]], {desc = "[S]elect bottom window"})
-vim.keymap.set('n', 'gwl', [[<Cmd>wincmd l<CR>]], {desc = "[S]elect right window"})
-vim.keymap.set('n', 'gwh', [[<Cmd>wincmd h<CR>]], {desc = "[S]elect left window"})
+-- Windows resize
+vim.keymap.set("n", "<leader><left>", ":vertical resize +20<cr>", {desc = "Resize window wider"})
+vim.keymap.set("n", "<leader><right>", ":vertical resize -20<cr>", {desc = "Resize window narrower"})
+vim.keymap.set("n", "<leader><up>", ":resize +10<cr>", {desc = "Resize window taller"})
+vim.keymap.set("n", "<leader><down>", ":resize -10<cr>", {desc = "Resize window shorter"})
 
-vim.keymap.set("n", "<space>bf", ":bfirst<CR>",{desc = "[G]oto first buffer"})
-vim.keymap.set("n", "<space>bl", ":blast<CR>", {desc = "[G]oto last buffer"})
-vim.keymap.set("n", "<space>bn", ":bnext<CR>", {desc = "[G]oto next buffer"})
+-- Buffers
+vim.keymap.set("n", "<leader>n", ":bn<CR>", {desc = "Next buffer"})
+vim.keymap.set("n", "<leader>p", ":bp<CR>", {desc = "Previous buffer"})
+vim.keymap.set("n", "<leader>x", ":bd<CR>", {desc = "Delete current buffer"})
 
-vim.keymap.set("n", "gx", "<esc>:URLOpenUnderCursor<cr>")
+vim.keymap.set("n", "<leader>bf", ":bf<CR>", {desc = "[G]oto first buffer"})
+vim.keymap.set("n", "<leader>bd", ":bl<CR>", {desc = "[G]oto last buffer"})
 
-vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+vim.keymap.set("n", "gx", "<esc>:URLOpenUnderCursor<cr>", {desc = "Open URL under cursor"})
+
+-- Delete without yanking 
+vim.keymap.set({"n", "v"}, "<leader>d", '"_d', {desc = "Delete selection without yanking"})
+vim.keymap.set({"n", "v"}, "<leader>D", '"_dd', {desc = "Delete line without yanking"})

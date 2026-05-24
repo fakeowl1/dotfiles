@@ -7,7 +7,20 @@ end
 
 require('nvim-treesitter').setup {
   install_dir = vim.fn.stdpath('data') .. '/site',
-  prefer_git = false, 
+  prefer_git = false,
+}
+
+require('nvim-treesitter').install{ 
+    "lua",
+    "go",
+    "python",
+    "html",
+    "css",
+    "javascript",
+    "c",
+    "cpp",
+    "fish",
+    "markdown"
 }
 
 -- TODO: rewrite it for new treesitter

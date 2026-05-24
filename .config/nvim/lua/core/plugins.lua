@@ -55,8 +55,6 @@ require("lazy").setup({
     opts = {}
   },
   
-  {"nvim-tree/nvim-web-devicons"},
-  
   {
     'stevearc/oil.nvim',
     ---@module 'oil'
@@ -69,7 +67,77 @@ require("lazy").setup({
     lazy = false,
   },
   
-  { "lewis6991/gitsigns.nvim", opts = {} },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require('gitsigns').setup{
+        on_attach = function(bufnr)
+          local gitsigns = require('gitsigns')
+
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- Navigation
+          map('n', ']c', function()
+            if vim.wo.diff then
+              vim.cmd.normal({']c', bang = true})
+            else
+              gitsigns.nav_hunk('next')
+            end
+          end)
+
+          map('n', '[c', function()
+            if vim.wo.diff then
+              vim.cmd.normal({'[c', bang = true})
+            else
+              gitsigns.nav_hunk('prev')
+            end
+          end)
+
+          -- Actions
+          map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'gitsigns: Stage hunk' })
+          map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'gitsigns: Reset hunk' })
+
+          map('v', '<leader>hs', function()
+            gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+          end, { desc = 'gitsigns: Stage selected hunk(s)' })
+
+          map('v', '<leader>hr', function()
+            gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
+          end, { desc = 'gitsigns: Reset selected hunk(s)' })
+
+          map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'gitsigns: Stage whole buffer' })
+          map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'gitsigns: Reset whole buffer' })
+          map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'gitsigns: Preview hunk' })
+          map('n', '<leader>hi', gitsigns.preview_hunk_inline, { desc = 'gitsigns: Preview hunk inline' })
+
+          map('n', '<leader>hb', function()
+            gitsigns.blame_line({ full = true })
+          end, { desc = 'gitsigns: Blame line (full)' })
+
+          map('n', '<leader>hd', gitsigns.diffthis, { desc = 'gitsigns: Diff against index' })
+
+          map('n', '<leader>hD', function()
+            gitsigns.diffthis('~')
+          end, { desc = 'gitsigns: Diff against last commit' })
+
+          map('n', '<leader>hQ', function() gitsigns.setqflist('all') end, { desc = 'gitsigns: Send all hunks to quickfix' })
+          map('n', '<leader>hq', gitsigns.setqflist, { desc = 'gitsigns: Send buffer hunks to quickfix' })
+
+          -- Toggles
+          map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'gitsigns: Toggle current line blame' })
+          map('n', '<leader>tw', gitsigns.toggle_word_diff, { desc = 'gitsigns: Toggle word diff' })
+
+          -- Text object
+          map({'o', 'x'}, 'ih', gitsigns.select_hunk, { desc = 'gitsigns: Select hunk text-object' })
+        end
+    }
+    end
+    },
+
   {"windwp/nvim-autopairs", opts = {}},
   {"numToStr/Comment.nvim", opts = {}},
   
@@ -79,12 +147,12 @@ require("lazy").setup({
     opts = {}
   },
   
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   build = ":TSUPDATE",
-  --   lazy = false,
-  --   config = function() require("plugins.treesitter") end
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUPDATE",
+    lazy = false,
+    config = function() require("plugins.treesitter") end
+  },
 
   
   {
@@ -101,44 +169,28 @@ require("lazy").setup({
       {"j-hui/fidget.nvim", tag = "legacy", opts = {}},
     },
   },
-  
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   -- load cmp on InsertEnter
-  --   event = "InsertEnter",
-  --   -- these dependencies will only be loaded when cmp loads
-  --   -- dependencies are always lazy-loaded unless specified otherwise
-  --   dependencies = {
-  --     "hrsh7th/cmp-path",
-  --     "hrsh7th/cmp-buffer",
-  --     "saadparwaiz1/cmp_luasnip",
-  --     "hrsh7th/cmp-calc",
-  --     "hrsh7th/cmp-emoji",
-  --     "hrsh7th/cmp-cmdline",
-  --   },
-  --   config = function() require("plugins.cmp") end
-  -- },
-  --
+
   {
-    "saghen/blink.cmp",
-    version = "1.*",
-    opts = {
-      keymap = { preset = 'default' },
-      appearance = {
-        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-        -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'mono'
-      },
-
-      completion = { documentation = { auto_show = false } },
-
-      sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-      },
-
-      fuzzy = { implementation = "prefer_rust_with_warning" }
+    "mason-org/mason.nvim",
+    opts = {}
+  },
+  
+  {
+    "hrsh7th/nvim-cmp",
+    -- load cmp on InsertEnter
+    event = "InsertEnter",
+    -- these dependencies will only be loaded when cmp loads
+    -- dependencies are always lazy-loaded unless specified otherwise
+    dependencies = {
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-emoji",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-nvim-lsp"
     },
-    opts_extend = { "sources.default" },
+    config = function() require("plugins.cmp") end
   },
   
   {
@@ -146,11 +198,11 @@ require("lazy").setup({
     config = function()
       require("lspkind").init{
         mode = 'symbol_text',
-        preset = 'default',
+        preset = 'codicons',
         
         symbol_map = require("plugins.lspkind-symbol_map")
       }
-    end
+    end,
   },
   
   {
@@ -206,20 +258,28 @@ require("lazy").setup({
     dependencies = {"rafamadriz/friendly-snippets"},
     config = function() require("plugins.luasnip") end
   },
+  
+  { "nvim-tree/nvim-web-devicons", opts = {} },
 
-  { 
-     "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {}
-  },
+  -- { 
+  --    "nvim-tree/nvim-tree.lua",
+  --   version = "*",
+  --   lazy = false,
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   opts = {}
+  -- },
   
   {
     "stevearc/conform.nvim",
-    config = function() require('plugins.conform') end
+    opts = {
+      formatters_by_ft = {
+        python = {"black"},
+        javascript = {"prettier"},
+        golang = {"gofmt"}
+      },
+    },
   },
 
   -- Debug Adapter Protocol
@@ -239,10 +299,5 @@ require("lazy").setup({
   {
     "esmuellert/nvim-eslint",
     opts = {},
-  },
-  
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
   },
 })
