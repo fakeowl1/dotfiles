@@ -31,3 +31,33 @@ vim.keymap.set("n", "gx", "<esc>:URLOpenUnderCursor<cr>", {desc = "Open URL unde
 -- Delete without yanking 
 vim.keymap.set({"n", "v"}, "<leader>d", '"_d', {desc = "Delete selection without yanking"})
 vim.keymap.set({"n", "v"}, "<leader>D", '"_dd', {desc = "Delete line without yanking"})
+
+-- Obsidian keybinds
+vim.keymap.set("n", "<leader>on", function()
+    vim.cmd("ObsidianTemplate note")
+    
+    vim.cmd([[1,/^\S/s/^\n\+//e]])
+end, { desc = "Obsidian: Convert note to template" })
+
+vim.keymap.set("n", "<leader>of", function()
+    vim.cmd([[s/\(# \)[^_]*_/\1/e]])
+    
+    vim.cmd([[s/-/ /ge]])
+end, { desc = "Obsidian: Clean " })
+
+
+local obsidian_path = vim.fn.expand("~/Notes")
+
+vim.keymap.set("n", "<leader>os", function()
+    require("telescope.builtin").find_files({
+        search_dirs = { obsidian_path },
+        prompt_title = "Obsidian Notes",
+    })
+end, { desc = "Obsidian: Find notes" })
+
+vim.keymap.set("n", "<leader>oz", function()
+    require("telescope.builtin").live_grep({
+        search_dirs = { obsidian_path },
+        prompt_title = "Obsidian Live Grep",
+    })
+end, { desc = "Obsidian: Live grep note text" })

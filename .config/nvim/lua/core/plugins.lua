@@ -13,16 +13,17 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require("lazy").setup({
-  { "ellisonleao/gruvbox.nvim" },
+  { "ellisonleao/gruvbox.nvim", lazy = true },
   -- {"rebelot/kanagawa.nvim"},
   -- {"neanias/everforest-nvim"},
   -- {"projekt0n/github-nvim-theme"},
   -- {"tiagovla/tokyodark.nvim"},
-  {"catppuccin/nvim"
+  {"catppuccin/nvim",
     -- config = function()
     --   vim.cmd("colorscheme catppuccin-frappe")
     -- end,
-    -- priority = 1000, 
+    -- priority = 1000,
+    lazy = true
   },
 
   { 
@@ -40,6 +41,7 @@ require("lazy").setup({
 
   {
     "rcarriga/nvim-notify",
+    event = "VeryLazy",
     config = function()
       require("notify").setup({
         on_open = function(win)
@@ -136,9 +138,14 @@ require("lazy").setup({
         end
     }
     end
-    },
+  },
 
-  {"windwp/nvim-autopairs", opts = {}},
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    opts = {}
+  },
+
   {"numToStr/Comment.nvim", opts = {}},
   
   {
@@ -199,7 +206,6 @@ require("lazy").setup({
       require("lspkind").init{
         mode = 'symbol_text',
         preset = 'codicons',
-        
         symbol_map = require("plugins.lspkind-symbol_map")
       }
     end,
@@ -223,8 +229,13 @@ require("lazy").setup({
   },
   
   {
-    "obsidian-nvim/obsidian.nvim",
+    "epwalsh/obsidian.nvim",
     version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
     opts = {
       legacy_commands = false, 
       workspaces = {
