@@ -45,7 +45,6 @@ vim.keymap.set("n", "<leader>of", function()
     vim.cmd([[s/-/ /ge]])
 end, { desc = "Obsidian: Clean " })
 
-
 local obsidian_path = vim.fn.expand("~/Notes")
 
 vim.keymap.set("n", "<leader>os", function()

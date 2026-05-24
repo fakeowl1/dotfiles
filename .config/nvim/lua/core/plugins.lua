@@ -236,18 +236,9 @@ require("lazy").setup({
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    opts = {
-      legacy_commands = false, 
-      workspaces = {
-        {
-          name = "personal",
-          path = "~/Notes",
-        },
-      },
-      ui = {
-        enable = false,
-      }
-    },
+    config = function()
+      require("plugins.obsidian")
+    end
   },
 
   {
@@ -271,17 +262,46 @@ require("lazy").setup({
   },
   
   { "nvim-tree/nvim-web-devicons", opts = {} },
-
-  -- { 
-  --    "nvim-tree/nvim-tree.lua",
-  --   version = "*",
-  --   lazy = false,
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  --   opts = {}
-  -- },
   
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    ft = { "markdown" },
+    config = function()
+      require('render-markdown').setup({
+        -- Setting render modes like this causes less 'flicker' when changing
+        -- between normal, visual and insert modes
+        render_modes = { 'n', 'c', 't', 'v', 'V', '\22', 'i' },
+        -- Disable signs in the left bar like headings and code snippets
+        sign = { enabled = false },
+        anti_conceal = {
+          ignore = {
+            code_background = true,
+            head_background = true,
+            indent = true,
+            sign = true,
+            virtual_lines = true,
+          },
+        },
+        heading = {
+          icons = {},
+        },
+        code = {
+          border = 'thick',
+          -- highlight_border = 'Normal',
+          language = false,
+        },
+        checkbox = {
+          unchecked = { icon = '󰄱' },
+          checked   = { icon = '' },
+        },
+      })
+    end,
+  },
+
   {
     "stevearc/conform.nvim",
     opts = {
