@@ -141,6 +141,27 @@ require("lazy").setup({
   },
 
   {
+    "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+        "LazyGit",
+        "LazyGitConfig",
+        "LazyGitCurrentFile",
+        "LazyGitFilter",
+        "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  },
+
+  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {}
@@ -270,36 +291,7 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
     },
     ft = { "markdown" },
-    config = function()
-      require('render-markdown').setup({
-        -- Setting render modes like this causes less 'flicker' when changing
-        -- between normal, visual and insert modes
-        render_modes = { 'n', 'c', 't', 'v', 'V', '\22', 'i' },
-        -- Disable signs in the left bar like headings and code snippets
-        sign = { enabled = false },
-        anti_conceal = {
-          ignore = {
-            code_background = true,
-            head_background = true,
-            indent = true,
-            sign = true,
-            virtual_lines = true,
-          },
-        },
-        heading = {
-          icons = {},
-        },
-        code = {
-          border = 'thick',
-          -- highlight_border = 'Normal',
-          language = false,
-        },
-        checkbox = {
-          unchecked = { icon = '󰄱' },
-          checked   = { icon = '' },
-        },
-      })
-    end,
+    opts = {},
   },
 
   {

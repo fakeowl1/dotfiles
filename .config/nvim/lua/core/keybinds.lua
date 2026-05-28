@@ -13,10 +13,10 @@ vim.keymap.set('n', 'gwl', "<cmd>wincmd l<CR>", {desc = "Go to window on the rig
 vim.keymap.set('n', 'gwh', "<cmd>wincmd h<CR>", {desc = "Go to window on the left"})
 
 -- Windows resize
-vim.keymap.set("n", "<leader><left>", ":vertical resize +20<cr>", {desc = "Resize window wider"})
-vim.keymap.set("n", "<leader><right>", ":vertical resize -20<cr>", {desc = "Resize window narrower"})
-vim.keymap.set("n", "<leader><up>", ":resize +10<cr>", {desc = "Resize window taller"})
-vim.keymap.set("n", "<leader><down>", ":resize -10<cr>", {desc = "Resize window shorter"})
+vim.keymap.set("n", "<leader>h", ":vertical resize +20<cr>", {desc = "Resize window wider"})
+vim.keymap.set("n", "<leader>l", ":vertical resize -20<cr>", {desc = "Resize window narrower"})
+vim.keymap.set("n", "<leader>k", ":resize +10<cr>", {desc = "Resize window taller"})
+vim.keymap.set("n", "<leader>j", ":resize -10<cr>", {desc = "Resize window shorter"})
 
 -- Buffers
 vim.keymap.set("n", "<leader>n", ":bn<CR>", {desc = "Next buffer"})
@@ -71,9 +71,9 @@ vim.keymap.set("n", "<leader>odd", function()
 
   local file_name = vim.fs.basename(current_file)
 
-  local confirm = vim.fn.confirm("Permanently delete " .. file_name .. "?", "&Yes\n&No", "N")
+  local confirm = vim.fn.confirm("Permanently delete " .. file_name .. "?", "&Yes\n&No", "Y")
 
-  if confirm == "Y" then
+  if confirm == 1 then
     local success, err = vim.uv.fs_unlink(current_file)
     
     if success then
