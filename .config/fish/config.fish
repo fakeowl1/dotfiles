@@ -8,16 +8,16 @@ if status is-interactive
   set -x EDITOR "nvim" 
   set -x VISUAL "nvim"
   set -x TERM "xterm-256color"
-  
-  set -U fish_user_paths $HOME/bin $fish_user_paths
-  set -U fish_user_paths $HOME/.local/bin $fish_user_paths
-  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
-  set -U fish_user_paths /opt/cuda/bin $fish_user_paths
 
   set -x XDG_CONFIG_HOME "$HOME/.config"
   set -x XDG_STATE_HOME "$HOME/.local/state"
   set -x XDG_CACHE_HOME "$HOME/.cache"
   set -x XDG_DATA_HOME "$HOME/.local/share"
+  
+  set -U fish_user_paths $HOME/bin $fish_user_paths
+  set -U fish_user_paths $HOME/.local/bin $fish_user_paths
+  set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  set -U fish_user_paths /opt/cuda/bin $fish_user_paths
 
   set -x DOCKER_CONFIG "$XDG_CONFIG_HOME/docker" 
   set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
@@ -30,8 +30,6 @@ if status is-interactive
   set -x PYENV_ROOT "$HOME/.pyenv"
 
   set -g fish_autosuggestion_enabled 0
-
-  # alias lf="~/bin/lfub"
   
   if test -e ~/.cache/wal/colors.fish
     source ~/.cache/wal/colors.fish
@@ -78,8 +76,3 @@ if status is-interactive
   set fish_greeting
   # Commands to run in interactive sessions can go here
 end
-
-# !! Contents within this block are managed by 'conda init' !!
-# if test -f /opt/anaconda/bin/conda
-#     eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
-# end

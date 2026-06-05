@@ -54,7 +54,7 @@
 
   "clock": {
     "format": "{:%a, %b %d %I:%M %p}",
-    "format-alt": "{:%y.%m.%d}"
+    "format-alt": "{:%d.%m.%Y %H:%M}"
   },
 
   "bluetooth": {
