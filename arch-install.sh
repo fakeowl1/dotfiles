@@ -12,7 +12,6 @@ alias pacman="pacman --noconfirm --needed"
 alias paru="paru --noconfirm --needed"
 
 # sudo pacman -Sy dialog
-
 install_base_pkgs() {
   echo -e "${green}[*] Doing a system update, cause stuff may break if it's not the latest version...${no_color}"
   sudo pacman -Suuy
