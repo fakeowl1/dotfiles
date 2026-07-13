@@ -26,15 +26,14 @@ local keymap = vim.keymap.set
 
 keymap("n","<leader>sf",builtin.find_files, {desc = "[S]earch [F]iles"})
 keymap("n","<leader>sg",builtin.live_grep, {desc = "[S]earch by [G]rep"})
-keymap("n","<leader>sw",builtin.grep_string, {desc = "[S]earch current [W]ord"})
-keymap("n","<leader>fz",builtin.current_buffer_fuzzy_find, {desc = "[F]uzzy [F]ind in current [B]uffer"})
-
+keymap("n","<leader>ss",builtin.lsp_document_symbols, {desc = "[S]earch Document [S]ymbols"})
 keymap("n","<leader>sb",builtin.buffers, {desc = "[F]ind existing [B]uffers"})
+keymap("n","<leader>sh",builtin.help_tags, {desc = "[S]earch [H]elp"})
+keymap("n","<leader>sw",builtin.grep_string, {desc = "[S]earch current [W]ord"})
+keymap("n","<leader>sk",builtin.keymaps, {desc = "[S]earch existing [K]eymaps"})
 
 keymap("n","<leader>sd",builtin.diagnostics, {desc = "[S]earch [D]iagnostics"})
 keymap("n","<leader>sdc",function() builtin.diagnostics{bufnr = 0} end, {desc = "[S]earch [D]iagnostics in current [B]uffer"})
-keymap("n","<leader>sk",builtin.keymaps, {desc = "[S]earch existing [K]eymaps"})
 
 keymap('n', '<leader>o', builtin.oldfiles, {desc = "[O]pen old files"})
-keymap("n","<leader>sb",builtin.buffers, {desc = "[F]ind existing [B]uffers"})
-keymap("n","<leader>sh",builtin.help_tags, {desc = "[S]earch [H]elp"})
+keymap("n","<leader>fz",builtin.current_buffer_fuzzy_find, {desc = "[F]uzzy [F]ind in current [B]uffer"})
