@@ -6,70 +6,33 @@ source student.env
 
 usage() {
 cat << EOF
-Usage: lab-gen [number of work] [template]
-Example: lab-gen 1 -s
-
-Automaticaly create a lab report
+Usage: lab-gen [<discipline name>] [<type>] [<number of work>],
+the path must be .../discipline/type/smth_number or manually: lab-gen lab okr 1
 
 OPTIONS:
   -h show this message
-  -c generate template for okr lab
-  -p generate template for phys lab
-  -s generate template for sysp lab
-  -g generate template for general lab
 EOF
 }
-if [ $# -lt 1 ]; then
+
+if [ $# -eq 0 ]; then 
+  current_path=$PWD
+
+  courseNumber=$(echo "$current_path" | sed -E 's|.*uni/[^0-9]*([0-9]+).*|\1|')
+  work_type=$(echo $current_path | sed -E "s|.*/||")
+  discipline=$(echo "$current_path" | sed -E 's|.*uni/([0-9]+/)+([^/]+).*|\2|')
+  number=$(echo "$current_path" | sed -E 's|.*lab([0-9]+).*|\1|')
+fi
+
+if [ $# -gt 2 ]; then
   usage 
   exit 1
 fi
 
 declare -i number=$1
 
-if [ $number -eq 0 ]; then
-  echo "Error: Lab number is requried as first argument"
-  usage
-  exit 1
-fi
-
 prefix=
 
 shift
-
-while getopts ':hcps' OPTION
-do 
-  case $OPTION in 
-    h) usage; exit 1 ;;
-    c) 
-      discipline="Основи Клієнтської розробки"
-      prefix="okr"
-      instructor="Хмелюк М.C"
-      echo
-      read -p "Enter work topic: " topic
-      ;;
-    p)
-      discipline="Фізика"
-      prefix="phys"
-      instructor="Колган В.В"
-      echo
-      read -p "Enter work topic: " topic
-      ;;
-    s)
-      discipline="Системне Програмування"
-      prefix="sysp"
-      instructor="Павлов В.Г"
-      echo
-      read -p "Enter work topic: " topic
-      ;;
-    g)
-      echo
-      read -p "Enter discipline: " discipline
-      echo
-      read -p "Enter instructor name: " instructor
-      ;;
-    ?) usage; exit 1 ;;
-  esac
-done
 
 if [ -z "$prefix" ]; then
   usage
@@ -77,29 +40,39 @@ if [ -z "$prefix" ]; then
   echo "Fail: template is required"
 fi
 
-echo "---------"
-echo "Lab №$number"
-echo "Discipline: $discipline"
-echo "Instructor: $instructor"
-echo "Topic: $topic"
-echo "---------"
+template_path="$UNI/.templates/"
 
-reportPath="$PWD/report.tex"
-templatesPath="$HOME/.templates"
+baseinfo_path="$template_path/parts/baseinfo.tex"
 
-report_filename="${prefix}_report.tex"
-template_filename="${prefix}_template.tex"
+first_name=$(sed -n 's/\\newcommand\\Fname{\([^}]*\)}/\1/p' "$template_path/parts/baseinfo.tex")
+last_name=$(sed -n 's/\\newcommand\\Lname{\([^}]*\)}/\1/p' "$template_path/parts/baseinfo.tex")
+group=$(sed -n 's/\\newcommand\\Group{\([^}]*\)}/\1/p' "$template_path/parts/baseinfo.tex")
 
-cp "$templatesPath/${report_filename}" report.tex
-cp "$templatesPath/${template_filename}" template.tex
+reportName="$group_$first_name_$last_name_Лаб$number.tex"
 
-mkdir assets
+codefiles=$(find . -maxdepth 2 -regex '.*/*\.\(cpp\|cs\|ino\|c\|py\|sh\|java\)$')
+outs=$(find . -maxdepth 2 -iname out)
 
-variables=($(grep -Po '(?<=\{\$)\w+(?=\})' $reportPath))
-
-for var in "${variables[@]}"; do
-  value="${!var}"
-  sed -i "s/{\\\$$var}/{$value}/g" "$reportPath"
+for file in $codefiles ; do
+	ext="${file##*.}"
+	[ $ext = "ino" ] && ext=cpp
+	listings=$listings"### Файл $file: \n\\\inputminted{$ext}{$file}\n\n"
 done
 
-nvim $reportPath +VimtexCompile
+for file in $outs ; do
+	ext="${file##*.}"
+	listings=$listings"### Вивід $file: \n\\\inputminted{text}{$file}\n\n"
+done
+
+echo -e $listings
+
+graphics=$(find . -regex '.*/*\.\(jpg\|png\|svg\)$')
+
+for file in $graphics ; do
+	ext="${file##*.}"
+	figures=$figures"![<++>]($file)\n\n"
+done
+
+echo -e $figures
+
+body=$listings"\n\\\clearpage\n# Рисунки\n$figures" 

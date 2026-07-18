@@ -8,7 +8,8 @@ if status is-interactive
   set -x EDITOR "nvim" 
   set -x VISUAL "nvim"
   set -x TERM "xterm-256color"
-
+  
+  set -x UNI "$HOME/uni"
   set -x XDG_CONFIG_HOME "$HOME/.config"
   set -x XDG_STATE_HOME "$HOME/.local/state"
   set -x XDG_CACHE_HOME "$HOME/.cache"

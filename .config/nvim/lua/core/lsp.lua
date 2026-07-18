@@ -64,7 +64,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     map('<leader>rn', vim.lsp.buf.rename, "Rename all references")
     map('gd', vim.lsp.buf.definition, "[G]oto [D]eclaration")
-    map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+    map('gr', require('telescope.builtin').lsp_references, '[g]oto [r]eferences')
+    map('gl', vim.diagnostic.open_float, 'Show line diagnostics')
     map('K',vim.lsp.buf.hover, "[H]over Documentation")
 
     map("<leader>fb", function() require("conform").format({ bufnr = event.buf, async = true }) end, "[F]ormat current buffer")
@@ -89,6 +90,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
           buffer = ev.buf,
           callback = function()
             vim.lsp.buf.format({ bufnr = ev.buf, id = client.id, timeout_ms = 1000 })
+            -- require("conform").format({ bufnr = ev.buf })
           end,
         })
     end
