@@ -181,7 +181,6 @@ require("lazy").setup({
     lazy = false,
     config = function() require("plugins.treesitter") end
   },
-
   
   {
     "nvim-telescope/telescope.nvim",
@@ -189,7 +188,6 @@ require("lazy").setup({
     config = function() require("plugins.telescope") end
   },
   
-
   -- Language Server Protocol
   {
     "neovim/nvim-lspconfig",
@@ -248,7 +246,7 @@ require("lazy").setup({
     end,
     opts = {}
   },
-  
+
   {
     "epwalsh/obsidian.nvim",
     version = "*",
@@ -300,6 +298,7 @@ require("lazy").setup({
       formatters_by_ft = {
         python = {"black"},
         javascript = {"prettier"},
+        typescript = {"prettier"},
         golang = {"gofmt"}
       },
     },

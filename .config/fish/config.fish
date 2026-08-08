@@ -8,7 +8,13 @@ if status is-interactive
   set -x EDITOR "nvim" 
   set -x VISUAL "nvim"
   set -x TERM "xterm-256color"
-  
+
+  function def
+    sdcv -n -u "Oxford Advanced Learner's Dictionary 8th Ed." --utf8-output --color $argv 2>&1 | \
+    fold --width=$COLUMNS | \
+    less --quit-if-one-screen -RX
+  end
+
   set -x UNI "$HOME/uni"
   set -x XDG_CONFIG_HOME "$HOME/.config"
   set -x XDG_STATE_HOME "$HOME/.local/state"
