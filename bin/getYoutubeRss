@@ -1,0 +1,25 @@
+#!/bin/bash
+
+getYoutubeRss() {
+  local url="$1"
+  path=$(echo "$url" | sed -e 's|^http[s]*://||')
+  case "$path" in
+    *"/channel/"*) channel_id="$(echo $path | sed -r 's|.*channel/([^/]*).*|\1|')" && feed="https://www.youtube.com/feeds/videos.xml?channel_id=${channel_id}" ;;
+    *"/c/"*|*"/user/"*)
+      feed=$(wget -q "$url" -O tmp_rssget_yt \
+      && sed -n 's|.*\("rssUrl":"[^"]*\).*|\1|; p' tmp_rssget_yt \
+      | grep rssUrl \
+      | sed 's|"rssUrl":"||')
+      rm tmp_rssget_yt ;;
+    *"@"*) feed=$(wget -q "$url" -O tmp_rssget_yt \
+      && sed -n 's|.*"\(https://www\.youtube\.com/feeds/videos\.xml?channel_id=[^"]*\)".*|\1|p' tmp_rssget_yt)
+      rm tmp_rssget_yt ;;
+    *"watch"*) channel_id=$(wget -q "$url" -O tmp_rssget_yt \
+      && sed -n 's|.*"/channel/\([^"]*\)",.*|\1|p;' tmp_rssget_yt  | head -1 | sed 's|/about||;')
+      feed="https://www.youtube.com/feeds/videos.xml?channel_id=${channel_id}"
+      rm tmp_rssget_yt ;;
+  esac
+  echo "$feed"
+}
+
+getYoutubeRss "$1"

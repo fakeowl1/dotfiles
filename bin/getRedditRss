@@ -1,0 +1,7 @@
+#!/bin/bash
+
+getRedditRss() {
+  echo "${1%/}.rss"
+}
+
+getRedditRss "$1"

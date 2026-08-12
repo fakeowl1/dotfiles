@@ -1,0 +1,8 @@
+#!/bin/bash
+
+NEW_WALLPAPER=$(find ~/Pictures/wallpapers/ -type f | fzf --no-scrollbar --preview="timg --clear=every -p sixel -g 85x120 --threads 6 {}")
+
+if [ -n "$NEW_WALLPAPER" ]; then
+    wal -i "$NEW_WALLPAPER" -n
+    $HOME/bin/change-wallpaper $NEW_WALLPAPER
+fi

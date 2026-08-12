@@ -1,0 +1,3 @@
+#!/bin/sh
+
+swaylock -C ~/.cache/wal/swaylock-config

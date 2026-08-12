@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then 
+    echo "Usage: ./change-wallpaper [path]"
+    exit 1
+fi
+
+WALLPAPER_PATH=$1
+
+swaymsg "output * bg \"$WALLPAPER_PATH\" fill"
+sed -i "s|\(output \* bg \)[^ ]*|\1$WALLPAPER_PATH|" ~/.config/sway/config

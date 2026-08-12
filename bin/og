@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Use $HOME instead of ~ to guarantee absolute paths work inside quotes
+VAULT_DIR="$HOME/Notes"
+SOURCE_DIR="inbox"
+DEST_DIR="notes"
+
+# Verify the source directory actually exists before running find
+if [ ! -d "$VAULT_DIR/$SOURCE_DIR" ]; then
+  echo "Error: Source directory $VAULT_DIR/$SOURCE_DIR does not exist."
+  exit 1
+fi
+
+# Process substitution (< <(...)) keeps the while loop running in the main shell
+while read -r file; do
+  # Skip if no files are found (handles empty directory safely)
+  [ -e "$file" ] || continue
+
+  echo "----------------------------------------"
+  echo "📄 Processing: $(basename "$file")"
+
+  # Parse the first list item found under the 'tags:' block
+  tag=$(awk '/tags:/{getline; print; exit}' "$file" | sed -e 's/^ *- *//' -e 's/^ *//;s/ *$//')
+
+  # If a tag is found, move it; otherwise, leave it in the inbox
+  if [ -n "$tag" ]; then
+    TARGET_DIR="$VAULT_DIR/$DEST_DIR/$tag"
+    
+    mkdir -p "$TARGET_DIR"
+    mv "$file" "$TARGET_DIR/"
+    echo "Moved to: $DEST_DIR/$tag/"
+  else
+    echo "No tag found. Leaving in inbox."
+  fi
+
+# Feed the find output cleanly into the loop
+done < <(find "$VAULT_DIR/$SOURCE_DIR" -type f -name "*.md")
+
+echo "Done!"

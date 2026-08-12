@@ -1,0 +1,28 @@
+#!/bin/sh
+
+noteDir="$HOME/Notes/weekly"
+noteFilename="$noteDir/week-$(date +%G-W%V).md"
+
+mkdir -p "$noteDir"
+
+if [ ! -f "$noteFilename" ]; then
+  echo "# Tasks for Week $(date +%V), $(date +%G)" > "$noteFilename"
+  echo "" >> "$noteFilename"
+  echo "## Weekly Goals" >> "$noteFilename"
+  echo "- [ ] " >> "$noteFilename"
+  echo "- [ ] " >> "$noteFilename"
+  echo "- [ ] " >> "$noteFilename"
+  echo "" >> "$noteFilename"
+  echo "---" >> "$noteFilename"
+fi
+
+todayHeader="## $(date "+%A, %b %d")"
+
+if ! grep -q "^$todayHeader" "$noteFilename"; then
+  echo "" >> "$noteFilename"
+  echo "$todayHeader" >> "$noteFilename"
+  echo "" >> "$noteFilename"
+  echo "- [ ] " >> "$noteFilename"
+fi
+
+nvim -c "norm G" -c "startinsert!" "$noteFilename"
