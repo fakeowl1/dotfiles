@@ -166,9 +166,14 @@ require("lazy").setup({
     event = "InsertEnter",
     opts = {}
   },
-
-  {"numToStr/Comment.nvim", opts = {}},
   
+  -- {
+  --   "folke/ts-comments.nvim",
+  --   opts = {},
+  --   event = "VeryLazy",
+  --   enabled = vim.fn.has("nvim-0.10.0") == 1,
+  -- },
+
   {
     "folke/todo-comments.nvim",
     dependencies = "nvim-lua/plenary.nvim",
@@ -238,6 +243,13 @@ require("lazy").setup({
   }, 
 
   {
+    "folke/ts-comments.nvim",
+    opts = {},
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
+  },
+
+  {
     "folke/which-key.nvim", 
     opts = {}, lazy = true,
     config = function()
@@ -250,8 +262,8 @@ require("lazy").setup({
   {
     "epwalsh/obsidian.nvim",
     version = "*",
-    -- lazy = true,
-    -- ft = "markdown",
+    lazy = true,
+    ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
@@ -291,15 +303,50 @@ require("lazy").setup({
     ft = { "markdown" },
     opts = {},
   },
-
+  
   {
-    "stevearc/conform.nvim",
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        '<leader>lf',
+        function() require('conform').format { async = true, lsp_format = 'fallback' } end,
+        mode = '',
+        desc = 'Format buffer',
+      },
+      {
+        '<leader>lF',
+        function() vim.g.disable_format_on_save = not vim.g.disable_format_on_save end,
+        mode = '',
+        desc = 'Disable format-on-save',
+      },
+    },
     opts = {
+      notify_on_error = false,
+      format_on_save = function(bufnr)
+        if vim.g.disable_format_on_save then
+          return
+        end
+        local disable_filetypes = {}
+        if disable_filetypes[vim.bo[bufnr].filetype] then
+          return nil
+        else
+          return {
+            timeout_ms = 500,
+            lsp_format = 'fallback',
+          }
+        end
+      end,
       formatters_by_ft = {
-        python = {"black"},
-        javascript = {"prettier"},
-        typescript = {"prettier"},
-        golang = {"gofmt"}
+        lua = { 'stylua' },
+        python = { 'ruff_format', 'ruff_organize_imports' },
+        c = { 'clang_format' },
+        cpp = { 'clang_format' },
+        go = { 'gofumpt', 'golines', 'goimports' },
+        markdown = { 'mdformat' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
       },
     },
   },

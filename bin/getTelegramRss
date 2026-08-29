@@ -1,8 +1,0 @@
-#!/bin/bash
-
-getTelegramRss() {
-	username=$(echo "$1" | sed 's|.*/t.me/||')
-	echo "https://rss-bridge.org/bridge01/?action=display&username=$username&bridge=TelegramBridge&format=Atom"
-}
-
-getTelegramRss "$1"
