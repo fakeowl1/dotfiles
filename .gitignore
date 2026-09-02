@@ -76,3 +76,5 @@ platforms_idmap_local.csv
 
 # docker config
 docker/config.ini
+
+uni/.templates/parts/baseinfo.tex
