@@ -1,12 +1,9 @@
 #!/bin/bash
-
 # Display Help
-
 usage() {
 cat << EOF
-Usage: lab-gen [<discipline name>] [<type>] [<number of work>],
+Usage: lab-gen [<discipline name>] [<type>] [<number of work>]
 the path must be .../discipline/type/smth_number or manually: lab-gen lab okr 1
-
 OPTIONS:
   -h show this message
 EOF
@@ -19,7 +16,6 @@ fi
 
 if [ $# -eq 0 ]; then 
   current_path=$PWD
-  
   number=$(basename "$current_path")
   workType=$(basename "$(dirname "$current_path")")
   discipline=$(basename "$(dirname "$(dirname "$current_path")")")
@@ -36,7 +32,6 @@ if [ -z "$discipline" ] || [ -z "$workType" ] || [ -z "$number" ]; then
 fi
 
 template_path="$UNI/.templates"
-
 baseinfo_path="$template_path/settings/baseinfo.tex"
 
 first_name=$(sed -n '/Fname/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
@@ -45,52 +40,40 @@ group=$(sed -n '/Group/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
 
 filename="${group}_${first_name}_${last_name}_Лаб${number}.md"
 
-report_path="$template_path/parts/${discipline}_part.md"
-if [ ! -f $report_path ]; then
-  report_path="$template_path/parts/general_part.md"
+template_path="$template_path/parts/${discipline}_part.md"
+if [ ! -f "$template_path" ]; then
+  template_path="$UNI/.templates/parts/general_part.md"
 fi
 
-cp $report_path "$filename"
+header=$(sed -n '/BODY/q;p' "$template_path")
+footer=$(sed -n '/BODY/,$p' "$template_path" | tail -n +2)
 
-codefiles=$(find . -maxdepth 2 -regex '.*/*\.\(cpp\|cs\|ino\|c\|py\|sh\|java\|go\)$')
+header=$(printf '%s\n' "$header" | sed "s|NUMBER|$number|g;
+s|TYPE|$workType|g;
+s|DISCIPLINE|$discipline|g")
 
 listings=""
-for file in $codefiles ; do
+codefiles=$(find . -maxdepth 2 -regex '.*/*\.\(cpp\|cs\|ino\|c\|py\|sh\|java\|go\)$')
+for file in $codefiles; do
     ext="${file##*.}"
     [ "$ext" = "ino" ] && ext=cpp
-    
-    printf -v listings '%s### Файл %s:\n\\inputminted{%s}{%s}\n\n' "$listings" "$file" "$ext" "$file"
+    listings+="### Файл $file:"$'\n'"\\inputminted{$ext}{$file}"$'\n\n'
 done
 
+figures=""
 graphics=$(find . -regextype posix-extended -regex '.*\.(jpg|png|svg)$')
-
-figures="" 
-for file in $graphics; do 
-    figures+="\\begin{figure}[H] 
-\\centering 
-\\includegraphics[width=0.8\\textwidth,height=0.8\\textheight,keepaspectratio]{$file} 
-\\caption{<++>} 
-\\end{figure} 
-
-" 
+for file in $graphics; do
+    figures+="\\begin{figure}[H]"$'\n'
+    figures+="\\centering"$'\n'
+    figures+="\\includegraphics[width=0.8\\textwidth,height=0.8\\textheight,keepaspectratio]{$file}"$'\n'
+    figures+="\\caption{<++>}"$'\n'
+    figures+="\\end{figure}"$'\n\n'
 done
 
-body="$listings
-\\clearpage
-# Демонстрація роботи 
-$figures"
-
-bodyfile=$(mktemp)
-printf '%s\n' "$body" > "$bodyfile"
-
-sed -i "s|NUMBER|$number|g;
-s|VARIANT|$variant|g;
-s|TYPE|$workType|g;
-s|DISCIPLINE|$discipline|g" "$filename"
-
-sed -i "/BODY/{
-r $bodyfile
-d
-}" "$filename"
-
-rm -f "$bodyfile"
+{
+    printf '%s\n' "$header"
+    printf '\n# Демонстрація роботи\n\n'
+    printf '%s' "$listings"
+    printf '%s' "$figures"
+    printf '%s\n' "$footer"
+} > "$filename"

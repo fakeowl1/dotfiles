@@ -15,7 +15,7 @@ header-includes:
 
 # Тема
 
-\Topic
+\Topic.
 
 # Завдання
 
@@ -23,6 +23,7 @@ header-includes:
 
 BODY
 
+\clearpage
 # Висновок
 
 <++>
