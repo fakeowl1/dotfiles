@@ -1,0 +1,46 @@
+\newcommand\Fname{Роман}
+\newcommand\Lname{Уколов}
+\newcommand\Mname{Олегович}
+\newcommand\Group{ІМ-41}
+\newcommand\Nlist{22}
+
+\newcommand\Department{ФІОТ}
+\newcommand\Variant{22}
+
+\usepackage{xstring}
+
+% ця команда отримує позначення дисципліни та обирає приймача роботи.
+% я написав сценарій, який визначає це позначення за шляхом до поточного каталогу
+% й після ще кількох перевірок генерує шаблон звіту, де заповнене все, крім дати й теми.
+% Звісно, не завжди такий шаблонний метод працює, але тоді можна використати \renewcommand
+\newcommand{\Work}[1]{
+\IfStrEqCase{#1}{
+    {os}{
+        \newcommand\discipline{Операційні системи}
+        \IfStrEqCase{\Type}{
+            {lab}{
+                \newcommand\instructor{Андрій Сімоненко}
+                \newcommand\male{1}
+            }
+        }
+    }
+    {linux}{
+        \newcommand\discipline{Linux}
+        \IfStrEqCase{\Type}{
+            {lab}{
+                \newcommand\instructor{Марина Хмелюк}
+                \newcommand\female{1}
+                \newcommand\academicRank{ст. вик. кафедри ІСТ}
+            }
+        }
+    }
+    {<++>}{
+        \newcommand\discipline{<++>}
+        \IfStrEqCase{\Type}{
+            {lab}{
+                \newcommand\instructor{<++>}
+            }
+        }
+    }
+}
+}

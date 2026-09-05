@@ -6,6 +6,12 @@ vim.api.nvim_set_keymap('', '<right>', '<nop>',{noremap = true})
 
 vim.keymap.set("n", "<space>,", ":nohlsearch<CR>", {desc = "Clear selected search highlights"})
 
+-- Для режиму вставки (insert mode)
+vim.keymap.set("i", "<C-j>", "<Esc>/<++><CR>\"_c4l", { noremap = true, silent = true })
+
+-- Для нормального режиму (normal mode), якщо потрібно
+vim.keymap.set("n", "<C-j>", "/<++><CR>\"_c4l", { noremap = true, silent = true })
+
 -- Windows navigation
 vim.keymap.set('n', 'gwk', "<cmd>wincmd k<CR>", {desc = "Go to window above"})
 vim.keymap.set('n', 'gwj', "<cmd>wincmd j<CR>", {desc = "Go to window below"})

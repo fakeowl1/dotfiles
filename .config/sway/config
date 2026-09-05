@@ -50,7 +50,7 @@ exec swayidle -w \
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec dbus-update-activation-environment --systemd SDL_VIDEODRIVER=wayland,x11 MESA_LOADER_DRIVER_OVERRIDE=iris
+exec dbus-update-activation-environment --systemd SDL_VIDEODRIVER=wayland MESA_LOADER_DRIVER_OVERRIDE=iris
 exec Telegram
 exec dunst -config ~/.config/dunst/dunstrc
 exec wal -R -n

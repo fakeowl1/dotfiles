@@ -53,7 +53,7 @@ require("lazy").setup({
   
   {
     "catgoose/nvim-colorizer.lua", 
-    event = "BufReadPre", 
+    ft = "css", 
     opts = {}
   },
   

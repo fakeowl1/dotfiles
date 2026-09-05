@@ -128,11 +128,11 @@ output_plugin pipewire
 playback.loop 1
 playback.volume.normalized 1.0000000
 playlist.current 0
-playlist.cursor.0 557
+playlist.cursor.0 1639
 playlist.cursor.1 0
 playlist.cursor.2 -1
 playlist.cursor.3 -1
-playlist.scroll.0 16903
+playlist.scroll.0 55252
 playlist.scroll.1 0
 playlist.scroll.2 0
 playlist.scroll.3 0
@@ -145,8 +145,8 @@ prefwin.geometry.x 0
 prefwin.geometry.y 0
 resume.paused 1
 resume.playlist 0
-resume.position 115.45012
-resume.track 557
+resume.position 323.16680
+resume.track 1639
 searchwin.geometry.h 150
 searchwin.geometry.w 450
 searchwin.geometry.x 0

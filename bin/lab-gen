@@ -37,14 +37,20 @@ fi
 
 template_path="$UNI/.templates"
 
-baseinfo_path="$template_path/parts/baseinfo.tex"
+baseinfo_path="$template_path/settings/baseinfo.tex"
 
 first_name=$(sed -n '/Fname/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
 last_name=$(sed -n '/Lname/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
 group=$(sed -n '/Group/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
 
 filename="${group}_${first_name}_${last_name}_Лаб${number}.md"
-cp "$template_path/general_report.md" "$filename"
+
+report_path="$template_path/parts/${discipline}_part.md"
+if [ ! -f $report_path ]; then
+  report_path="$template_path/parts/general_part.md"
+fi
+
+cp $report_path "$filename"
 
 codefiles=$(find . -maxdepth 2 -regex '.*/*\.\(cpp\|cs\|ino\|c\|py\|sh\|java\|go\)$')
 
@@ -71,7 +77,7 @@ done
 
 body="$listings
 \\clearpage
-# Рисунки
+# Демонстрація роботи 
 $figures"
 
 bodyfile=$(mktemp)
