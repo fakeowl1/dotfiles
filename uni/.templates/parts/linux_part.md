@@ -6,7 +6,7 @@ header-includes:
 - \newcommand\Type{TYPE}
 - \Work{DISCIPLINE}
 - \newcommand\Lnumber{NUMBER}
-- \newcommand\point{0}
+- \newcommand\point{ }
 - \newcommand\workDate{\today}
 - \newcommand\Topic{<++>}
 ---
@@ -21,7 +21,9 @@ header-includes:
 
 <++>
 
-BODY
+# Виконання роботи
+
+FIGURES
 
 \clearpage
 # Висновок

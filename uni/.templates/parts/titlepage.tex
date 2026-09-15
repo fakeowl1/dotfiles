@@ -1,5 +1,5 @@
 \begin{titlepage}
-    \center
+    \centering
     \vspace*{-1cm}
 
     \textbf{Міністерство освіти і науки України\\
@@ -7,48 +7,52 @@
     <<Київський політехнічний інститут імені Ігоря Сікорського>>\\
     Факультет інформатики та обчислювальної техніки\\
     Кафедра \Department \\}
-    \vspace*{5cm}
+    
+    \vspace*{6cm}
+    
     \textbf{Лабораторна робота №\Lnumber \\}
     \vspace{0.25cm}
-    з дисціпліни <<\discipline>> \\
+    з дисципліни <<\discipline>> \\
     \ifdefined\Topic
       \vspace{0.1cm}
       Тема: <<\Topic>>
     \fi
-    \vspace{3cm}
+    
+    \vspace{4cm}
 
     \begin{tabular}{ll}
-    \begin{minipage}[t]{0.54\linewidth}
-      Виконав: \\
-      студент групи \Group \\
-      \Lname{} \Fname{} \Mname{} \\
-      \ifdefined\NList
-        номер у списку групи: \Nlist
-      \fi
-      
-      \ifdefined\workDate 
-        Дата здачі: \workDate
-      \fi
-
-      \ifdefined\point
-        Захищено з балом: \point
-      \fi
-    \end{minipage}
-    &
-    \begin{minipage}[t]{0.3\linewidth}
-      \ifdefined\female
-        Перевірила: \\
-      \else
-        \ifdefined\male
-          Перевірив: \\
+      \begin{minipage}[t]{0.54\linewidth}
+        \linespread{1.5}\selectfont
+        Виконав: \\
+        студент групи \Group \\
+        \Lname{} \Fname{} \\
+        \ifdefined\NList
+          номер у списку групи: \Nlist \\
         \fi
-      \fi
-      \ifdefined\academicRank
-        \academicRank \\
-      \fi
-      \instructor
-    \end{minipage}
+        \ifdefined\workDate 
+          Дата здачі \workDate \\
+        \fi
+        \ifdefined\point
+          Захищено з балом \point \\
+        \fi
+      \end{minipage}
+      &
+      \begin{minipage}[t]{0.4\linewidth}
+        \linespread{1.5}\selectfont
+        \ifdefined\female
+          Перевірила: \\
+        \else
+          \ifdefined\male
+            Перевірив: \\
+          \fi
+        \fi
+        \ifdefined\academicRank
+          \academicRank \\
+        \fi
+        \instructor
+      \end{minipage}
     \end{tabular}
+
     \vfill
-    Київ \the\year  
+    Київ \the\year 
 \end{titlepage}
