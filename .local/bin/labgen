@@ -1,0 +1,132 @@
+#!/bin/bash
+
+# Display Help
+usage() {
+cat << EOF
+Usage: lab-gen [<discipline name>] [<type>] [<number of work>]
+the path must be .../discipline/type/smth_number or manually: lab-gen lab okr 1
+OPTIONS:
+  -h show this message
+EOF
+}
+
+if [ $# -gt 3 ]; then
+  usage
+  exit 1
+fi
+
+if [ $# -eq 0 ]; then 
+  current_path=$PWD
+  number=$(basename "$current_path")
+  workType=$(basename "$(dirname "$current_path")")
+  discipline=$(basename "$(dirname "$(dirname "$current_path")")")
+else
+  discipline=$1
+  workType=$2
+  number=$3
+fi
+
+if [ -z "$discipline" ] || [ -z "$workType" ] || [ -z "$number" ]; then
+  usage
+  echo -e "\nFail: Cannot determine discipline, type, or number."
+  exit 1
+fi
+
+template_path="$UNI/.templates"
+baseinfo_path="$template_path/settings/baseinfo.tex"
+
+if [ ! -f "$baseinfo_path" ]; then
+  echo "Error: Base info file not found at $baseinfo_path"
+  exit 1
+fi
+
+first_name=$(sed -n '/Fname/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
+last_name=$(sed -n '/Lname/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
+group=$(sed -n '/Group/{s/.*{\([^}]*\)}.*/\1/p}' "$baseinfo_path")
+
+filename="${group}_${first_name}_${last_name}_Лаб${number}.md"
+
+template_path="$template_path/parts/${discipline}_part.md"
+if [ ! -f "$template_path" ]; then
+  template_path="$UNI/.templates/parts/general_part.md"
+fi
+
+if [ ! -f "$template_path" ]; then
+  echo "Error: Template file not found."
+  exit 1
+fi
+
+# Збір лістингів коду
+listings=""
+codefiles=$(find . -maxdepth 2 -regex '.*/*\.\(cpp\|cs\|ino\|c\|py\|sh\|java\|go\)$')
+if [ -n "$codefiles" ]; then
+  for file in $codefiles; do
+    ext="${file##*.}"
+    [ "$ext" = "ino" ] && ext=cpp
+    listings+="### Файл $file:"$'\n'"\\inputminted{$ext}{$file}"$'\n\n'
+  done
+fi
+
+figures=""
+graphics=$(find . -regextype posix-extended -regex '.*\.(jpg|png|svg)$' | sort)
+if [ -n "$graphics" ]; then
+  first=true
+  while IFS= read -r file; do
+    if [ "$discipline" = "linux" ]; then
+      if [ "$first" = true ]; then
+        first=false
+      else
+        figures+="\\vspace{2cm}"$'\n'
+      fi
+      figures+="\\begin{figure}[H]"$'\n'
+      figures+="\\centering"$'\n'
+      figures+="\\includegraphics[width=0.8\\textwidth,height=0.8\\textheight,keepaspectratio]{$file}"$'\n'
+      figures+="\\end{figure}"$'\n\n'
+      figures+="<++>"$'\n\n'
+    else
+      figures+="\\begin{figure}[H]"$'\n'
+      figures+="\\centering"$'\n'
+      figures+="\\includegraphics[width=0.8\\textwidth,height=0.8\\textheight,keepaspectratio]{$file}"$'\n'
+      figures+="\\caption{<++>}"$'\n'
+      figures+="\\end{figure}"$'\n\n'
+    fi
+  done <<< "$graphics"
+fi
+
+cp "$template_path" "$filename"
+
+if grep -q "BODY" "$filename"; then
+  body_file=$(mktemp)
+  {
+    printf '# Демонстрація роботи\n\n'
+    printf '%s' "$listings"
+    printf '%s' "$figures"
+  } > "$body_file"
+
+  sed -i \
+    -e "/BODY/r $body_file" \
+    -e "/BODY/d" \
+    "$filename"
+
+  rm -f "$body_file"
+else
+  code_file=$(mktemp)
+  fig_file=$(mktemp)
+  printf '%s' "$listings" > "$code_file"
+  printf '%s' "$figures" > "$fig_file"
+
+  sed -i \
+    -e "/CODE/r $code_file" \
+    -e "/CODE/d" \
+    -e "/FIGURE/r $fig_file" \
+    -e "/FIGURE/d" \
+    "$filename"
+
+  rm -f "$code_file" "$fig_file"
+fi
+
+sed -i \
+  -e "s|NUMBER|$number|g" \
+  -e "s|TYPE|$workType|g" \
+  -e "s|DISCIPLINE|$discipline|g" \
+  "$filename"

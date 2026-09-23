@@ -1,0 +1,26 @@
+#!/bin/sh
+
+getbookmark() {
+	bookmark="$(xclip -selection clipboard -o)"
+	tags=$(echo "" | dmenu -p "Enter bookmark tags (ENTER to save without tags)")
+}
+
+write_to_file () {
+	if grep -q -E "^$bookmark( |$)" "$file"; then
+		notify-send "Already bookmarked $bookmark!"
+	else
+		notify-send "Bookmarked $bookmark"
+		echo "$bookmark" "$tags" >> "$file"
+		echo "$bookmark" | xclip -selection clipboard -i
+	fi
+}
+
+case "$(printf "📜 rss\n🌍 url\n🌍📜 site (rss + url)\n🎵 song\n🗣️ quote" | dmenu -i -p 'Bookmark: ')" in
+	'🌍📜 site (rss + url)') getbookmark && rssget "$bookmark" "$tags" && file="$HOME/.local/share/larbs/snippets" && write_to_file ;;
+	'📜 rss') getbookmark && rssget "$bookmark" "$tags" ;;
+	'🌍 url') getbookmark && file="$HOME/.local/share/larbs/snippets" && write_to_file ;;
+	'🗣️ quote') getbookmark && tags=";; $tags" && file="$HOME/.local/share/larbs/zingers" && write_to_file ;;
+	'🎵 song') bookmark="$(mpc | sed "/^volume:/d;s/\\&/&amp;/g;s/\\[paused\\].*/⏸/g;/\\[playing\\].*/d;/^ERROR/Q")"
+		file="$HOME/.local/share/larbs/songlog" && write_to_file ;;
+	*) exit 1 ;;
+esac

@@ -9,9 +9,9 @@ if [ ! -f "$noteFilename" ]; then
   echo "# Tasks for Week $(date +%V), $(date +%G)" > "$noteFilename"
   echo "" >> "$noteFilename"
   echo "## Weekly Goals" >> "$noteFilename"
-  echo "- [ ] " >> "$noteFilename"
-  echo "- [ ] " >> "$noteFilename"
-  echo "- [ ] " >> "$noteFilename"
+  echo "- [ ] <++>" >> "$noteFilename"
+  echo "- [ ] <++>" >> "$noteFilename"
+  echo "- [ ] <++>" >> "$noteFilename"
   echo "" >> "$noteFilename"
   echo "---" >> "$noteFilename"
 fi
@@ -22,7 +22,7 @@ if ! grep -q "^$todayHeader" "$noteFilename"; then
   echo "" >> "$noteFilename"
   echo "$todayHeader" >> "$noteFilename"
   echo "" >> "$noteFilename"
-  echo "- [ ] " >> "$noteFilename"
+  echo "- [ ] <++>" >> "$noteFilename"
 fi
 
 nvim -c "norm G" -c "startinsert!" "$noteFilename"

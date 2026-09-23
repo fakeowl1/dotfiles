@@ -1,0 +1,13 @@
+#!/bin/bash
+
+file=$(readlink -f "$1")
+dir=${file%/*}
+base="${file%.*}"
+ext="${file##*.}"
+
+cd "$dir" || exit 1
+
+# Проста заглушка для getcomproot, якщо її немає в системі
+getcomproot() {
+    return 1
+}
