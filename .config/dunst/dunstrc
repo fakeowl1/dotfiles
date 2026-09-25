@@ -36,7 +36,24 @@
     max_icon_size = 64
     alignment = center
     vertical_alignment = center
-    #offset = 12x67
+
+    browser = /usr/bin/xdg-open
+    mouse_left_click = open_url, close_current
+
+[miniflux-desktop]
+    appname = "Miniflux"
+
+    mouse_left_click = action, close_current
+
+    # Розміри та іконка
+    min_icon_size = 16
+    max_icon_size = 32
+    width = (250, 350)
+    height = 80
+
+    format = "<b>%s</b>\n%b"
+    padding = 8
+    horizontal_padding = 10
 
 [shortcuts]
     close = ctrl+space

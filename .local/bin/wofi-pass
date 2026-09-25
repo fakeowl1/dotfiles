@@ -133,7 +133,7 @@ fi
 cd "${PASSWORD_STORE_DIR:-$HOME/.password-store}"
 password_files="$(find . -name "*.gpg" | sed "s/^\.\/\(.*\)\.gpg$/\1/")"
 
-password=$(printf '%s\n' "$password_files" | wofi --dmenu)
+password=$(printf '%s\n' "$password_files" | wmenu)
 [ -n "$password" ] || exit
 
 if [ "$fileisuser" -eq 1 ]; then
@@ -146,7 +146,7 @@ if [ "$squash" -eq 1 ] && [ "$field_count" -eq 0 ]; then
 	field="password"
 	onlypassword=1
 elif [ "$autotype" -ne 1 ]; then
-	field=$(printf '%s\n' "$field_list" | wofi --dmenu)
+	field=$(printf '%s\n' "$field_list" | wmenu)
 fi
 
 # get the command to output to

@@ -1,6 +1,6 @@
 if status --is-login
  if test -z "$DISPLAY" -a $XDG_VTNR = 1
-   $HOME/bin/start-sway
+   startx
  end
 end
 
@@ -62,12 +62,10 @@ if status is-interactive
 
   alias la="lsd -la"
   
-  alias dotfiles="git --git-dir=$HOME/.cfg --work-tree=$HOME"
+  alias dotfiles="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
   alias on="cd ~/Notes"
   alias rn="nvim ~/Notes/inbox/*.md"
-
-  set -x PF_INFO "ascii title os kernel wm shell pkgs memory"
 
   set pkgdir "$HOME/.npm"
   alias npm="npm --cache $HOME/.cache/npm-cache"

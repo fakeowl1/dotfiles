@@ -18,7 +18,7 @@ set $menu wmenu-run -i
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/q/Pictures/wallpapers/Nature/wallhaven-vg9jz5_1920x1080.png fill
+output * bg /home/q/Pictures/wallpapers/Nature/wallhaven-qr27rq_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -46,7 +46,7 @@ exec swayidle -w \
   timeout 10 'if pgrep -x swaylock; then swaymsg "output * power off"; fi' \
     resume 'if pgrep -x swaylock; then swaymsg "output * power on"; fi' \
   before-sleep 'playerctl pause; $lockscreen'
-
+exec sway-audio-idle-inhibit
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
@@ -91,11 +91,13 @@ input type:keyboard {
     bindsym $mod+Return exec $term
     
     bindsym $mod+Shift+b exec librewolf
-    bindsym $mod+w exec foot -a "wallpaper-picker" $HOME/bin/wallpaper-picker
+    bindsym $mod+w exec foot -a "wallpaper-picker" wallpaper-picker
 
-    bindsym $mod+b exec $HOME/bin/rofi-bluetooth
+    bindsym $mod+b exec rofi-bluetooth
 
-    bindsym $mod+p exec $HOME/bin/wofi-pass -c
+    bindsym $mod+p exec wofi-pass -c
+
+    bindsym $mod+o exec bookmark
 
     # Kill focused window
     bindsym $mod+q kill
@@ -233,17 +235,17 @@ bindsym $mod+r mode "resize"
 # Utilities:
 #
     # Special keys to adjust volume via PulseAudio
-    bindsym --locked F1 exec $HOME/bin/media-control volume_mute 
-    bindsym --locked F2 exec $HOME/bin/media-control volume_down
-    bindsym --locked F3 exec $HOME/bin/media-control volume_up
+    bindsym --locked F1 exec media-control volume_mute 
+    bindsym --locked F2 exec media-control volume_down
+    bindsym --locked F3 exec media-control volume_up
 
-    bindsym --locked Shift+F2 exec $HOME/bin/media-control mic_down 
-    bindsym --locked Shift+F3 exec $HOME/bin/media-control mic_up 
-    bindsym --locked F9 exec $HOME/bin/media-control mic_mute
+    bindsym --locked Shift+F2 exec media-control mic_down 
+    bindsym --locked Shift+F3 exec media-control mic_up 
+    bindsym --locked F9 exec media-control mic_mute
 
     # Special keys to adjust brightness via brightnessctl
-    bindsym --locked F4 exec $HOME/bin/media-control brightness_down
-    bindsym --locked F5 exec $HOME/bin/media-control brightness_up
+    bindsym --locked F4 exec media-control brightness_down
+    bindsym --locked F5 exec media-control brightness_up
     # Special key to take a screenshot with grim
     bindsym Print exec flameshot gui
     #bindsym Ctrl + Print flameshot gui

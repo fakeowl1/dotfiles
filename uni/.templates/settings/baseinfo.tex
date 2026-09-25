@@ -9,6 +9,9 @@
 
 \usepackage{xstring}
 
+\newtoggle{male}
+\newtoggle{female}
+
 % ця команда отримує позначення дисципліни та обирає приймача роботи.
 % я написав сценарій, який визначає це позначення за шляхом до поточного каталогу
 % й після ще кількох перевірок генерує шаблон звіту, де заповнене все, крім дати й теми.
@@ -20,7 +23,7 @@
         \IfStrEqCase{\Type}{
             {lab}{
                 \newcommand\instructor{Андрій Сімоненко}
-                \newcommand\male{1}
+                \toggletrue{male}
             }
         }
     }
@@ -29,7 +32,7 @@
         \IfStrEqCase{\Type}{
             {lab}{
                 \newcommand\instructor{Марина Хмелюк}
-                \newcommand\female{1}
+                \toggletrue{female}
                 \newcommand\academicRank{ст. вик. кафедри ІСТ}
             }
         }

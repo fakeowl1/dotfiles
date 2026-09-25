@@ -6,10 +6,10 @@
 # -------------------------------------------------------
 
 super + alt + s
-    $HOME/bin/restart sxhkd
+    $HOME/.local/bin/restart sxhkd
 
 super + alt + p
-    $HOME/bin/restart polybar 
+    $HOME/.local/bin/restart polybar 
 
 # super + alt + c 
 #     $HOME/bin/restart picom 
@@ -47,7 +47,7 @@ super + Return
     kitty
 
 super + d 
-  rofi -show drun -show-icons -modi drun
+  dmenu_run -i
 
 super + shift + b 
   librewolf

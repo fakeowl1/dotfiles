@@ -1,26 +1,59 @@
 #!/bin/sh
 
+usage() {
+cat << EOF
+  Usage: bookmark [type] [command] [url] [options]
+  Types:
+    song
+    rss
+
+  Commands:
+    add - adds item to list
+    delete - delete item from list
+    search - search item in list
+
+  EXAMPLES:
+    bookmark add url 
+    bookmark search 
+EOF
+}
+
+
 getbookmark() {
-	bookmark="$(xclip -selection clipboard -o)"
-	tags=$(echo "" | dmenu -p "Enter bookmark tags (ENTER to save without tags)")
+    url_file="$HOME/.local/share/larbs/urls"
+
+    if [ "$#" -gt 0 ] && [ -n "$1" ]; then
+        line="$1"
+    else
+        line="$(dmenu -i -l 10 -p "Select URL:" < "$url_file")"
+    fi
+
+    [ -z "$line" ] && exit 1
+
+    bookmark="$(echo "$line" | awk '{print $1}')"
 }
 
 write_to_file () {
-	if grep -q -E "^$bookmark( |$)" "$file"; then
-		notify-send "Already bookmarked $bookmark!"
-	else
-		notify-send "Bookmarked $bookmark"
-		echo "$bookmark" "$tags" >> "$file"
-		echo "$bookmark" | xclip -selection clipboard -i
-	fi
+    tags=$(echo "" | dmenu -p "Enter bookmark tags (ENTER to save without tags)")
+    if grep -q -E "^$bookmark( |$)" "$file"; then
+        notify-send "Already bookmarked $bookmark!"
+    else
+        notify-send "Bookmarked $bookmark"
+        echo "$bookmark" "$tags" >> "$file"
+        echo "$bookmark" | xclip -selection clipboard -i
+    fi
 }
 
 case "$(printf "📜 rss\n🌍 url\n🌍📜 site (rss + url)\n🎵 song\n🗣️ quote" | dmenu -i -p 'Bookmark: ')" in
-	'🌍📜 site (rss + url)') getbookmark && rssget "$bookmark" "$tags" && file="$HOME/.local/share/larbs/snippets" && write_to_file ;;
-	'📜 rss') getbookmark && rssget "$bookmark" "$tags" ;;
-	'🌍 url') getbookmark && file="$HOME/.local/share/larbs/snippets" && write_to_file ;;
-	'🗣️ quote') getbookmark && tags=";; $tags" && file="$HOME/.local/share/larbs/zingers" && write_to_file ;;
-	'🎵 song') bookmark="$(mpc | sed "/^volume:/d;s/\\&/&amp;/g;s/\\[paused\\].*/⏸/g;/\\[playing\\].*/d;/^ERROR/Q")"
-		file="$HOME/.local/share/larbs/songlog" && write_to_file ;;
-	*) exit 1 ;;
+    '📜 rss') getbookmark "$@" && rssget "$bookmark" "$tags" ;;
+    '🌍 url') getbookmark "$@" && file="$HOME/.local/share/larbs/urls" && write_to_file ;;
+    '🗣️ quote') getbookmark "$@" && tags=";; $tags" && file="$HOME/.local/share/larbs/zingers" && write_to_file ;;
+    '🎵 song') 
+        if [ "$#" -gt 0 ] && [ -n "$1" ]; then
+            bookmark="$1"
+        else
+            bookmark="$(mpc | sed "/^volume:/d;s/\\&/&amp;/g;s/\\[paused\\].*/⏸/g;/\\[playing\\].*/d;/^ERROR/Q")"
+        fi
+        file="$HOME/.local/share/larbs/songlog" && write_to_file ;;
+    *) exit 1 ;;
 esac

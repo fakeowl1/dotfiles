@@ -23,7 +23,7 @@ converter.output_folder /home/q/Music/Exhibition Of Saxophone
 converter.output_format 0
 converter.overwrite_action 0
 converter.write_to_source_folder 0
-deadbeef_version 1.10.3
+deadbeef_version devel
 filebrowser.autofilter 1
 filebrowser.bgcolor 
 filebrowser.bgcolor_selected 
@@ -94,6 +94,7 @@ hotkey.key30 "n" 0 0 playback_random
 hotkey.key31 "Ctrl k" 0 0 toggle_stop_after_album
 hotkey.key32 "Ctrl z" 0 0 undo
 hotkey.key33 "Ctrl Shift z" 0 0 redo
+hotkey.key34 "Ctrl r" 0 0 medialib_refresh
 hotkeys_created 1
 lastfm.disable_np 0
 lastfm.enable 1
@@ -106,8 +107,8 @@ logwindow.geometry.h 200
 logwindow.geometry.w 400
 logwindow.geometry.x 34
 logwindow.geometry.y 34
-mainwin.geometry.h 1021
-mainwin.geometry.w 1916
+mainwin.geometry.h 1080
+mainwin.geometry.w 1920
 mainwin.geometry.x 0
 mainwin.geometry.y 0
 medialib.deadbeef.enabled 1
@@ -128,11 +129,11 @@ output_plugin pipewire
 playback.loop 1
 playback.volume.normalized 1.0000000
 playlist.current 0
-playlist.cursor.0 1643
+playlist.cursor.0 1822
 playlist.cursor.1 0
 playlist.cursor.2 -1
 playlist.cursor.3 -1
-playlist.scroll.0 55353
+playlist.scroll.0 61177
 playlist.scroll.1 0
 playlist.scroll.2 0
 playlist.scroll.3 0
@@ -145,8 +146,8 @@ prefwin.geometry.x 0
 prefwin.geometry.y 0
 resume.paused 1
 resume.playlist 0
-resume.position 548.57775
-resume.track 1643
+resume.position 373.56262
+resume.track 1822
 searchwin.geometry.h 150
 searchwin.geometry.w 450
 searchwin.geometry.x 0

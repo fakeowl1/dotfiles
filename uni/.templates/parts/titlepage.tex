@@ -39,13 +39,12 @@
       &
       \begin{minipage}[t]{0.4\linewidth}
         \linespread{1.5}\selectfont
-        \ifdefined\female
+        \iftoggle{female}{
           Перевірила: \\
-        \else
-          \ifdefined\male
-            Перевірив: \\
-          \fi
-        \fi
+        }{}
+        \iftoggle{male}{
+          Перевірив: \\
+        }{}
         \ifdefined\academicRank
           \academicRank \\
         \fi

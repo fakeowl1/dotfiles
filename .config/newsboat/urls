@@ -1,0 +1,35 @@
+"query:blogs:unread = \"yes\""
+https://quga.m0e.space/index.xml blogs "~qugalet"
+https://so1der.github.io/rss.xml blogs "~so1der"
+https://miliukhin.xyz/index.xml blogs "~Oleksandr Miliukhin"
+https://landchad.net/index.xml blogs
+https://bebyx.co.ua/rss.xml blogs
+https://pagedout.institute/rss.xml blogs
+
+"query:memes:unread = \"yes\""
+https://xkcd.com/rss.xml memes
+https://kamiokan.de/img/rss.xml memes
+
+"query:tech:unread = \"yes\""
+http://192.168.1.2:50000/makefulltextfeed.php?url=https://news.ycombinator.com/rss tech "~Hacker News"
+http://192.168.1.2:50000/makefulltextfeed.php?url=https://linuxiac.com/feed tech
+http://192.168.1.2:50000/makefulltextfeed.php?url=https://exception.net.ua/index.xml tech
+https://dou.ua/lenta/news/feed/ tech "~dou.ua News"
+https://www.linuxnews.net/rss.php tech 
+
+"query:forums:unread = \"yes\""
+https://www.linux.org/articles/index.rss tech 
+
+"query:linux:unread = \"yes\""
+https://feed.itsfoss.com linux 
+https://www.phoronix.com/rss.php linux
+http://192.168.1.2:50000/makefulltextfeed.php?url=https://lwn.net/headlines/rss linux
+http://192.168.1.2:50000/makefulltextfeed.php?url=http://fossforce.com/feed/ linux
+
+"query:alert:unread = \"yes\""
+https://rsshub.fakeowl1.com/telegram/channel/kievreal1 alert "~Київ повітряна тривога"
+
+"query:videos:unread = \"yes\""
+https://www.youtube.com/feeds/videos.xml?channel_id=UCwHwDuNd9lCdA7chyyquDXw videos
+https://videos.lukesmith.xyz/feeds/videos.xml?videoChannelId=2 videos
+https://videos.miliukhin.xyz/feeds/videos.xml?videoChannelId=2 videos
